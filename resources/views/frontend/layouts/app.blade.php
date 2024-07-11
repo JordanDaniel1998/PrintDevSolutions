@@ -24,6 +24,7 @@
     </main>
 
 
+    @include('frontend.layouts.footer')
     @stack('scripts')
 </body>
 

@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('last')->nullable();
+            $table->string('imagen_perfil')->default('avatar.png');
             $table->foreignId('role_id')->constrained();
         });
     }
@@ -23,6 +25,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_role_id_foreign');
+            $table->dropColumn('last');
+            $table->dropColumn('imagen_perfil');
             $table->dropColumn('role_id');
         });
     }
