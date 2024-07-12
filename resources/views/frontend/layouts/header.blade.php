@@ -47,18 +47,17 @@
                 class="flex justify-end items-center gap-2 row-span-1 col-span-1 md:row-span-1 md:col-span-2 order-2 md:order-4">
 
                 @auth
-                    <a href="{{ route('myAccount') }}">
-                        <img src="{{ asset('images/img/' . auth()->user()->imagen_perfil) }}" alt="login"
-                            class="cursor-pointer w-8 h-8 rounded-full" loading="lazy">
+                    <a href="{{ route('myAccount', auth()->user()->id) }}">
+                        <img src="{{ auth()->user()->imagen_perfil ? asset('storage/users/' . auth()->user()->imagen_perfil) : asset('images/img/avatar.png') }}" alt="login"
+                            class="cursor-pointer w-8 h-8 rounded-full">
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="bg-blue-600">
-                        <img src="{{ asset('images/svg/svg_5.svg') }}" alt="login" class="cursor-pointer" loading="lazy">
+                    <a href="{{ route('login') }}">
+                        <img src="{{ asset('images/svg/svg_5.svg') }}" alt="login" class="cursor-pointer">
                     </a>
                 @endauth
 
-                <img src="{{ asset('images/svg/svg_4.svg') }}" alt="bag" class="bag__carrito cursor-pointer"
-                    loading="lazy">
+                <img src="{{ asset('images/svg/svg_4.svg') }}" alt="bag" class="bag__carrito cursor-pointer">
 
                 <div class="flex justify-center items-center font-bold bg-[#0051FF] rounded-full w-5 h-5 p-4">
                     <span class="text-white">2</span>

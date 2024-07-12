@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     @stack('styles')
 </head>
 
@@ -25,6 +26,9 @@
 
 
     @include('frontend.layouts.footer')
+
+
+    @livewireScripts
     @stack('scripts')
 </body>
 

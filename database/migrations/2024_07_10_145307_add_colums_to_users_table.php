@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('last')->nullable();
-            $table->string('imagen_perfil')->default('avatar.png');
+            $table->string('imagen_perfil')->nullable();
             $table->foreignId('role_id')->constrained();
         });
     }

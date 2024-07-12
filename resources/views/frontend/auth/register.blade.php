@@ -23,14 +23,14 @@
                             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                                 <x-input-label for="name" :value="__('Nombres')" />
                                 <x-text-input id="name" type="text" required autocomplete="Nombres"
-                                    placeholder="Nombres" name="name" />
+                                    placeholder="Nombres" name="name" :value="old('name')"/>
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
 
                             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                                 <x-input-label for="last" :value="__('Apellidos')" />
                                 <x-text-input id="last" type="text" required autocomplete="Apellidos"
-                                    placeholder="Apellidos" name="last" />
+                                    placeholder="Apellidos" name="last" :value="old('last')"/>
                                 <x-input-error :messages="$errors->get('last')" class="mt-2" />
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
                             <x-input-label for="email_login" :value="__('Email')" />
                             <x-text-input id="email_login" type="email" required autocomplete="Correo Electrónico"
-                                placeholder="Correo electrónico" name="email" />
+                                placeholder="Correo electrónico" name="email" :value="old('email')"/>
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
