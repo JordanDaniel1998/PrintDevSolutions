@@ -2,12 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RolUsuario
+class RoleUser
 {
     /**
      * Handle an incoming request.
@@ -16,13 +15,13 @@ class RolUsuario
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Verifica que el usuario autenticado sea el que esta accediendo
-        $currentUrl = $request->fullUrl();
-        $user_id = (int) basename(parse_url($currentUrl, PHP_URL_PATH));
-
-        if(auth()->user()->id !== $user_id){
-            return redirect()->route('home');
+        if (auth()->check()) {
+            // 2 - user, 1 - admin
+            if (auth()->user()->role_id === 2 || auth()->user()->role_id === 1) {
+                return redirect()->route('home');
+            }
         }
+
         return $next($request);
     }
 }

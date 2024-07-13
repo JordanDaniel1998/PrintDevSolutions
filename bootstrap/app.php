@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\RoleAdmin;
+use App\Http\Middleware\RoleUser;
 use App\Http\Middleware\RolUsuario;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -13,7 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'auth.user' => RolUsuario::class
+            'auth.usuario' => RolUsuario::class,
+            'auth.user' => RoleUser::class,
+            'auth.admin' => RoleAdmin::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

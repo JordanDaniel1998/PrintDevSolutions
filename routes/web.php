@@ -8,15 +8,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+// -------------------------------------------- Users -----------------------------------------------
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware(['auth.user']); // Si ya se autentico permite acceso
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware(['auth.user']);;
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/my-account/{user}', [AccountController::class, 'index'])->name('myAccount')->middleware(['auth', 'auth.user']);
+Route::get('/my-account/{user}', [AccountController::class, 'index'])->name('myAccount')->middleware(['auth', 'auth.usuario']);
 
 
+
+// ------------------------------------------- Admin --------------------------------------------------
+require __DIR__.'/admin.php';
 
 
 
