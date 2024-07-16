@@ -1,22 +1,28 @@
 <?php
 
 use App\Http\Controllers\Frontend\Auth\LoginController;
+use App\Http\Controllers\Frontend\Auth\LogoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\User\AccountController;
+use App\Http\Controllers\Frontend\User\DirectionController;
+use App\Http\Controllers\Frontend\User\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // -------------------------------------------- Users -----------------------------------------------
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware(['auth.user']); // Si ya se autentico permite acceso
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware(['auth.user']); // Si ya se autenticó permite acceso
 Route::post('/login', [LoginController::class, 'store']);
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware(['auth.user']);;
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/my-account/{user}', [AccountController::class, 'index'])->name('myAccount')->middleware(['auth', 'auth.usuario']);
-
+Route::get('/my-account/{user}/edit', [AccountController::class, 'index'])->name('myAccount')->middleware(['auth', 'auth.checkUserOwner']);
+Route::get('/my-account/{user}/direction', [DirectionController::class, 'index'])->name('myAccount.direction')->middleware(['auth', 'auth.checkUserOwner']);
+Route::get('/my-account/{user}/orders', [OrderController::class, 'index'])->name('myAccount.orders')->middleware(['auth', 'auth.checkUserOwner']);
 
 
 // ------------------------------------------- Admin --------------------------------------------------

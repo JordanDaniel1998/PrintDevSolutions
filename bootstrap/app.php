@@ -2,7 +2,7 @@
 
 use App\Http\Middleware\RoleAdmin;
 use App\Http\Middleware\RoleUser;
-use App\Http\Middleware\RolUsuario;
+use App\Http\Middleware\CheckUserOwnership;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'auth.usuario' => RolUsuario::class,
+            'auth.checkUserOwner' => CheckUserOwnership::class,
             'auth.user' => RoleUser::class,
             'auth.admin' => RoleAdmin::class
         ]);

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/carrito.js'])
 
     <!-- Al instalar livewire, por defecto viene Alpine.js -->
     @livewireStyles
@@ -23,6 +23,7 @@
     @include('frontend.layouts.header')
 
     <main>
+
         @yield('contenido')
     </main>
 
@@ -32,6 +33,8 @@
 
     @livewireScripts
     @stack('scripts')
+
+
 </body>
 
 </html>

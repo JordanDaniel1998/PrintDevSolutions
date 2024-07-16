@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RolUsuario
+class CheckUserOwnership
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class RolUsuario
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Verifica que el usuario autenticado sea el que esta accediendo
-        $currentUrl = $request->fullUrl();
-        $user_id = (int) basename(parse_url($currentUrl, PHP_URL_PATH));
+        // Recupera al usuario de la URL
+        $user = $request->route('user');
 
-        if(auth()->user()->id !== $user_id){
+        if(auth()->user()->id !== $user->id){
             return redirect()->route('home');
         }
         return $next($request);

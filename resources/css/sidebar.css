@@ -50,7 +50,7 @@
 body {
     height: 100vh;
     width: 100%;
-    background-color: darkcyan;
+    /*  background-color: darkcyan; */
 }
 
 /*-----------------Menu*/
@@ -77,19 +77,19 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 250px;
+    width: 300px;
     height: 100%;
     overflow: hidden;
     padding: 20px 15px;
     background-color: var(--color-barra-lateral);
     transition: width 0.5s ease, background-color 0.3s ease, left 0.5s ease;
     z-index: 50;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .mini-barra-lateral {
     width: 80px;
 }
-
 .barra-lateral span {
     width: 100px;
     white-space: nowrap;
@@ -98,7 +98,6 @@ body {
     opacity: 1;
     transition: opacity 0.5s ease, width 0.5s ease;
 }
-
 .barra-lateral span.oculto {
     opacity: 0;
     width: 0;
@@ -234,7 +233,7 @@ body {
     background-color: var(--color-switch-circulo);
     border-radius: 50%;
     left: 2px;
-    transition: left 0.5s ease-out;
+    transition: left 0.5s ease;
 }
 .barra-lateral .modo-oscuro .circulo.prendido {
     left: 15px;
@@ -283,7 +282,7 @@ body {
 }
 
 main {
-    margin-left: 250px;
+    margin-left: 300px;
     padding: 20px;
     transition: margin-left 0.5s ease;
 }
@@ -303,14 +302,14 @@ main.min-main {
 @media (max-width: 600px) {
     .barra-lateral {
         position: fixed;
-        left: 0;
+        left: -300px;
     }
     .max-barra-lateral {
         left: 0;
     }
-    /* .menu {
-    display: flex;
-  } */
+    .menu {
+        display: flex;
+    }
     .menu ion-icon:nth-child(2) {
         display: none;
     }
@@ -318,6 +317,6 @@ main.min-main {
         margin-left: 0;
     }
     main.min-main {
-        margin-left: 80px;
+        margin-left: 0;
     }
 }

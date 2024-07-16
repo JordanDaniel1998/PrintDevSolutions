@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AccountController extends Controller
+class DirectionController extends Controller
 {
     public function index(User $user)
     {
-        return view('frontend.home.user.index', compact('user'));
+
+        return view('frontend.home.user.direction', compact('user'));
     }
 }
