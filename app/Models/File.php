@@ -13,7 +13,7 @@ class File extends Model
 
     // Una imagen solo le pertenece a un producto
     public function product(){
-        $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
 }

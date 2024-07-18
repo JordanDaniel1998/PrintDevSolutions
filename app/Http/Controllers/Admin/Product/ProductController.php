@@ -7,6 +7,7 @@ use App\Models\File;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File as FileIluminate;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -16,7 +17,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard.products.index');
+        $products = Product::all();
+
+        return view('admin.dashboard.products.index', compact('products'));
     }
 
     public function create()
@@ -26,20 +29,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $path = storage_path('app/public/uploads');
-        // Crear el directorio si no existe
-        if (!FileIluminate::exists($path)) {
-            Storage::makeDirectory('public/uploads', 0777, true);
-        }
-
-        // Imagen principal
-        $manager = new ImageManager(new Driver());
-        $imagen = $request->file('imagen');
-        $nombreImagen = Str::uuid() . '.' . $imagen->extension();
-        $imagenServidor = $manager->read($imagen);
-        $imagenServidor->cover(1000, 1000);
-        $imagenServidor->save(storage_path('app/public/uploads/' . $nombreImagen));
-
         $request->validate([
             'title' => 'required|string|max:255',
             'subTitle' => 'required|string|max:255',
@@ -51,20 +40,120 @@ class ProductController extends Controller
             'images' => 'required|string',
         ]);
 
-        $product = Product::create([
-            'title' => $request->title,
-            'subTitle' => $request->subTitle,
-            'description' => $request->description,
-            'description_short' => $request->description_short,
-            'imagen' => $nombreImagen,
-            'price' => $request->price,
-            'stock' => $request->stock,
+        try {
+            // Empieza con la transacción
+            DB::beginTransaction();
+
+            $path = storage_path('app/public/uploads');
+            // Crear el directorio si no existe
+            if (!FileIluminate::exists($path)) {
+                Storage::makeDirectory('public/uploads', 0777, true);
+            }
+
+            // Imagen principal
+            $manager = new ImageManager(new Driver());
+            $imagen = $request->file('imagen');
+            $nombreImagen = Str::uuid() . '.' . $imagen->extension();
+            $imagenServidor = $manager->read($imagen);
+            $imagenServidor->cover(1000, 1000);
+            $imagenServidor->save(storage_path('app/public/uploads/' . $nombreImagen));
+
+            $product = Product::create([
+                'title' => $request->title,
+                'subTitle' => $request->subTitle,
+                'description' => $request->description,
+                'description_short' => $request->description_short,
+                'imagen' => $nombreImagen,
+                'price' => $request->price,
+                'stock' => $request->stock,
+            ]);
+
+            // Galería de imagenes
+            $imagesArray = json_decode($request->images, true);
+            // Verifica que haya sido decodificado correctamente
+            if (json_last_error() === JSON_ERROR_NONE) {
+                foreach ($imagesArray as $image) {
+                    File::create([
+                        'product_id' => $product->id, // $product->id
+                        'title' => pathinfo($image, PATHINFO_FILENAME),
+                        'imagen' => $image,
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return redirect()->route('products.index');
+        } catch (\Exception $e) {
+            // Si ocurre un error, deshace todos los cambios realizados en la transacción
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with(['message' => 'error']);
+        }
+    }
+
+    public function edit(Product $product)
+    {
+        // Obtenemos el array de imagenes
+        $files = $product->files->pluck('imagen')->toArray();
+        // Convertimos a cadena de texto
+        $files = json_encode($files);
+
+        return view('admin.dashboard.products.edit', compact('product', 'files'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'subTitle' => 'required|string|max:255',
+            'description' => 'required|string',
+            'description_short' => 'required|string',
+            'imagen' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'price' => 'required|numeric',
+            'stock' => 'required|integer',
+            'images' => 'required|string',
         ]);
 
-        // Galería de imagenes
+        // Imagen principal
+        $path = storage_path('app/public/uploads');
+        // Crear el directorio si no existe
+        if (!FileIluminate::exists($path)) {
+            Storage::makeDirectory('public/uploads', 0777, true);
+        }
+
+        if ($request->hasFile('imagen')) {
+            $manager = new ImageManager(new Driver());
+            $imagen = $request->file('imagen');
+            $nombreImagen = Str::uuid() . '.' . $imagen->extension();
+            $imagenServidor = $manager->read($imagen);
+            $imagenServidor->cover(1000, 1000);
+            $imagenServidor->save(storage_path('app/public/uploads/' . $nombreImagen));
+        } else {
+            $nombreImagen = $product->imagen;
+        }
+
+        // Agregamos la nueva galería de imagenes
         $imagesArray = json_decode($request->images, true);
         // Verifica que haya sido decodificado correctamente
         if (json_last_error() === JSON_ERROR_NONE) {
+
+            foreach ($product->files as $file) {
+                // Si la imagen de la bd esta contenida en el nuevo array de imagenes, no se elimina del storage, pero si se elimina de la bd
+                if (!in_array($file->imagen, $imagesArray)) {
+                    // Eliminar del storage las imagenes previas
+                    $filePath = 'public/uploads/' . $file->imagen;
+
+                    if (Storage::exists($filePath)) {
+                        Storage::delete($filePath);
+                    }
+                }
+                // Eliminar la imagen en la bd
+                $file->delete();
+            }
+
+            // Agrega las nuevas imagenes
             foreach ($imagesArray as $image) {
                 File::create([
                     'product_id' => $product->id,
@@ -73,5 +162,20 @@ class ProductController extends Controller
                 ]);
             }
         }
+
+
+        // Actualizar el producto
+
+        $product->title = $request->title;
+        $product->subTitle = $request->subTitle;
+        $product->description = $request->description;
+        $product->description_short = $request->description_short;
+        $product->imagen = $nombreImagen;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+
+        $product->save();
+
+        return redirect()->route('products.index');
     }
 }

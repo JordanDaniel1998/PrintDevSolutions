@@ -5,6 +5,13 @@
 @endpush
 
 @section('contenido')
+    @if (session()->has('message'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show"
+            class="uppercase border p-5 my-3 text-md font-bold
+                            {{ session('type') === 'success' ? 'border-green-600 bg-green-100 text-green-600' : 'border-red-600 bg-red-100 text-red-600' }}">
+            {{ session('message') }}
+        </div>
+    @endif
     <section class="flex flex-col gap-10">
         <form action="{{ route('products.store') }}" method="POST" class="flex flex-col w-full gap-10"
             enctype="multipart/form-data" novalidate>
@@ -24,46 +31,44 @@
                             <x-input-label-dashboard for="subTitle" :value="__('SubTítulo')" />
                             <x-input-text-dashboard id="subTitle" type="text" required
                                 autocomplete="Subtítulo del producto" placeholder="Subtítulo del producto" name="subTitle"
-                                :value="old('sutTitle')" />
+                                :value="old('subTitle')" />
                             <x-input-error-dashboard :messages="$errors->get('subTitle')" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-3">
-                        <div class="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3">
+
+                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                            <x-input-label-dashboard for="description" :value="__('Descripción Principal')" />
+                            <x-text-area-dashboard id="description" type="text" required
+                                autocomplete="Descripción del producto" placeholder="Descripción del producto"
+                                name="description" :value="old('description')" rows="5" />
+                            <x-input-error-dashboard :messages="$errors->get('description')" class="mt-2" />
+                        </div>
+
+                        <div class="flex flex-col justify-start items-center">
                             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                <x-input-label-dashboard for="description" :value="__('Descripción Principal')" />
-                                <x-text-area-dashboard id="description" type="text" required
-                                    autocomplete="Descripción del producto" placeholder="Descripción del producto"
-                                    name="description" :value="old('description')" rows="5" />
-                                <x-input-error-dashboard :messages="$errors->get('description')" class="mt-2" />
+                                <x-input-label-dashboard for="imagen" :value="__('Imagen principal')" />
+                                <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
+                                    onchange="imagePrincipal(event)" class="w-full" />
+                                <x-input-error-dashboard :messages="$errors->get('imagen')" class="mt-2" />
                             </div>
 
-                            <div class="flex flex-col justify-start items-center">
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
-                                    <x-input-label-dashboard for="imagen" :value="__('Imagen principal')" />
-                                    <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
-                                        onchange="previewImage(event)" />
-                                </div>
-
-                                <div>
-                                    <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100%; height: auto;" />
-                                </div>
+                            <div class="w-full">
+                                <img id="imagePreview" src="#" alt="producto" class="hidden w-full pt-3" />
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-3">
-                            {{--  --}}
+
                             <div>
-                                <div id="dropzone" class="dropzone dz-clickable">
-                                    <div class="dz-message needsclick">
-                                        <br>Drop files here or click to upload.<br><br>
-                                    </div>
-                                </div>
+                                <x-input-label-dashboard for="dropzone" :value="__('Galería de imagenes ( máximo 6 imagenes)')" />
+                                <div id="dropzone" class="dropzone dz-clickable"></div>
                             </div>
 
                             <div class="dropzone-wrapper">
-                                <input type="hidden" name="images" value="">
+                                <input type="hidden" name="images" value="{{ old('images') }}">
+                                <x-input-error-dashboard :messages="$errors->get('images')" class="mt-2" />
                             </div>
 
                             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
@@ -138,8 +143,10 @@
     <script>
         Dropzone.autoDiscover = false;
         const tokenCsrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
         let hiddenInput = document.querySelector('input[type="hidden"][name="images"]');
-        const images = [];
+        let images = [];
+
 
         const dropzone = new Dropzone("#dropzone", {
             url: "{{ route('imagenes.store') }}",
@@ -147,48 +154,127 @@
             acceptedFiles: ".png, .jpg, .jpeg, .gif",
             addRemoveLinks: true,
             dictRemoveFile: "Borrar archivo",
-            maxFiles: 5,
             paramName: "file[]",
             /* autoProcessQueue: false, */
-            uploadMultiple: false,
+            uploadMultiple: false, // Envia un solo archivo en cada peticion
             headers: {
                 'X-CSRF-TOKEN': tokenCsrf
             },
             init: function() {
 
+                // ------------------------------------------------
+                if (document.querySelector('[name="images"]').value.trim()) {
+
+                    // Actualiza e array anterior de imagenes
+                    images = JSON.parse(document.querySelector('[name="images"]').value.trim());
+
+
+                    images.forEach(img => {
+                        const imagenPublicada = {};
+                        imagenPublicada.size = 1234;
+                        imagenPublicada.name = img;
+                        /*   imagenPublicada.accepted: true; */
+
+                        // Añade la imagen al dropzone
+                        this.options.addedfile.call(this, imagenPublicada);
+                        // Obtiene la ruta de la imagen y poder visualizar en el dropzone
+                        this.options.thumbnail.call(
+                            this,
+                            imagenPublicada,
+                            `/storage/uploads/${imagenPublicada.name}`
+                        );
+
+                        /* this.options.complete.call(this imagenPublicada); */
+
+                        // Añadimos el nombre a la etiqueta a
+                        const imageThumbnail = imagenPublicada.previewElement.querySelector(
+                            'a[data-dz-remove]');
+                        if (imageThumbnail) {
+                            imageThumbnail.setAttribute('data-name', imagenPublicada.name);
+                        }
+
+                        // Añadimos clases que el dropzone normalmente las maneja
+                        imagenPublicada.previewElement.classList.add(
+                            "dz-preview",
+                            "dz-processing",
+                            "dz-image-preview",
+                            "dz-success",
+                            "dz-complete"
+                        );
+
+                        // Subimos la cantidad de archivos al administrador de dropzone
+                        this.files.push(imagenPublicada);
+                    });
+
+                    // Restamos la cantidad de archivos al tamaño original
+                   /*  count = this.options.maxFiles - images.length; */
+
+                }
+
+                // --------------------------------------------------
+
                 this.on("maxfilesexceeded", function(file) {
+
                     this.removeFile(file);
+
+
                 });
                 this.on("success", function(file, response) {
+
+                    // Obtener cada imagen subida e insertar el titulo en su etiqueta a
+                    const imageThumbnail = file.previewElement.querySelector(
+                        'a[data-dz-remove]');
+                    if (imageThumbnail) {
+                        imageThumbnail.setAttribute('data-name', response.nameOfImage);
+                    }
+
+                    // Agregar imagenes al value del input
                     images.push(response.nameOfImage);
                     let imagesString = JSON.stringify(images);
                     hiddenInput.value = imagesString;
-                });
-                this.on("error", function(file, response) {
-                    console.log(response);
-                });
-                this.on("removedfile", function(file) {
-                    const imageName = file.upload.filename;
 
-                    /* const deleteImage = async () => {
+                });
+
+                this.on("error", function(file, response) {
+                    /* console.log(response); */
+                });
+
+                this.on("removedfile", function(file) {
+
+
+                    // Selecciona la etiqueta " a " antes de que sea eliminada
+                    const linkElement = file.previewElement.querySelector('a').getAttribute(
+                        'data-name');
+
+                    images = images.filter((thumbnail) => thumbnail !== linkElement);
+                    let imagesString = JSON.stringify(images);
+                    hiddenInput.value = imagesString;
+
+
+
+                    // ------------------------------------
+                    const deleteImage = async () => {
                         try {
-                            const response = await axios.post('/admin/imagenes/delete', {
-                                name: "peero"
-                            });
-                            console.log(response);
+                            const response = await axios.post(
+                                '/admin/imagenes/delete', {
+                                    name: linkElement
+                                });
+
                         } catch (error) {
                             console.error(error);
                         }
                     };
 
-                    deleteImage(); */
+                    deleteImage();
+
                 });
+
             },
         });
     </script>
 
     <script>
-        function previewImage(event) {
+        function imagePrincipal(event) {
             const input = event.target;
             const file = input.files[0];
 
@@ -198,14 +284,16 @@
                 reader.onload = function(e) {
                     const img = document.getElementById('imagePreview');
                     img.src = e.target.result;
-                    img.style.display = 'block'; // Muestra la vista previa
+                    img.classList.remove('hidden');
+                    img.classList.add('block');
                 };
 
                 reader.readAsDataURL(file);
             } else {
                 const img = document.getElementById('imagePreview');
                 img.src = '#';
-                img.style.display = 'none'; // Oculta la vista previa si no hay archivo
+                img.classList.remove('block');
+                img.classList.add('hidden');
             }
         }
     </script>

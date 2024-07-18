@@ -14,7 +14,7 @@ class Product extends Model
     // Un producto puede tener muchas imagenes
 
     public function files(){
-        $this->hasMany(File::class);
+        return $this->hasMany(File::class);
     }
 
 

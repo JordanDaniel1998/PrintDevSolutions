@@ -42,15 +42,20 @@ class ImagenesController extends Controller
 
         return response()->json([
             'nameOfImage' => $imageName,
-            'nameWithExtension' => $nameWithExtension
+            'nameWithExtension' => $nameWithExtension,
         ], 200);
 
     }
 
     public function destroy(Request $request)
     {
-        $datos = $request->name;
-        return response()->json(['imagen' => $datos]);
+        $imagen = $request->input('name');
+        $filePath = 'public/uploads/' . $imagen;
 
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+
+        return response()->json(['delete' => true]);
     }
 }

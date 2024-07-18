@@ -37,30 +37,6 @@
                     <span>Sent</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="document-text-outline"></ion-icon>
-                    <span>Drafts</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                    <span>Important</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                    <span>Spam</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="trash-outline"></ion-icon>
-                    <span>Trash</span>
-                </a>
-            </li>
         </ul>
     </nav>
 

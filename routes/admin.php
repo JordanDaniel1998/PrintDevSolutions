@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::post('/productos', [ProductController::class, 'store'])->name('products.store');
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::post('/products/{product}/update', [ProductController::class, 'update'])->name('products.update');
+
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
     Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');
