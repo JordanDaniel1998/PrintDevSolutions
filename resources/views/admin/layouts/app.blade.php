@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   {{--  <meta name="_token" content="{{ csrf_token() }}"> --}}
+    {{--  <meta name="_token" content="{{ csrf_token() }}"> --}}
     <title>Admin - PrintDevSolutions</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fonts -->
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css">
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/sidebar.css', 'resources/js/sidebar.js'])
     @livewireStyles
@@ -36,9 +36,7 @@
     </main>
 
 
-
     @livewireScripts
-    @stack('scripts')
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
@@ -48,14 +46,16 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                responsive: true,
-            });
+        $('#example').DataTable({
+            responsive: true,
         });
     </script>
+
+    @stack('scripts')
+
 
 </body>
 

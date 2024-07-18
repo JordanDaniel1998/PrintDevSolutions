@@ -44,9 +44,10 @@ class ProductController extends Controller
             // Empieza con la transacción
             DB::beginTransaction();
 
-            $path = storage_path('app/public/uploads');
+            $pathUploads = storage_path('app/public/uploads');
+
             // Crear el directorio si no existe
-            if (!FileIluminate::exists($path)) {
+            if (!FileIluminate::exists($pathUploads)) {
                 Storage::makeDirectory('public/uploads', 0777, true);
             }
 
@@ -138,7 +139,6 @@ class ProductController extends Controller
         $imagesArray = json_decode($request->images, true);
         // Verifica que haya sido decodificado correctamente
         if (json_last_error() === JSON_ERROR_NONE) {
-
             foreach ($product->files as $file) {
                 // Si la imagen de la bd esta contenida en el nuevo array de imagenes, no se elimina del storage, pero si se elimina de la bd
                 if (!in_array($file->imagen, $imagesArray)) {
@@ -163,7 +163,6 @@ class ProductController extends Controller
             }
         }
 
-
         // Actualizar el producto
 
         $product->title = $request->title;
@@ -177,5 +176,30 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('products.index');
+    }
+
+    public function destroy(Product $product)
+    {
+        try {
+            // Eliminar la galeria de imagenes del producto
+            foreach ($product->files as $file) {
+                $filePath = 'public/uploads/' . $file->imagen;
+                if (Storage::exists($filePath)) {
+                    Storage::delete($filePath);
+                }
+            }
+
+            // Eliminar la foto principal
+            $productImagen = 'public/uploads/' . $product->imagen;
+            if (Storage::exists($productImagen)) {
+                Storage::delete($productImagen);
+            }
+
+            $isRemove = $product->delete();
+
+            return response()->json(['isRemove' => $isRemove]);
+        } catch (\Exception $th) {
+            return response()->json(['message' => 'Error al eliminar el producto.'], 500);
+        }
     }
 }

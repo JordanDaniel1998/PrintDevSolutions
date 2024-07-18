@@ -5,13 +5,7 @@
 @endpush
 
 @section('contenido')
-    @if (session()->has('message'))
-        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show"
-            class="uppercase border p-5 my-3 text-md font-bold
-                            {{ session('type') === 'success' ? 'border-green-600 bg-green-100 text-green-600' : 'border-red-600 bg-red-100 text-red-600' }}">
-            {{ session('message') }}
-        </div>
-    @endif
+
     <section class="flex flex-col gap-10">
 
         <form action="{{ route('products.update', $product->id) }}" method="POST" class="flex flex-col w-full gap-10"
