@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminLogoutController;
 use App\Http\Controllers\Admin\CategoriesProducts\Categories\CategoriesController;
 use App\Http\Controllers\Admin\CategoriesProducts\CategoriesProductsController;
+use App\Http\Controllers\Admin\CategoriesProducts\SubCategories\SubcategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ImagenesController;
 use App\Http\Controllers\Admin\Product\ProductController;
@@ -41,9 +42,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::get('products/categories/data', [CategoriesController::class, 'getData'])->name('productsOfCategories.getData');
 
     // ------- Subcategories of categories --------
+    Route::get('products/subcategories', [SubcategoriesController::class, 'index'])->name('productsOfSubCategories.index');
 
-
-
+    Route::post('products/subcategories/store', [SubcategoriesController::class, 'store'])->name('productsOfSubCategories.store');
+    Route::get('products/subcategories/{subcategorie}/edit', [SubcategoriesController::class, 'edit'])->name('productsOfSubCategories.edit');
+    Route::post('products/subcategories/updates', [SubcategoriesController::class, 'update'])->name('productsOfSubCategories.update');
+    Route::get('products/subcategories/data', [SubcategoriesController::class, 'getData'])->name('productsOfSubCategories.getData');
+    Route::delete('products/subcategories/{subcategorie}', [SubcategoriesController::class, 'destroy'])->name('productsOfSubCategories.destroy');
 
 
     Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');

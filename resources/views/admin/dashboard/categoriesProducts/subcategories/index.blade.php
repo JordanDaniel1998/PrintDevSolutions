@@ -12,10 +12,10 @@
 @section('contenido')
     <section>
         <div class="flex flex-col gap-5 lg:pt-10">
-            <!-- crear categoria -->
-            <div x-data="{ open: false }" id="modalRegisterCategory" x-cloak>
+            <!-- crear subcategoria -->
+            <div x-data="{ open: false }" id="modalRegisterSubCategory" x-cloak>
                 <!-- Open modal button -->
-                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 text-white rounded-md"> Agregar Categoría
+                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 text-white rounded-md"> Agregar SubCategoría
                 </button>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
@@ -32,17 +32,34 @@
                         class="bg-white rounded-md shadow-xl overflow-hidden max-w-md w-full sm:w-96 md:w-1/2 lg:w-2/3 xl:w-1/3 z-50">
                         <!-- Modal Header -->
                         <div class="bg-indigo-500 text-white px-4 py-2 flex justify-between">
-                            <h2 class="text-lg font-semibold">Agregar Categoría</h2>
+                            <h2 class="text-lg font-semibold">Agregar SubCategoría</h2>
                         </div>
+
                         <!-- Modal Body -->
-                        <form action="" id="formCategorieRegister">
+                        <form action="" id="formSubCategorieRegister">
+
                             <div
-                                class="p-4 h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100">
+                                class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
+
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="categorie" :value="__('Categoría')" />
-                                    <x-input-text-dashboard id="categorie" type="text" required
-                                        autocomplete="Nombre de la categoría" placeholder="Nombre de la categoría"
-                                        name="categorie" />
+                                    <x-input-label-dashboard for="category" :value="__('Categoría')" />
+
+                                    <select name="category" id="category"
+                                        class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all">
+                                        <option value="">-- Seleccionar --</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="selectCategoryMessage"></div>
+                                </div>
+
+                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                    <x-input-label-dashboard for="subcategory" :value="__('SubCategoría')" />
+                                    <x-input-text-dashboard id="subcategory" type="text" required
+                                        autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
+                                        name="subcategory" />
+                                    <div class="subcategoryMessage"></div>
                                 </div>
                             </div>
                             <!-- Modal Footer -->
@@ -62,8 +79,8 @@
                 </div>
             </div>
 
-            <!-- editar categoria -->
-            <div x-data="{ open: false }" id="modalEditarCategory" x-cloak>
+            <!-- editar subcategoria -->
+            <div x-data="{ open: false }" id="modalEditarSubCategory" x-cloak>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
                     <div x-show="open" x-transition:enter="transition-opacity ease-out duration-300"
@@ -83,21 +100,38 @@
                             <h2 class="text-lg font-semibold">Editar Categoría</h2>
                         </div>
                         <!-- Modal Body -->
-                        <form id="formCategorie" method="POST">
+                        <form action="" id="formSubCategoriesUpdate" method="POST">
                             <div
-                                class="p-4 h-36 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100">
+                                class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
+
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="category" :value="__('Categoría')" />
-                                    <x-input-text-dashboard id="category" type="text" required
-                                        autocomplete="Nombre de la categoría" placeholder="Nombre de la categoría"
-                                        name="category" />
-                                    <div class="error"></div>
+                                    <x-input-label-dashboard for="category1" :value="__('Categoría')" />
+
+                                    <select name="category1" id="category1"
+                                        class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all"
+                                        required>
+                                        <option value="">-- Seleccionar --</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="selectCategory1Message"></div>
+                                </div>
+
+                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                    <x-input-label-dashboard for="subcategory1" :value="__('SubCategoría')" />
+                                    <x-input-text-dashboard id="subcategory1" type="text" required
+                                        autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
+                                        name="subcategory1" />
+                                    <div class="subcategory1Message"></div>
                                 </div>
                             </div>
                             <!-- Modal Footer -->
                             <div class="border-t px-4 py-2 flex justify-end items-center gap-2">
+
                                 <button type="submit"
-                                    class="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto"> Guardar
+                                    class="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto">
+                                    Guardar
                                 </button>
 
                                 <button type="button" x-on:click="open = false"
@@ -109,12 +143,12 @@
                 </div>
             </div>
 
-            <!-- listar categoria -->
+            <!-- listar subcategoria -->
             <div class="p-10 shadow-md border">
-                <table id="categories" class="table table-striped" style="width:100%">
+                <table id="subcategories" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-center align-middle">Categoría</th>
+                            <th class="text-center align-middle">SubCategoría</th>
                             <th class="text-center align-middle">Acciones</th>
 
                         </tr>
@@ -124,7 +158,7 @@
 
                     <tfoot>
                         <tr>
-                            <th class="text-center align-middle">Categoría</th>
+                            <th class="text-center align-middle">SubCategoría</th>
                             <th class="text-center align-middle">Acciones</th>
                         </tr>
                     </tfoot>
@@ -140,20 +174,24 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            const category = document.getElementById('category');
-            const categorie = document.getElementById('categorie');
-            const modalElementEditar = document.getElementById('modalEditarCategory');
-            const modalElementRegister = document.getElementById('modalRegisterCategory');
-            var modalComponentEditar = Alpine.$data(modalElementEditar);
-            var modalComponentRegister = Alpine.$data(modalElementRegister);
-            const error = document.querySelector('.error');
-            const cancel = document.getElementById('cancel');
+            const modalElementSubEditar = document.getElementById('modalEditarSubCategory');
+            const modalElementSubRegister = document.getElementById('modalRegisterSubCategory');
+            var modalComponentSubEditar = Alpine.$data(modalElementSubEditar);
+            var modalComponentSubRegister = Alpine.$data(modalElementSubRegister);
+            const selectCategoryMessageError = document.querySelector('.selectCategoryMessage');
+            const subcategoryMessageError = document.querySelector('.subcategoryMessage');
             const awayModal = document.getElementById('awayModal');
+            const cancel = document.getElementById('cancel');
+            const category = document.getElementById('category');
+            const subcategory = document.getElementById('subcategory');
+            const category1 = document.getElementById('category1');
+            const subcategory1 = document.getElementById('subcategory1');
+
             let id = null;
 
             // Datatable
 
-            var categories = $('#categories').DataTable({
+            var subcategories = $('#subcategories').DataTable({
                 responsive: true,
                 ordering: false, // Desactivar el order por default
                 dom: 'Blfrtip', // Define la posición de los botones (B: botones, l:cantidad de filas, f: filtro, r: procesamiento, t: tabla, i: información, p: paginación)
@@ -183,12 +221,13 @@
                     buttons: ['pageLength']
                 },
                 ajax: {
-                    url: '{{ route('productsOfCategories.getData') }}',
+                    url: '{{ route('productsOfSubCategories.getData') }}',
                     type: 'GET',
-                    dataSrc: 'data' // Asegúrate de que el formato de datos coincida
+                    dataSrc: 'data',
+
                 },
                 columns: [{
-                        data: 'name', // Nombre de las columnas que estan en la bd
+                        data: 'name',
                         className: 'text-center align-middle',
                     },
                     {
@@ -223,37 +262,67 @@
                 ]
             });
 
+            // Evento de cambio para el select
+            category.addEventListener('change', (e) => {
+                category.value = e.target.value;
 
-            // Setear su valor del input
+                const p = document.querySelector('.type-register');
+                if (p) {
+                    destroyMessage(selectCategoryMessageError, p);
+                }
+            });
 
-            categorie.addEventListener('input', (e) => {
-                categorie.value = e.target.value;
-            })
+            function destroyMessage(error, p) {
+                while (error.firstChild) {
+                    error.removeChild(error.firstChild);
+                }
+            }
 
-            // Registrar un categoría
+            // Setear al input
+            subcategory.addEventListener('input', (e) => {
+                subcategory.value = e.target.value;
+            });
 
-            $('#formCategorieRegister').submit(function(e) {
+            // Parrafo de error
+            function message(selector, type) {
+                const p = document.createElement('p');
+                p.classList.add('text-sm', 'text-red-600', 'space-y-1', 'font-bold', type);
+                p.textContent = 'El campo subcategoría no debe ser vacío';
+                selector.appendChild(p);
+            }
+
+            // Registrar una subcategoria
+
+            $('#formSubCategorieRegister').submit(function(e) {
 
                 e.preventDefault();
 
+                if (category.value === "") {
+                    message(selectCategoryMessageError, 'type-register')
+                    return;
+                }
+
                 $.ajax({
-                    url: 'categories',
+                    url: '{{ route('productsOfSubCategories.store') }}',
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     data: {
-                        'categorie': categorie.value
+                        'id': category.value,
+                        'subcategory': subcategory.value
                     },
                     success: function(response) {
+
                         if (response.type === "success") {
-                            modalComponentRegister.open = false;
-                            categorie.value = "";
-                            categories.ajax.reload();
+                            modalComponentSubRegister.open = false;
+                            subcategory.value = "";
+                            category.value = "";
+                            subcategories.ajax.reload();
                             setTimeout(() => {
                                 Swal.fire(
                                     'Registrado!',
-                                    'La categoría fue agregada.',
+                                    'La subcategoría fue agregada.',
                                     'success'
                                 )
                             }, 500);
@@ -267,48 +336,36 @@
 
             // Cerrar modal
             cancel.addEventListener('click', e => {
-                modalComponentRegister.open = false;
-                categorie.value = "";
+                modalComponentSubRegister.open = false;
+                subcategory.value = "";
+                category.value = "";
             });
 
             // Cerrar modal cuando se clickea afuera
             awayModal.addEventListener('click', e => {
-                modalComponentRegister.open = false;
-                categorie.value = "";
+                modalComponentSubRegister.open = false;
+                subcategory.value = "";
+                category.value = "";
             });
 
+            //  Editar una subcategoría
 
-            // Setear su valor del input
-
-            category.addEventListener('input', (e) => {
-                category.value = e.target.value;
-            })
-
-            //  Editar una categoría
-
-            $('#categories').on('click', '.btn-edit', function() {
+            $('#subcategories').on('click', '.btn-edit', function() {
 
                 id = $(this).data('id');
 
                 $.ajax({
-                    url: 'categories/edit',
-                    method: 'POST',
+                    url: `subcategories/${id}/edit`,
+                    method: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    data: {
-                        'id': id
                     },
                     success: function(response) {
 
                         if (response.type === "success") {
-                            const p = document.querySelector('.message');
-                            if (p) {
-                                destroyMessage(error, p);
-                            }
-
-                            modalComponentEditar.open = true;
-                            category.value = response.categorie.name;
+                            modalComponentSubEditar.open = true;
+                            subcategory1.value = response.subcategory.name;
+                            category1.value = response.subcategory.categorie_id;
 
                         } else {
                             alert('Error al actualizar la categoría');
@@ -320,44 +377,39 @@
                 });
             });
 
-
-            // Actualizar una categoría por ajax
-
-            $('#formCategorie').submit(function(e) {
+            //  Actualizar una subcategoría
+            $('#formSubCategoriesUpdate').submit(function(e) {
 
                 e.preventDefault();
 
-                if (category.value === "") {
-                    showMessage();
-                    return;
-                }
-
                 $.ajax({
-                    url: 'categories/updates',
+                    url: 'subcategories/updates',
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     data: {
-                        'id': id,
-                        'categorie': category.value
+                        'subcategorie_id': id,
+                        'categorie_id': category1.value,
+                        'subcategorie': subcategory1.value
                     },
                     success: function(response) {
+
                         if (response.type === "success") {
-                            modalComponentEditar.open = false;
-                            categories.ajax.reload();
+                            modalComponentSubEditar.open = false;
+                            subcategories.ajax.reload();
                             setTimeout(() => {
                                 Swal.fire(
                                     'Actualizado!',
-                                    'La categoría fue actualizada.',
+                                    'La subcategoría fue actualizada.',
                                     'success'
                                 )
                             }, 500);
 
-                            const p = document.querySelector('.message');
+                            /* const p = document.querySelector('.message');
                             if (p) {
                                 destroyMessage(error, p);
-                            }
+                            } */
                         }
                     },
                     error: function(error) {
@@ -366,14 +418,15 @@
                 });
             });
 
-            //  Eliminar una categoría
 
-            $('#categories').on('click', '.btn-delete', async function() {
-                const categoryId = $(this).data('id');
+            //  Eliminar una subcategoría
+
+            $('#subcategories').on('click', '.btn-delete', async function() {
+                const subcategoryId = $(this).data('id');
                 // Mostrar confirmación usando SweetAlert
                 const result = await Swal.fire({
-                    title: '¿Eliminar categoría?',
-                    text: "Una categoría que se elimina no podrá ser recuperado!",
+                    title: '¿Eliminar subcategoría?',
+                    text: "Una subcategoría que se elimina no podrá ser recuperado!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
@@ -384,7 +437,7 @@
                 if (result.isConfirmed) {
                     try {
                         // Enviar solicitud DELETE usando Axios
-                        const response = await axios.delete('categories/' + categoryId, {
+                        const response = await axios.delete('subcategories/' + subcategoryId, {
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
                             }
@@ -394,11 +447,11 @@
 
                             Swal.fire({
                                 title: "Eliminado!",
-                                text: "La categoría ah sido eliminado.",
+                                text: "La subcategoría ah sido eliminado.",
                                 icon: "success",
                             });
 
-                            categories.ajax.reload();
+                            subcategories.ajax.reload();
                         }
 
                     } catch (error) {
@@ -410,24 +463,6 @@
                     }
                 }
             });
-
-
-            // Mensaje de error
-
-            function showMessage() {
-
-                const p = document.createElement('p');
-                p.classList.add('text-sm', 'text-red-600', 'space-y-1', 'font-bold', 'message');
-                p.textContent = 'El campo categoría no debe ser vacío';
-                destroyMessage(error, p);
-                error.appendChild(p);
-            }
-
-            function destroyMessage(error, p) {
-                while (error.firstChild) {
-                    error.removeChild(error.firstChild);
-                }
-            }
         });
     </script>
 @endpush
