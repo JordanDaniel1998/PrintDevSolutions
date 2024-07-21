@@ -97,7 +97,7 @@
                         class="bg-white rounded-md shadow-xl overflow-hidden max-w-md w-full sm:w-96 md:w-1/2 lg:w-2/3 xl:w-1/3 z-50">
                         <!-- Modal Header -->
                         <div class="bg-indigo-500 text-white px-4 py-2 flex justify-between">
-                            <h2 class="text-lg font-semibold">Editar Categoría</h2>
+                            <h2 class="text-lg font-semibold">Editar Subcategoría</h2>
                         </div>
                         <!-- Modal Body -->
                         <form action="" id="formSubCategoriesUpdate" method="POST">
@@ -198,8 +198,8 @@
                 buttons: [{
                         extend: 'excelHtml5',
                         autoFilter: true,
-                        filename: 'Data exportada - Categoria de Productos',
-                        sheetName: 'Categoría de productos',
+                        filename: 'Data exportada - SubCategoría de Productos',
+                        sheetName: 'SubCategoría de productos',
                         className: 'btn btn-outline-success',
                         exportOptions: {
                             columns: [0] // Indica las columnas que se desea exportar
@@ -208,8 +208,8 @@
                     },
                     {
                         extend: 'csvHtml5',
-                        filename: 'Data exportada - Categoría de Productos',
-                        sheetName: 'Data exportada - Categoría de Productos',
+                        filename: 'Data exportada - SubCategoría de Productos',
+                        sheetName: 'Data exportada - SubCategoría de Productos',
                         className: 'btn btn-outline-success',
                         exportOptions: {
                             columns: [0] // Indica las columnas que se desea exportar

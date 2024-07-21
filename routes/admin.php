@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminLogoutController;
+use App\Http\Controllers\Admin\CategoriesProducts\Brands\BrandsController;
 use App\Http\Controllers\Admin\CategoriesProducts\Categories\CategoriesController;
 use App\Http\Controllers\Admin\CategoriesProducts\CategoriesProductsController;
 use App\Http\Controllers\Admin\CategoriesProducts\SubCategories\SubcategoriesController;
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     // ------- categories of categories --------
 
     Route::get('products/categories-productos', [CategoriesProductsController::class, 'index'])->name('categories.index');
+
     Route::get('products/categories', [CategoriesController::class, 'index'])->name('productsOfCategories.index');
     Route::post('products/categories', [CategoriesController::class, 'store'])->name('productsOfCategories.store');
     Route::post('products/categories/updates', [CategoriesController::class, 'update'])->name('productsOfCategories.update');
@@ -43,12 +45,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
 
     // ------- Subcategories of categories --------
     Route::get('products/subcategories', [SubcategoriesController::class, 'index'])->name('productsOfSubCategories.index');
-
     Route::post('products/subcategories/store', [SubcategoriesController::class, 'store'])->name('productsOfSubCategories.store');
     Route::get('products/subcategories/{subcategorie}/edit', [SubcategoriesController::class, 'edit'])->name('productsOfSubCategories.edit');
     Route::post('products/subcategories/updates', [SubcategoriesController::class, 'update'])->name('productsOfSubCategories.update');
     Route::get('products/subcategories/data', [SubcategoriesController::class, 'getData'])->name('productsOfSubCategories.getData');
     Route::delete('products/subcategories/{subcategorie}', [SubcategoriesController::class, 'destroy'])->name('productsOfSubCategories.destroy');
+
+
+     // ------- Brands of subcategories --------
+     Route::get('products/brands', [BrandsController::class, 'index'])->name('productsBrand.index');
+     Route::post('products/brands/store', [BrandsController::class, 'store'])->name('productsBrand.store');
+     Route::get('products/brands/{brand}/edit', [BrandsController::class, 'edit'])->name('productsBrand.edit');
+     Route::post('products/brands/updates', [BrandsController::class, 'update'])->name('productsBrand.update');
+     Route::get('products/brands/data', [BrandsController::class, 'getData'])->name('productsBrand.getData');
+     Route::delete('products/brands/{brand}', [BrandsController::class, 'destroy'])->name('productsBrand.destroy');
+
+
+
+
 
 
     Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');

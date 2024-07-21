@@ -50,7 +50,7 @@
         </a>
 
 
-        <a type="button"
+        <a href="{{ route('productsBrand.index') }}"
             class="bg-indigo-500 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

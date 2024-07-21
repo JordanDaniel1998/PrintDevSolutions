@@ -160,7 +160,7 @@
                 buttons: [{
                         extend: 'excelHtml5',
                         autoFilter: true,
-                        filename: 'Data exportada - Categoria de Productos',
+                        filename: 'Data exportada - Categoría de Productos',
                         sheetName: 'Categoría de productos',
                         className: 'btn btn-outline-success',
                         exportOptions: {
