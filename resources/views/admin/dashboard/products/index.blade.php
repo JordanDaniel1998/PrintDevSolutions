@@ -2,15 +2,27 @@
 
 @push('styles')
     <style>
-        .toggle-checkbox:checked+div .dot {
+
+        /* toogle de visible y destacado */
+        .toggle-checkbox-visible:checked+div .dot {
             transform: translateX(100%);
         }
 
-        .toggle-checkbox:checked+div {
+        .toggle-checkbox-visible:checked+div {
             background-color: #4ade80;
         }
+
+        .toggle-checkbox-highlighted:checked+div .dot {
+            transform: translateX(100%);
+        }
+
+        .toggle-checkbox-highlighted:checked+div {
+            background-color: #4ade80;
+        }
+        /* fin toogle de visible y destacado */
+
     </style>
-@endpush
+ @endpush
 
 @section('contenido')
     <section class="flex flex-col gap-10 lg:pt-10">
@@ -28,7 +40,7 @@
         </div>
 
         <div class="p-10 shadow-md border">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="products" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th class="text-center align-middle">Título</th>
@@ -103,7 +115,8 @@
                 </tbody> --}}
 
                 <!-- 2da forma por livewire -->
-                <livewire:show-products />
+                <livewire:products.show-products />
+
                 <tfoot>
                     <tr>
                         <th class="text-center align-middle">Título</th>

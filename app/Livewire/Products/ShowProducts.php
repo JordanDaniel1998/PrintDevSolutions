@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Products;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
@@ -9,6 +9,7 @@ use Livewire\Component;
 
 class ShowProducts extends Component
 {
+
     #[On('deleteProductById')]
     public function deleteProductById(Product $product)
     {
@@ -20,18 +21,21 @@ class ShowProducts extends Component
             }
         }
 
-        // Eliminar la foto principal
+        // Eliminar la foto principal del producto
         $productImagen = 'public/uploads/' . $product->imagen;
         if (Storage::exists($productImagen)) {
             Storage::delete($productImagen);
         }
 
         $product->delete();
+
+
     }
+
 
     public function render()
     {
-        $products = Product::all();
-        return view('livewire.show-products', compact('products'));
+        $products = Product::latest()->get();
+        return view('livewire.products.show-products', compact('products'));
     }
 }

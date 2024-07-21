@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Users;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class HistorialPedido extends Component
 {
     public function render()
     {
-        return view('livewire.historial-pedido');
+        return view('livewire.users.historial-pedido');
     }
 }

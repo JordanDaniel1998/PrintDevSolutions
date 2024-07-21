@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Users;
 
 use Livewire\Component;
 
@@ -8,6 +8,6 @@ class DirectionUser extends Component
 {
     public function render()
     {
-        return view('livewire.direction-user');
+        return view('livewire.users.direction-user');
     }
 }

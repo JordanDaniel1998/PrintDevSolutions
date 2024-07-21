@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="basis-7/12 w-11/12 md:w-full mx-auto" data-aos="fade-up" data-aos-offset="150">
-                <livewire:direction-user />
+                <livewire:users.direction-user />
             </div>
         </div>
     </div>

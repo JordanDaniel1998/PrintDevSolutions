@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('title')->nullable();
-            $table->string('imagen')->nullable();
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+           $table->foreignId('categorie_id')->constrained();
+           $table->foreignId('subcategorie_id')->constrained();
+           $table->foreignId('brand_id')->constrained();
         });
     }
 
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
     }
 };

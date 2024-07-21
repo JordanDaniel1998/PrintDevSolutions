@@ -1,7 +1,5 @@
 @extends('frontend.layouts.app')
 
-
-
 @section('contenido')
     <section>
         <div class="mb-0 md:my-5">
@@ -93,7 +91,11 @@
                     </div>
                 </div>
                 <div class="basis-7/12 w-11/12 md:w-full mx-auto" data-aos="fade-up" data-aos-offset="150">
-                    <livewire:edit-user :user="$user" />
+
+                    <livewire:users.edit-user :user="$user" />
+                    {{--  --}}
+
+                    {{-- <livewire:edit-user :user="$user" /> --}}
                 </div>
             </div>
         </div>

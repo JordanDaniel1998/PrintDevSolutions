@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File as FileIluminate;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ProductController extends Controller
 {
@@ -200,6 +201,48 @@ class ProductController extends Controller
             return response()->json(['isRemove' => $isRemove]);
         } catch (\Exception $th) {
             return response()->json(['message' => 'Error al eliminar el producto.'], 500);
+        }
+    }
+
+    public function visible(Request $request)
+    {
+        try {
+            $product = Product::findOrFail($request->id);
+            $product->visible = $request->visible;
+            $product->save();
+
+            return response()->json([
+                'success' => $product->visible ? 1 : 0,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ],
+                500,
+            );
+        }
+    }
+
+    public function highlighted(Request $request)
+    {
+        try {
+            $product = Product::findOrFail($request->id);
+            $product->destacado = $request->highlighted;
+            $product->save();
+
+            return response()->json([
+                'success' => $product->destacado ? 1 : 0,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ],
+                500,
+            );
         }
     }
 }

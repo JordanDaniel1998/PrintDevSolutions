@@ -17,24 +17,22 @@
 
     <nav class="navegacion">
         <ul>
-            <li class="{{ request()->is('admin/dashboard*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}">
+            <li {{-- class="{{ request()->is('admin/dashboard*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
                 <a href="{{ route('admin.dashboard') }}">
-                    <ion-icon name="star-outline"
-                        class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}"></ion-icon>
-                    <span class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}">Dashboard</span>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}" --}}>Dashboard</span>
                 </a>
             </li>
-            <li class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}">
+            <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
                 <a href="{{ route('products.index') }}">
-                    <ion-icon name="star-outline"
-                        class="{{ request()->is('admin/products*') ? 'text-black' : '' }}"></ion-icon>
-                    <span class="{{ request()->is('admin/products*') ? 'text-black' : '' }}">Productos</span>
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products*') ? 'text-black' : '' }}" --}}>Productos</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="paper-plane-outline"></ion-icon>
-                    <span>Sent</span>
+            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="{{ route('categories.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Categorias de productos</span>
                 </a>
             </li>
         </ul>

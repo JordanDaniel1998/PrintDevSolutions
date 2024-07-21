@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Users;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
-
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class EditUser extends Component
 {
@@ -76,7 +71,7 @@ class EditUser extends Component
                 ->route('myAccount', auth()->user()->id)
                 ->with([
                     'message' => 'Credenciales incorrectas',
-                    'type' => 'error'
+                    'type' => 'error',
                 ]);
         }
 
@@ -99,15 +94,14 @@ class EditUser extends Component
         // Dispara el evento al componente padre
         /* $this->dispatch('update-user', $user); */
         return redirect()
-                ->route('myAccount', auth()->user()->id)
-                ->with([
-                    'message' => 'Usuario actualizado',
-                    'type' => 'success'
-                ]);
+            ->route('myAccount', auth()->user()->id)
+            ->with([
+                'message' => 'Usuario actualizado',
+                'type' => 'success',
+            ]);
     }
-
     public function render()
     {
-        return view('livewire.edit-user');
+        return view('livewire.users.edit-user');
     }
 }

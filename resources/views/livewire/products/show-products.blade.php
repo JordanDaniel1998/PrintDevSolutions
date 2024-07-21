@@ -1,38 +1,35 @@
 <tbody>
     @foreach ($products as $product)
         <tr>
-            <th class="text-center align-middle">{{ $product->title }}</th>
-            <th class="flex justify-center items-center">
+            <td class="text-center align-middle">{{ $product->title }}</td>
+            <td class="flex justify-center items-center">
                 <img src="{{ asset('storage/uploads/' . $product->imagen) }}" class="w-12 md:w-36"
                     alt="{{ $product->imagen }}">
-            </th>
-            <th class="text-center align-middle">{{ $product->price }}</th>
-            <th class="text-center align-middle">{{ $product->stock }}</th>
-            <th class="text-center align-middle">
+            </td>
+            <td class="text-center align-middle">{{ $product->price }}</td>
+            <td class="text-center align-middle">{{ $product->stock }}</td>
+            <td class="text-center align-middle">
                 <label class="flex justify-center items-center cursor-pointer">
-                    <!-- Hidden Checkbox -->
-                    <input type="checkbox" class="sr-only toggle-checkbox">
-                    <!-- Switch Background -->
+                    <input type="checkbox" data-id="{{ $product->id }}" {{ $product->visible ? 'checked' : '' }}
+                        class="sr-only toggle-checkbox-visible">
                     <div class="w-16 h-8 bg-gray-300 rounded-full relative">
-                        <!-- Switch Knob -->
                         <div class="dot absolute left-2 top-1 bg-white w-6 h-6 rounded-full transition">
                         </div>
                     </div>
                 </label>
-            </th>
-            <th class="text-center align-middle">
+            </td>
+            <td class="text-center align-middle">
                 <label class="flex justify-center items-center cursor-pointer">
-                    <!-- Hidden Checkbox -->
-                    <input type="checkbox" class="sr-only toggle-checkbox">
-                    <!-- Switch Background -->
-                    <div class="w-16 h-8 bg-gray-300 rounded-full relative">
-                        <!-- Switch Knob -->
+                    <input type="checkbox" data-id="{{ $product->id }}" {{ $product->destacado ? 'checked' : '' }}
+                        class="sr-only toggle-checkbox-highlighted">
+                    <div class="w-16 h-8 bg-gray-300 rounded-full relative"
+                        wire:click="$dispatch('changeDestacado', {{ $product->id }})">
                         <div class="dot absolute left-2 top-1 bg-white w-6 h-6 rounded-full transition">
                         </div>
                     </div>
                 </label>
-            </th>
-            <th class="text-center align-middle">
+            </td>
+            <td class="text-center align-middle">
                 <div class="flex justify-center items-center gap-3">
                     <a href="{{ route('products.edit', $product->id) }}"
                         class="bg-yellow-500 p-2 rounded-md text-white">
@@ -53,19 +50,21 @@
                     </button>
 
                 </div>
-            </th>
+            </td>
         </tr>
     @endforeach
 </tbody>
 
 @push('scripts')
-    <!-- 2da forma por ajax y axios -->
+    <!-- 2da forma por ajax y livewire -->
     <script>
-       document.addEventListener('livewire:initialized', () => {
+        document.addEventListener('livewire:initialized', () => {
+            // Elimina un producto
             @this.on('deleteProduct', (productId) => {
+
                 Swal.fire({
-                    title: '¿Eliminar Vacante?',
-                    text: "Una vacante que se elimina no podrá ser recuperada!",
+                    title: '¿Eliminar Producto?',
+                    text: "Un producto que se elimina no podrá ser recuperado!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -78,11 +77,72 @@
 
                         Swal.fire(
                             'Eliminado!',
-                            'La vacante fue eliminada.',
+                            'El producto fue eliminado.',
                             'success'
                         )
                     }
                 })
+            });
+
+        });
+
+
+
+        // Actualiza el estado del campo visible
+        $('.toggle-checkbox-visible').change(function() {
+            var visible = $(this).prop('checked') ? 1 : 0;
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: '/admin/products/visible',
+                datatype: "json",
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                data: {
+                    'visible': visible,
+                    'id': id
+                },
+                success: function(data) {
+                    let message = data.success ? 'esta visible.' : 'ya no esta visible.';
+                    Swal.fire(
+                        'Modificado!',
+                        `El producto ${message}`,
+                        'success'
+                    )
+                },
+                error: function(data) {
+                    console.error('Error:', data);
+                }
+            });
+        });
+
+        // Actualiza el estado del campo destacado
+        $('.toggle-checkbox-highlighted').change(function() {
+            var highlighted = $(this).prop('checked') ? 1 : 0;
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: '/admin/products/highlighted',
+                datatype: "json",
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                data: {
+                    'highlighted': highlighted,
+                    'id': id
+                },
+                success: function(data) {
+                    let message = data.success ? 'esta destacado.' : 'ya no esta destacado.';
+                    Swal.fire(
+                        'Modificado!',
+                        `El producto ${message}`,
+                        'success'
+                    )
+                },
+                error: function(data) {
+                    console.error('Error:', data);
+                }
             });
         });
     </script>
