@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="{{ asset('css/estilo-swipper-modified.css') }}">
 @endpush
 
+<!-- Vista principal del frontend -->
 
 @section('contenido')
     @include('frontend.home.main.components.slider-main')
-    @include('frontend.home.main.components.stats')
+    @include('frontend.home.main.components.highlighteds')
 @endsection
 
 

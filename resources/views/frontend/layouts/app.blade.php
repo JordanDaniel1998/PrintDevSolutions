@@ -23,7 +23,6 @@
     @include('frontend.layouts.header')
 
     <main>
-
         @yield('contenido')
     </main>
 

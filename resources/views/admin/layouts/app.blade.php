@@ -89,49 +89,7 @@
     <script src="https://cdn.datatables.net/buttons/3.1.0/js/buttons.html5.min.js"></script>
     <!-- fin Dtatable Js -->
 
-    <script>
-        var products = $('#products').DataTable({
-            responsive: true,
-            ordering: false,
-            dom: 'Blfrtip', // Define la posición de los botones (B: botones, l:cantidad de filas, f: filtro, r: procesamiento, t: tabla, i: información, p: paginación)
-            buttons: [{
-                    extend: 'excelHtml5',
-                    autoFilter: true,
-                    filename: 'Data exportada - Productos',
-                    sheetName: 'Data exportada - Productos',
-                    className: 'btn btn-outline-success',
-                    exportOptions: {
-                        columns: [0, 2, 3] // Indica las columnas que se desea exportar
-                    },
-                    footer: false
-                },
-                {
-                    extend: 'csvHtml5',
-                    filename: 'Data exportada - Productos',
-                    className: 'btn btn-outline-success',
-                    exportOptions: {
-                        columns: [0, 2, 3] // Indica las columnas que se desea exportar
-                    },
-                    footer: false
-                },
-                {
-                    extend: 'pdfHtml5',
-                    filename: 'Data exportada - Productos',
-                    className: 'btn btn-outline-danger',
-                    exportOptions: {
-                        columns: [0, 2, 3] // Indica las columnas que se desea exportar
-                    },
-                    footer: false
-                }
-            ],
-            topStart: {
-                buttons: ['pageLength']
-            }
-        });
-    </script>
-
     @stack('scripts')
-
 
 
 </body>

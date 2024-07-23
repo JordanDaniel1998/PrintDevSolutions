@@ -44,14 +44,14 @@
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="category" :value="__('Categoría')" />
 
-                                    <select name="category" id="category"
+                                    <select name="category" id="category" required
                                         class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all">
                                         <option value="">-- Seleccionar --</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="selectCategoryMessage"></div>
+
                                 </div>
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
@@ -59,7 +59,7 @@
                                     <x-input-text-dashboard id="subcategory" type="text" required
                                         autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
                                         name="subcategory" />
-                                    <div class="subcategoryMessage"></div>
+                                   {{--  <div class="subcategoryMessage"></div> --}}
                                 </div>
                             </div>
                             <!-- Modal Footer -->
@@ -115,7 +115,7 @@
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="selectCategory1Message"></div>
+                                    {{-- <div class="selectCategory1Message"></div> --}}
                                 </div>
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
@@ -123,7 +123,7 @@
                                     <x-input-text-dashboard id="subcategory1" type="text" required
                                         autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
                                         name="subcategory1" />
-                                    <div class="subcategory1Message"></div>
+                                    {{-- <div class="subcategory1Message"></div> --}}
                                 </div>
                             </div>
                             <!-- Modal Footer -->

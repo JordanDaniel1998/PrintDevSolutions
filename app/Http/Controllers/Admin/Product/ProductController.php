@@ -32,6 +32,12 @@ class ProductController extends Controller
         return view('admin.dashboard.products.create', compact('categories'));
     }
 
+    private function generateSku($name)
+    {
+        $sku = strtoupper(substr($name, 0, 3)) . time();
+        return $sku;
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -78,6 +84,7 @@ class ProductController extends Controller
                 'categorie_id' => $request->category,
                 'subcategorie_id' => $request->subcategory,
                 'brand_id' => $request->brand,
+                'sku' => $this->generateSku($request->title)
             ]);
 
             // Galería de imagenes
@@ -219,6 +226,7 @@ class ProductController extends Controller
             $product->categorie_id = $request->category;
             $product->subcategorie_id = $request->subcategory;
             $product->brand_id = $request->brand;
+            $product->sku = $this->generateSku($request->title);
             $product->save();
 
             // Extraer y organizar las especificaciones

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoriesProducts\Categories\CategoriesControlle
 use App\Http\Controllers\Admin\CategoriesProducts\CategoriesProductsController;
 use App\Http\Controllers\Admin\CategoriesProducts\SubCategories\SubcategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Highlighted\HighlightedController;
 use App\Http\Controllers\Admin\ImagenesController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -53,17 +54,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::get('products/subcategories/data', [SubcategoriesController::class, 'getData'])->name('productsOfSubCategories.getData');
     Route::delete('products/subcategories/{subcategorie}', [SubcategoriesController::class, 'destroy'])->name('productsOfSubCategories.destroy');
 
+    // ------- Brands of subcategories --------
+    Route::get('products/brands', [BrandsController::class, 'index'])->name('productsBrand.index');
+    Route::post('products/brands/store', [BrandsController::class, 'store'])->name('productsBrand.store');
+    Route::get('products/brands/{brand}/edit', [BrandsController::class, 'edit'])->name('productsBrand.edit');
+    Route::post('products/brands/updates', [BrandsController::class, 'update'])->name('productsBrand.update');
+    Route::get('products/brands/data', [BrandsController::class, 'getData'])->name('productsBrand.getData');
+    Route::delete('products/brands/{brand}', [BrandsController::class, 'destroy'])->name('productsBrand.destroy');
 
-     // ------- Brands of subcategories --------
-     Route::get('products/brands', [BrandsController::class, 'index'])->name('productsBrand.index');
-     Route::post('products/brands/store', [BrandsController::class, 'store'])->name('productsBrand.store');
-     Route::get('products/brands/{brand}/edit', [BrandsController::class, 'edit'])->name('productsBrand.edit');
-     Route::post('products/brands/updates', [BrandsController::class, 'update'])->name('productsBrand.update');
-     Route::get('products/brands/data', [BrandsController::class, 'getData'])->name('productsBrand.getData');
-     Route::delete('products/brands/{brand}', [BrandsController::class, 'destroy'])->name('productsBrand.destroy');
-
-
-
+    // Highlighted
+    Route::get('/highlighteds', [HighlightedController::class, 'index'])->name('highlighted.index');
+    Route::post('/highlighteds', [HighlightedController::class, 'store'])->name('highlighted.store');
+    Route::get('/highlighteds/{highlighted}/edit', [HighlightedController::class, 'edit'])->name('highlighted.edit');
+    Route::post('/highlighteds/updates', [HighlightedController::class, 'update'])->name('highlighted.update');
+    Route::get('/highlighteds/data', [HighlightedController::class, 'getData'])->name('highlighted.getData');
+    Route::delete('/highlighteds/{highlighted}', [HighlightedController::class, 'destroy'])->name('highlighted.destroy');
 
 
 

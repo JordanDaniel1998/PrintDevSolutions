@@ -12,10 +12,10 @@
 @section('contenido')
     <section>
         <div class="flex flex-col gap-5 lg:pt-10">
-            <!-- crear subcategoria -->
-            <div x-data="{ open: false }" id="modalRegisterSubCategory" x-cloak>
+            <!-- crear categoria -->
+            <div x-data="{ open: false }" id="modalRegisterHighlighted" x-cloak>
                 <!-- Open modal button -->
-                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 text-white rounded-md"> Agregar Marca
+                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 text-white rounded-md"> Agregar Métrica
                 </button>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
@@ -32,35 +32,24 @@
                         class="bg-white rounded-md shadow-xl overflow-hidden max-w-md w-full sm:w-96 md:w-1/2 lg:w-2/3 xl:w-1/3 z-50">
                         <!-- Modal Header -->
                         <div class="bg-indigo-500 text-white px-4 py-2 flex justify-between">
-                            <h2 class="text-lg font-semibold">Agregar Marca</h2>
+                            <h2 class="text-lg font-semibold">Agregar Métrica</h2>
                         </div>
-
                         <!-- Modal Body -->
-                        <form action="" id="formSubCategorieRegister">
-
+                        <form action="" id="formHighlightedRegister">
                             <div
-                                class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
-
+                                class="p-4 h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-4">
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="category" :value="__('SubCategoría')" />
-
-                                    <select name="category" id="category"
-                                        class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all"
-                                        required>
-                                        <option value="">-- Seleccionar --</option>
-                                        @foreach ($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    {{-- <div class="selectCategoryMessage"></div> --}}
+                                    <x-input-label-dashboard for="metrics" :value="__('Valor de la métrica')" />
+                                    <x-input-text-dashboard id="metrics" type="text" required
+                                        autocomplete="Número de la métrica" placeholder="Número de la métrica"
+                                        name="metrics" />
                                 </div>
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="subcategory" :value="__('Marca')" />
-                                    <x-input-text-dashboard id="subcategory" type="text" required
-                                        autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
-                                        name="subcategory" />
-                                   {{--  <div class="subcategoryMessage"></div> --}}
+                                    <x-input-label-dashboard for="highlighted" :value="__('Nombre de la métrica')" />
+                                    <x-input-text-dashboard id="highlighted" type="text" required
+                                        autocomplete="Nombre de la métrica" placeholder="Nombre de la métrica"
+                                        name="highlighted" />
                                 </div>
                             </div>
                             <!-- Modal Footer -->
@@ -80,8 +69,8 @@
                 </div>
             </div>
 
-            <!-- editar subcategoria -->
-            <div x-data="{ open: false }" id="modalEditarSubCategory" x-cloak>
+            <!-- editar categoria -->
+            <div x-data="{ open: false }" id="modalEditarHighlighted" x-cloak>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
                     <div x-show="open" x-transition:enter="transition-opacity ease-out duration-300"
@@ -98,41 +87,30 @@
                         class="bg-white rounded-md shadow-xl overflow-hidden max-w-md w-full sm:w-96 md:w-1/2 lg:w-2/3 xl:w-1/3 z-50">
                         <!-- Modal Header -->
                         <div class="bg-indigo-500 text-white px-4 py-2 flex justify-between">
-                            <h2 class="text-lg font-semibold">Editar Marca</h2>
+                            <h2 class="text-lg font-semibold">Editar métrica</h2>
                         </div>
                         <!-- Modal Body -->
-                        <form action="" id="formSubCategoriesUpdate" method="POST">
+                        <form id="formHighlightedEdit" method="POST">
                             <div
-                                class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
-
+                                class="p-4 h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-4">
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="category1" :value="__('SubCategoría')" />
-
-                                    <select name="category1" id="category1"
-                                        class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all"
-                                        required>
-                                        <option value="">-- Seleccionar --</option>
-                                        @foreach ($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
-                                        @endforeach
-                                    </select>
-                                   {{--  <div class="selectCategory1Message"></div> --}}
+                                    <x-input-label-dashboard for="metrics1" :value="__('Valor de la métrica')" />
+                                    <x-input-text-dashboard id="metrics1" type="text" required
+                                        autocomplete="Número de la métrica" placeholder="Número de la métrica"
+                                        name="metrics1" />
                                 </div>
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="subcategory1" :value="__('Marca')" />
-                                    <x-input-text-dashboard id="subcategory1" type="text" required
-                                        autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
-                                        name="subcategory1" />
-                                    {{-- <div class="subcategory1Message"></div> --}}
+                                    <x-input-label-dashboard for="highlighted1" :value="__('Nombre de la métrica')" />
+                                    <x-input-text-dashboard id="highlighted1" type="text" required
+                                        autocomplete="Nombre de la métrica" placeholder="Nombre de la métrica"
+                                        name="highlighted1" />
                                 </div>
                             </div>
                             <!-- Modal Footer -->
                             <div class="border-t px-4 py-2 flex justify-end items-center gap-2">
-
                                 <button type="submit"
-                                    class="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto">
-                                    Guardar
+                                    class="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto"> Guardar
                                 </button>
 
                                 <button type="button" x-on:click="open = false"
@@ -144,12 +122,12 @@
                 </div>
             </div>
 
-            <!-- listar subcategoria -->
+            <!-- listar categoria -->
             <div class="p-10 shadow-md border">
-                <table id="brands" class="table table-striped" style="width:100%">
+                <table id="highlightedMetrics" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-center align-middle">Marcas</th>
+                            <th class="text-center align-middle">Categoría</th>
                             <th class="text-center align-middle">Acciones</th>
 
                         </tr>
@@ -159,7 +137,7 @@
 
                     <tfoot>
                         <tr>
-                            <th class="text-center align-middle">Marcas</th>
+                            <th class="text-center align-middle">Categoría</th>
                             <th class="text-center align-middle">Acciones</th>
                         </tr>
                     </tfoot>
@@ -175,45 +153,41 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            const modalElementSubEditar = document.getElementById('modalEditarSubCategory');
-            const modalElementSubRegister = document.getElementById('modalRegisterSubCategory');
-            var modalComponentSubEditar = Alpine.$data(modalElementSubEditar);
-            var modalComponentSubRegister = Alpine.$data(modalElementSubRegister);
-            const selectCategoryMessageError = document.querySelector('.selectCategoryMessage');
-            const subcategoryMessageError = document.querySelector('.subcategoryMessage');
+            const highlighted = document.getElementById('highlighted');
+            const metrics = document.getElementById('metrics');
+            const highlighted1 = document.getElementById('highlighted1');
+            const metrics1 = document.getElementById('metrics1');
+            const modalElementEditarHighlighted = document.getElementById('modalEditarHighlighted');
+            const modalElementRegisterHighlighted = document.getElementById('modalRegisterHighlighted');
+            var modalComponentEditarHighlighted = Alpine.$data(modalElementEditarHighlighted);
+            var modalComponentRegisterHighlighted = Alpine.$data(modalElementRegisterHighlighted);
             const awayModal = document.getElementById('awayModal');
-            const cancel = document.getElementById('cancel');
-            const category = document.getElementById('category');
-            const subcategory = document.getElementById('subcategory');
-            const category1 = document.getElementById('category1');
-            const subcategory1 = document.getElementById('subcategory1');
-
             let id = null;
 
             // Datatable
 
-            var subcategories = $('#brands').DataTable({
+            var highlightedMetrics = $('#highlightedMetrics').DataTable({
                 responsive: true,
                 ordering: false, // Desactivar el order por default
                 dom: 'Blfrtip', // Define la posición de los botones (B: botones, l:cantidad de filas, f: filtro, r: procesamiento, t: tabla, i: información, p: paginación)
                 buttons: [{
                         extend: 'excelHtml5',
                         autoFilter: true,
-                        filename: 'Data exportada - Marca de Productos',
-                        sheetName: 'Marca de productos',
+                        filename: 'Data exportada - Highlighted',
+                        sheetName: 'Highlighted',
                         className: 'btn btn-outline-success',
                         exportOptions: {
-                            columns: [0] // Indica las columnas que se desea exportar
+                            columns: [0, 1] // Indica las columnas que se desea exportar
                         },
                         footer: false
                     },
                     {
                         extend: 'csvHtml5',
-                        filename: 'Data exportada - Marca de Productos',
-                        sheetName: 'Data exportada - Marca de Productos',
+                        filename: 'Data exportada - Highlighted',
+                        sheetName: 'Data exportada - Highlighted',
                         className: 'btn btn-outline-success',
                         exportOptions: {
-                            columns: [0] // Indica las columnas que se desea exportar
+                            columns: [0, 1] // Indica las columnas que se desea exportar
                         },
                         footer: false
                     }
@@ -222,13 +196,16 @@
                     buttons: ['pageLength']
                 },
                 ajax: {
-                    url: '{{ route('productsBrand.getData') }}',
+                    url: '{{ route('highlighted.getData') }}',
                     type: 'GET',
-                    dataSrc: 'data',
-
+                    dataSrc: 'data' // Asegúrate de que el formato de datos coincida
                 },
                 columns: [{
-                        data: 'name',
+                        data: 'metrics', // Nombre de las columnas que estan en la bd
+                        className: 'text-center align-middle',
+                    },
+                    {
+                        data: 'highlighted', // Nombre de las columnas que estan en la bd
                         className: 'text-center align-middle',
                     },
                     {
@@ -263,67 +240,41 @@
                 ]
             });
 
-            // Evento de cambio para el select
-            category.addEventListener('change', (e) => {
-                category.value = e.target.value;
 
-                const p = document.querySelector('.type-register');
-                if (p) {
-                    destroyMessage(selectCategoryMessageError, p);
-                }
-            });
+            // Setear su valor del input
+            metrics.addEventListener('input', (e) => {
+                metrics.value = e.target.value;
+            })
+            highlighted.addEventListener('input', (e) => {
+                highlighted.value = e.target.value;
+            })
 
-            function destroyMessage(error, p) {
-                while (error.firstChild) {
-                    error.removeChild(error.firstChild);
-                }
-            }
+            // Registrar un highlighted
 
-            // Setear al input
-            subcategory.addEventListener('input', (e) => {
-                subcategory.value = e.target.value;
-            });
-
-            // Parrafo de error
-            function message(selector, type) {
-                const p = document.createElement('p');
-                p.classList.add('text-sm', 'text-red-600', 'space-y-1', 'font-bold', type);
-                p.textContent = 'El campo marca no debe ser vacío';
-                selector.appendChild(p);
-            }
-
-            // Registrar una subcategoria
-
-            $('#formSubCategorieRegister').submit(function(e) {
+            $('#formHighlightedRegister').submit(function(e) {
 
                 e.preventDefault();
 
-                if (category.value === "") {
-                    message(selectCategoryMessageError, 'type-register')
-                    return;
-                }
-
                 $.ajax({
-                    url: '{{ route('productsBrand.store') }}',
+                    url: 'highlighteds',
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     data: {
-                        'id': category.value,
-                        'brand': subcategory.value
+                        'metrics': metrics.value,
+                        'highlighted': highlighted.value
                     },
                     success: function(response) {
-
                         if (response.type === "success") {
-                            modalComponentSubRegister.open = false;
-                            subcategory.value = "";
-                            category.value = "";
-                            subcategories.ajax.reload();
+                            modalComponentRegisterHighlighted.open = false;
+                            metrics.value = "";
+                            highlighted.value = "";
+                            highlightedMetrics.ajax.reload();
                             setTimeout(() => {
                                 Swal.fire(
                                     'Registrado!',
-                                    'La marca fue agregada.',
+                                    'La métrica fue agregada.',
                                     'success'
                                 )
                             }, 500);
@@ -337,39 +288,53 @@
 
             // Cerrar modal
             cancel.addEventListener('click', e => {
-                modalComponentSubRegister.open = false;
-                subcategory.value = "";
-                category.value = "";
+                modalComponentRegisterHighlighted.open = false;
+                metrics.value = "";
+                highlighted.value = "";
             });
 
             // Cerrar modal cuando se clickea afuera
             awayModal.addEventListener('click', e => {
-                modalComponentSubRegister.open = false;
-                subcategory.value = "";
-                category.value = "";
+                modalComponentRegisterHighlighted.open = false;
+                metrics.value = "";
+                highlighted.value = "";
             });
 
-            //  Editar una subcategoría
 
-            $('#brands').on('click', '.btn-edit', function() {
+            // Setear su valor del input
+
+            metrics1.addEventListener('input', (e) => {
+                metrics1.value = e.target.value;
+            })
+            highlighted1.addEventListener('input', (e) => {
+                highlighted1.value = e.target.value;
+            })
+
+            //  Editar una highlighted
+
+            $('#highlightedMetrics').on('click', '.btn-edit', function() {
 
                 id = $(this).data('id');
 
                 $.ajax({
-                    url: `brands/${id}/edit`,
+                    url: `highlighteds/${id}/edit`,
                     method: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
+                    data: {
+                        'id': id
+                    },
                     success: function(response) {
 
                         if (response.type === "success") {
-                            modalComponentSubEditar.open = true;
-                            subcategory1.value = response.brand.name;
-                            category1.value = response.brand.subcategorie_id;
+
+                            modalComponentEditarHighlighted.open = true;
+                            metrics1.value = response.highlighted.metrics;
+                            highlighted1.value = response.highlighted.highlighted
 
                         } else {
-                            alert('Error al actualizar la marca');
+                            alert('Error al actualizar la métrica');
                         }
                     },
                     error: function(error) {
@@ -378,56 +343,58 @@
                 });
             });
 
-            //  Actualizar una subcategoría
-            $('#formSubCategoriesUpdate').submit(function(e) {
+
+            // Actualizar una highlighted por ajax
+
+            $('#formHighlightedEdit').submit(function(e) {
 
                 e.preventDefault();
 
                 $.ajax({
-                    url: 'brands/updates',
+                    url: 'highlighteds/updates',
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     data: {
-                        'brand_id': id,
-                        'subcategorie_id': category1.value,
-                        'brand': subcategory1.value
+                        'id': id,
+                        'metrics': metrics1.value,
+                        'highlighted': highlighted1.value
                     },
                     success: function(response) {
-
                         if (response.type === "success") {
-                            modalComponentSubEditar.open = false;
-                            subcategories.ajax.reload();
+                            modalComponentEditarHighlighted.open = false;
+                            highlightedMetrics.ajax.reload();
                             setTimeout(() => {
                                 Swal.fire(
                                     'Actualizado!',
-                                    'La marca fue actualizada.',
+                                    'La métrica fue actualizada.',
                                     'success'
                                 )
                             }, 500);
-
-                            /* const p = document.querySelector('.message');
-                            if (p) {
-                                destroyMessage(error, p);
-                            } */
                         }
                     },
                     error: function(error) {
-                        console.error('Error:', error);
+                        modalComponentEditarHighlighted.open = false;
+                        setTimeout(() => {
+                            Swal.fire(
+                                'Error!',
+                                'La métrica no fue actualizada.',
+                                'error'
+                            )
+                        }, 500);
                     }
                 });
             });
 
+            //  Eliminar una highlighted
 
-            //  Eliminar una subcategoría
-
-            $('#brands').on('click', '.btn-delete', async function() {
-                const brandId = $(this).data('id');
+            $('#highlightedMetrics').on('click', '.btn-delete', async function() {
+                const highlightedId = $(this).data('id');
                 // Mostrar confirmación usando SweetAlert
                 const result = await Swal.fire({
-                    title: '¿Eliminar marca?',
-                    text: "Una marca que se elimina no podrá ser recuperado!",
+                    title: '¿Eliminar métrica?',
+                    text: "Una métrica que se elimina no podrá ser recuperado!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
@@ -438,7 +405,7 @@
                 if (result.isConfirmed) {
                     try {
                         // Enviar solicitud DELETE usando Axios
-                        const response = await axios.delete('brands/' + brandId, {
+                        const response = await axios.delete('highlighteds/' + highlightedId, {
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
                             }
@@ -448,17 +415,17 @@
 
                             Swal.fire({
                                 title: "Eliminado!",
-                                text: "La marca ah sido eliminado.",
+                                text: "La métrica ah sido eliminado.",
                                 icon: "success",
                             });
 
-                            subcategories.ajax.reload();
+                            highlightedMetrics.ajax.reload();
                         }
 
                     } catch (error) {
                         Swal.fire({
                             title: "Error!",
-                            text: "An error occurred while deleting the product.",
+                            text: "Hubo un error al eliminar la métrica",
                             icon: "error",
                         });
                     }
