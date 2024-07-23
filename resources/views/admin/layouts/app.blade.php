@@ -63,6 +63,7 @@
     </main>
 
 
+
     @livewireScripts
 
     <!-- Iconos para el sidebar -->
@@ -130,6 +131,7 @@
     </script>
 
     @stack('scripts')
+
 
 
 </body>

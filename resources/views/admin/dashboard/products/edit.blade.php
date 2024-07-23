@@ -5,15 +5,14 @@
 @endpush
 
 @section('contenido')
-
     <section class="flex flex-col gap-10">
 
         <form action="{{ route('products.update', $product->id) }}" method="POST" class="flex flex-col w-full gap-10"
             enctype="multipart/form-data" novalidate>
             @csrf
             <div class="flex flex-col lg:flex-row lg:divide-x-8 w-full">
-                <div class="lg:pr-5 flex-1">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+                <div class="lg:pr-5 flex-1 flex flex-col gap-2">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="title" :value="__('Título')" />
                             <x-input-text-dashboard id="title" type="text" required
@@ -101,7 +100,7 @@
 
                 </div>
 
-                <div class="lg:pl-5 flex-1">
+                <div class="lg:pl-5 flex-1 flex flex-col gap-2">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="price" :value="__('Precio')" />
@@ -119,6 +118,11 @@
                             <x-input-error-dashboard :messages="$errors->get('stock')" class="mt-2" />
                         </div>
                     </div>
+
+                    {{--  --}}
+                    @livewire('products.select-editproducts', ['product' => $product])
+                    @livewire('products.specification-editproducts', ['product' => $product])
+                    {{--  --}}
                 </div>
             </div>
 
@@ -262,7 +266,7 @@
 
                     // Selecciona la etiqueta " a " antes de que sea eliminada
                     const linkElement = file.previewElement.querySelector('a').getAttribute(
-                    'data-name');
+                        'data-name');
 
                     images = images.filter((thumbnail) => thumbnail !== linkElement);
                     let imagesString = JSON.stringify(images);

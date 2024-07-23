@@ -42,7 +42,7 @@
                                 class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="category" :value="__('Categoría')" />
+                                    <x-input-label-dashboard for="category" :value="__('SubCategoría')" />
 
                                     <select name="category" id="category"
                                         class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all">
@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="subcategory" :value="__('SubCategoría')" />
+                                    <x-input-label-dashboard for="subcategory" :value="__('Marca')" />
                                     <x-input-text-dashboard id="subcategory" type="text" required
                                         autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
                                         name="subcategory" />
@@ -105,7 +105,7 @@
                                 class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="category1" :value="__('Categoría')" />
+                                    <x-input-label-dashboard for="category1" :value="__('SubCategoría')" />
 
                                     <select name="category1" id="category1"
                                         class="w-full !py-3 !px-4 focus:outline-none placeholder-gray-400 font-normal font-inter text-text16 md:text-text18 border-[1px] border-gray-400 text-[#151515] focus:ring-0  focus:border-black transition-all"
@@ -119,7 +119,7 @@
                                 </div>
 
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                    <x-input-label-dashboard for="subcategory1" :value="__('SubCategoría')" />
+                                    <x-input-label-dashboard for="subcategory1" :value="__('Marca')" />
                                     <x-input-text-dashboard id="subcategory1" type="text" required
                                         autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
                                         name="subcategory1" />

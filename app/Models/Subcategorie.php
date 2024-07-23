@@ -11,12 +11,6 @@ class Subcategorie extends Model
 
     protected $fillable = ['name', 'categorie_id', 'imagen'];
 
-
-    public function categorie(){
-        return $this->belongsTo(Categorie::class);
-    }
-
-
     public function brands(){
         return $this->hasMany(Brand::class);
     }

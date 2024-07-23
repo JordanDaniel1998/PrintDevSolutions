@@ -5,20 +5,23 @@
 @endpush
 
 @section('contenido')
-
     <section class="flex flex-col gap-10">
         <form action="{{ route('products.store') }}" method="POST" class="flex flex-col w-full gap-10"
             enctype="multipart/form-data" novalidate>
             @csrf
             <div class="flex flex-col lg:flex-row lg:divide-x-8 w-full">
-                <div class="lg:pr-5 flex-1">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+                <div class="lg:pr-5 flex-1 flex flex-col gap-2">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="title" :value="__('Título')" />
                             <x-input-text-dashboard id="title" type="text" required
                                 autocomplete="Nombre del producto" placeholder="Nombre del producto" name="title"
                                 :value="old('title')" />
-                            <x-input-error-dashboard :messages="$errors->get('title')" class="mt-2" />
+                            @error('title')
+                                <span class="text-red-500 font-medium">
+                                    {{ str_replace('title', 'título', $message) }}
+                                </span>
+                            @enderror
                         </div>
 
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
@@ -26,18 +29,25 @@
                             <x-input-text-dashboard id="subTitle" type="text" required
                                 autocomplete="Subtítulo del producto" placeholder="Subtítulo del producto" name="subTitle"
                                 :value="old('subTitle')" />
-                            <x-input-error-dashboard :messages="$errors->get('subTitle')" class="mt-2" />
+                            @error('subTitle')
+                                <span class="text-red-500 font-medium">
+                                    El campo subtítulo es requerido.
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-3">
-
+                    <div class="flex flex-col gap-2">
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="description" :value="__('Descripción Principal')" />
                             <x-text-area-dashboard id="description" type="text" required
                                 autocomplete="Descripción del producto" placeholder="Descripción del producto"
                                 name="description" :value="old('description')" rows="5" />
-                            <x-input-error-dashboard :messages="$errors->get('description')" class="mt-2" />
+                            @error('description')
+                                <span class="text-red-500 font-medium">
+                                    {{ str_replace('description', 'descripción', $message) }}
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="flex flex-col justify-start items-center">
@@ -45,7 +55,11 @@
                                 <x-input-label-dashboard for="imagen" :value="__('Imagen principal')" />
                                 <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
                                     onchange="imagePrincipal(event)" class="w-full" />
-                                <x-input-error-dashboard :messages="$errors->get('imagen')" class="mt-2" />
+                                @error('imagen')
+                                    <span class="text-red-500 font-medium">
+                                        {{ str_replace('imagen', 'imagen', $message) }}
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="w-full">
@@ -62,7 +76,11 @@
 
                             <div class="dropzone-wrapper">
                                 <input type="hidden" name="images" value="{{ old('images') }}">
-                                <x-input-error-dashboard :messages="$errors->get('images')" class="mt-2" />
+                                @error('images')
+                                    <span class="text-red-500 font-medium">
+                                        {{ str_replace('images', 'galería', $message) }}
+                                    </span>
+                                @enderror
                             </div>
 
                             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
@@ -71,7 +89,11 @@
                                     autocomplete="Descripción secundaria del producto"
                                     placeholder="Descripción secundaria del producto" name="description_short"
                                     :value="old('description_short')" rows="2" />
-                                <x-input-error-dashboard :messages="$errors->get('description_short')" class="mt-2" />
+                                @error('description_short')
+                                    <span class="text-red-500 font-medium">
+                                        El campo descripción secundaria es requerido.
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -79,29 +101,47 @@
 
                 </div>
 
-                <div class="lg:pl-5 flex-1">
+                <div class="lg:pl-5 flex-1 flex flex-col gap-2">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="price" :value="__('Precio')" />
                             <x-input-text-dashboard id="price" type="number" required
                                 autocomplete="Precio del producto" placeholder="Precio del producto" name="price"
                                 :value="old('price')" />
-                            <x-input-error-dashboard :messages="$errors->get('price')" class="mt-2" />
+                            @error('price')
+                                <span class="text-red-500 font-medium">
+                                    {{ str_replace('price', 'precio', $message) }}
+                                </span>
+                            @enderror
                         </div>
 
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="stock" :value="__('Cantidad')" />
                             <x-input-text-dashboard id="stock" type="number" required autocomplete="Stock del producto"
                                 placeholder="Stock del producto" name="stock" :value="old('stock')" />
-                            <x-input-error-dashboard :messages="$errors->get('stock')" class="mt-2" />
+                            @error('stock')
+                                <span class="text-red-500 font-medium">
+                                    {{ str_replace('stock', 'stock', $message) }}
+                                </span>
+                            @enderror
                         </div>
                     </div>
+
+                    <div>
+                        @livewire('products.select-createproducts')
+                    </div>
+
+
+                    <div>
+                        @livewire('products.specification-createproducts')
+                    </div>
+
                 </div>
             </div>
 
             <div class="flex justify-between items-center">
                 <a href="{{ route('products.index') }}"
-                    class="bg-black text-white font-outfit px-5 py-2.5 justify-center items-center gap-3 rounded-lg  no-underline hidden md:inline-flex">
+                    class="bg-black text-white font-outfit px-4 py-2.5 justify-center items-center gap-3 rounded-lg  no-underline hidden md:inline-flex">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -113,7 +153,7 @@
                 </a>
 
                 <button type="submit"
-                    class="w-full md:w-auto bg-black text-white font-outfit px-5 py-2.5 justify-center items-center gap-2 rounded-lg inline-flex no-underline">
+                    class="w-full md:w-auto bg-black text-white font-outfit px-4 py-2.5 justify-center items-center gap-2 rounded-lg inline-flex no-underline">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -130,10 +170,62 @@
 
 
 @push('scripts')
-    {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    {{--  @vite('resources/js/dropzone.js') --}}
-   {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script> --}}
+    <script>
+        document.getElementById('category').addEventListener('change', async function() {
+            const categoryId = this.value;
+            const subcategorySelect = document.getElementById('subcategory');
+            const brandSelect = document.getElementById('brand');
+
+            subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
+            brandSelect.innerHTML = '<option value="">Selecciona una marca</option>';
+            brandSelect.disabled = true;
+
+            if (categoryId) {
+                const response = axios.get(`categories/subcategories/${categoryId}`)
+                    .then(response => {
+                        const data = response.data.subcategories;
+
+                        subcategorySelect.disabled = false;
+                        data.forEach(subcategory => {
+                            subcategorySelect.innerHTML +=
+                                `<option value="${subcategory.id}">${subcategory.name}</option>`;
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching subcategories:', error);
+                    });
+            } else {
+                subcategorySelect.disabled = true;
+            }
+        });
+
+
+        document.getElementById('subcategory').addEventListener('change', async function() {
+            const subcategoryId = this.value;
+            const brandSelect = document.getElementById('brand');
+
+            brandSelect.innerHTML = '<option value="">Selecciona una marca</option>';
+            if (subcategoryId) {
+                const response = axios.get(`subcategories/brands/${subcategoryId}`)
+                    .then(response => {
+                        const data = response.data.brands;
+
+                        brandSelect.disabled = false;
+                        data.forEach(brand => {
+                            brandSelect.innerHTML +=
+                                `<option value="${brand.id}">${brand.name}</option>`;
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching brands:', error);
+                    });
+            } else {
+                brandSelect.disabled = true;
+            }
+        });
+    </script>
+
     <script>
         Dropzone.autoDiscover = false;
         const tokenCsrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -201,7 +293,7 @@
                     });
 
                     // Restamos la cantidad de archivos al tamaño original
-                   /*  count = this.options.maxFiles - images.length; */
+                    /*  count = this.options.maxFiles - images.length; */
 
                 }
 

@@ -15,13 +15,16 @@ class Product extends Model
         'destacado' => 'boolean',
     ];
 
-    protected $fillable = ['title', 'subTitle', 'description', 'imagen', 'description_short', 'price', 'stock'];
+    protected $fillable = ['title', 'subTitle', 'description', 'imagen', 'description_short', 'price', 'stock', 'categorie_id', 'subcategorie_id', 'brand_id'];
 
     // Un producto puede tener muchas imagenes
-
     public function files(){
         return $this->hasMany(File::class);
     }
 
+    // Un producto puede tener muchas especificaciones
+    public function specifications(){
+        return $this->hasMany(Specification::class);
+    }
 
 }

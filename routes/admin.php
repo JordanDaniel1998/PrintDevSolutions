@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
     Route::get('/products/visible', [ProductController::class, 'visible'])->name('products.visible');
     Route::get('/products/highlighted', [ProductController::class, 'highlighted'])->name('products.highlighted');
+    Route::get('/products/categories/subcategories/{categoryId}', [ProductController::class, 'getSubcategories']);
+    Route::get('/products/subcategories/brands/{subcategoryId}', [ProductController::class, 'getBrands']);
 
     // ------- categories of categories --------
 
