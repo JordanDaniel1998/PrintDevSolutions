@@ -2,6 +2,12 @@
 
 @push('styles')
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 @endpush
 
 @section('contenido')
@@ -52,9 +58,8 @@
 
                         <div class="flex flex-col justify-start items-center">
                             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
-                                <x-input-label-dashboard for="imagen" :value="__('Imagen principal')" />
-                                <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
-                                    onchange="imagePrincipal(event)" class="w-full" />
+                                <x-input-label-dashboard for="imagen" :value="__('Imagen principal (Primera imagen)')" />
+                                <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*" class="w-full image-preview" />
                                 @error('imagen')
                                     <span class="text-red-500 font-medium">
                                         {{ str_replace('imagen', 'imagen', $message) }}
@@ -67,11 +72,91 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-2">
 
-                            <div>
+
+
+                            <div class="flex flex-col gap-2">
                                 <x-input-label-dashboard for="dropzone" :value="__('Galería de imagenes ( máximo 6 imagenes)')" />
                                 <div id="dropzone" class="dropzone dz-clickable"></div>
+
+                                <!-- crear colores -->
+                                <div x-data="{ open: false }" id="modalColors" x-cloak>
+                                    <!-- Open modal button -->
+                                    <button type="button" x-on:click="open = true"
+                                        class="px-4 py-2 bg-indigo-500 text-white rounded-md">
+                                        Agregar Colores
+                                    </button>
+                                    <!-- Modal Overlay -->
+                                    <div x-show="open"
+                                        class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
+                                        <div x-show="open" x-transition:enter="transition-opacity ease-out duration-300"
+                                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                            x-transition:leave="transition-opacity ease-in duration-300"
+                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                            class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                                            id="awayModal"></div>
+                                        <!-- Modal Content -->
+                                        <div x-show="open" x-transition:enter="transition-transform ease-out duration-300"
+                                            x-transition:enter-start="transform scale-75"
+                                            x-transition:enter-end="transform scale-100"
+                                            x-transition:leave="transition-transform ease-in duration-300"
+                                            x-transition:leave-start="transform scale-100"
+                                            x-transition:leave-end="transform scale-75"
+                                            class="bg-white rounded-md shadow-xl overflow-hidden max-w-md w-full sm:w-96 md:w-1/2 lg:w-2/3 xl:w-1/3 z-50">
+                                            <!-- Modal Header -->
+                                            <div class="bg-indigo-500 text-white px-4 py-2 flex justify-between">
+                                                <h2 class="text-lg font-semibold">Agregar Colores</h2>
+                                            </div>
+
+                                            <!-- Modal Body -->
+                                            <div class="flex flex-col justify-start items-start gap-2 w-full p-3">
+                                                <div class="flex flex-row justify-between items-center gap-5 w-full">
+                                                    <label for="color1">
+                                                        Primer color:
+                                                    </label>
+                                                    <input type="text" id="color1" name="colors[color_0]"
+                                                        class="color-picker">
+                                                </div>
+                                                <div class="flex flex-row justify-between items-center gap-5 w-full">
+                                                    <label for="color2">
+                                                        Segundo color:
+                                                    </label>
+                                                    <input type="text" id="color2" name="colors[color_1]"
+                                                        class="color-picker">
+                                                </div>
+                                                <div class="flex flex-row justify-between items-center gap-5 w-full">
+                                                    <label for="color3">
+                                                        Tercer color:
+                                                    </label>
+                                                    <input type="text" id="color3" name="colors[color_2]"
+                                                        class="color-picker">
+                                                </div>
+                                                <div class="flex flex-row justify-between items-center gap-5 w-full">
+                                                    <label for="color4">
+                                                        Cuarto color:
+                                                    </label>
+                                                    <input type="text" id="color4" name="colors[color_3]"
+                                                        class="color-picker">
+                                                </div>
+                                                <div class="flex flex-row justify-between items-center gap-5 w-full">
+                                                    <label for="color5">
+                                                        Quinto color:
+                                                    </label>
+                                                    <input type="text" id="color5" name="colors[color_4]"
+                                                        class="color-picker">
+                                                </div>
+                                                <div class="flex flex-row justify-between items-center gap-5 w-full">
+                                                    <label for="color6">
+                                                        Sexto color:
+                                                    </label>
+                                                    <input type="text" id="color6" name="colors[color_5]"
+                                                        class="color-picker w-40">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="dropzone-wrapper">
@@ -117,8 +202,9 @@
 
                         <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="stock" :value="__('Cantidad')" />
-                            <x-input-text-dashboard id="stock" type="number" required autocomplete="Stock del producto"
-                                placeholder="Stock del producto" name="stock" :value="old('stock')" />
+                            <x-input-text-dashboard id="stock" type="number" required
+                                autocomplete="Stock del producto" placeholder="Stock del producto" name="stock"
+                                :value="old('stock')" />
                             @error('stock')
                                 <span class="text-red-500 font-medium">
                                     {{ str_replace('stock', 'stock', $message) }}
@@ -171,6 +257,7 @@
 
 @push('scripts')
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
     <script>
         document.getElementById('category').addEventListener('change', async function() {
             const categoryId = this.value;
@@ -319,6 +406,10 @@
                     let imagesString = JSON.stringify(images);
                     hiddenInput.value = imagesString;
 
+
+                    // Por cada imagen que se agrega disparamos un evento para agregar los color-picker
+                    Livewire.dispatch('addInputColor', [hiddenInput.value]);
+
                 });
 
                 this.on("error", function(file, response) {
@@ -335,8 +426,6 @@
                     images = images.filter((thumbnail) => thumbnail !== linkElement);
                     let imagesString = JSON.stringify(images);
                     hiddenInput.value = imagesString;
-
-
 
                     // ------------------------------------
                     const deleteImage = async () => {
@@ -360,33 +449,87 @@
     </script>
 
     <script>
-        function imagePrincipal(event) {
-            const input = event.target;
-            const file = input.files[0];
+        document.addEventListener('DOMContentLoaded', function() {
 
-            if (file) {
-                const reader = new FileReader();
+            const imagePreview = document.querySelector('.image-preview');
+            imagePreview.addEventListener('change', (event) => {
+                const input = event.target;
+                const file = input.files[0];
 
-                reader.onload = function(e) {
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const img = document.getElementById('imagePreview');
+                        img.src = e.target.result;
+                        img.classList.remove('hidden');
+                        img.classList.add('block');
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
                     const img = document.getElementById('imagePreview');
-                    img.src = e.target.result;
-                    img.classList.remove('hidden');
-                    img.classList.add('block');
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                const img = document.getElementById('imagePreview');
-                img.src = '#';
-                img.classList.remove('block');
-                img.classList.add('hidden');
-            }
-        }
+                    img.src = '#';
+                    img.classList.remove('block');
+                    img.classList.add('hidden');
+                }
+            })
+        });
     </script>
 
-    {{-- <script>
-        document.getElementById('uploadButton').addEventListener('click', function() {
-            dropzone.processQueue();
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalColors = document.getElementById('modalColors');
+
+            var modalComponentColors = Alpine.$data(modalColors);
+            const awayModal = document.getElementById('awayModal');
+
+            // Cerrar modal cuando se clickea afuera
+            awayModal.addEventListener('click', e => {
+                modalComponentColors.open = false;
+            });
+
+            $(".color-picker").each(function() {
+
+                $(this).spectrum({
+                    type: "component",
+                    showInput: true,
+                    preferredFormat: "hex",
+                    showPalette: true,
+                    palette: [
+                        ["#000", "#444", "#666", "#999", "#ccc", "#eee", "#f3f3f3", "#fff"],
+                        ["#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f3f"],
+                        ["#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3",
+                            "#d9d2e9",
+                            "#ead1dc"
+                        ],
+                        ["#ea9999", "#f9cb9c", "#ffe599", "#b6d7a8", "#a2c4c9", "#9fc5e8",
+                            "#b4a7d6",
+                            "#d5a6bd"
+                        ],
+                        ["#e06666", "#f6b26b", "#ffd966", "#93c47d", "#76a5af", "#6fa8dc",
+                            "#8e7cc3",
+                            "#c27ba0"
+                        ],
+                        ["#c00", "#e69138", "#f1c232", "#6aa84f", "#45818e", "#3d85c6",
+                            "#674ea7",
+                            "#a64d79"
+                        ],
+                        ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394",
+                            "#351c75",
+                            "#741b47"
+                        ],
+                        ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763",
+                            "#20124d",
+                            "#4c1130"
+                        ]
+                    ]
+                });
+
+            });
+
+
         });
-    </script> --}}
+    </script>
 @endpush

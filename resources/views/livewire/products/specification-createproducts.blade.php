@@ -8,7 +8,7 @@
                         wire:model="specifications.{{ $index }}.key" placeholder="Especificación" />
 
                     <x-input-text-dashboard type="text" name="specifications.{{ $index }}.value"
-                        wire:model="specifications.{{ $index }}.value" placeholder="Especificación" />
+                        wire:model="specifications.{{ $index }}.value" placeholder="Valor" />
                 </div>
                 <div class="flex justify-center items-center">
                     @if ($index >= 1)
@@ -41,3 +41,4 @@
         </div>
     @endforeach
 </div>
+

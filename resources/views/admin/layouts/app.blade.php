@@ -89,6 +89,12 @@
     <script src="https://cdn.datatables.net/buttons/3.1.0/js/buttons.html5.min.js"></script>
     <!-- fin Dtatable Js -->
 
+    <!-- color-picker -->
+    <link href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker@1.8.1/spectrum.min.css" rel="stylesheet">
+
+    <!-- colo-picker -->
+    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker@1.8.1/spectrum.min.js"></script>
+
     @stack('scripts')
 
 

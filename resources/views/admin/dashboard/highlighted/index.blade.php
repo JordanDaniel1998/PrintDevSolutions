@@ -41,7 +41,7 @@
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="metrics" :value="__('Valor de la métrica')" />
                                     <x-input-text-dashboard id="metrics" type="text" required
-                                        autocomplete="Número de la métrica" placeholder="Número de la métrica"
+                                        autocomplete="Número de la métrica" placeholder="Ejm. 10k+"
                                         name="metrics" />
                                 </div>
 
@@ -96,7 +96,7 @@
                                 <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="metrics1" :value="__('Valor de la métrica')" />
                                     <x-input-text-dashboard id="metrics1" type="text" required
-                                        autocomplete="Número de la métrica" placeholder="Número de la métrica"
+                                        autocomplete="Número de la métrica" placeholder="Ejm. 10k+"
                                         name="metrics1" />
                                 </div>
 

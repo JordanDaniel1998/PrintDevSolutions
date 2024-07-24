@@ -84,7 +84,7 @@ class ProductController extends Controller
                 'categorie_id' => $request->category,
                 'subcategorie_id' => $request->subcategory,
                 'brand_id' => $request->brand,
-                'sku' => $this->generateSku($request->title)
+                'sku' => $this->generateSku($request->title),
             ]);
 
             // Galería de imagenes
@@ -120,6 +120,13 @@ class ProductController extends Controller
 
             // Insertar las especificaciones usando la relación
             $product->specifications()->createMany(array_filter($specifications, fn($spec) => !empty($spec['specification_key']) && !empty($spec['specification_value'])));
+
+            // Filtrar colores no vacios
+            /* $colors = array_filter($request->colors, fn($color) => !empty($color)); */
+            // Genera un arreglo asociativo con códigos únicos como claves
+            $formattedColors = array_map(fn($color) => ['codigo' => $color], $request->colors);
+            // Inserta los colores
+            $product->attributes()->createMany($formattedColors);
 
             DB::commit();
 
@@ -249,12 +256,15 @@ class ProductController extends Controller
             $validSpecifications = array_filter($specifications, function ($spec) {
                 return !empty($spec['specification_key']) && !empty($spec['specification_value']);
             });
-
             // Primero eliminamos las especificaciones antiguas
             $product->specifications()->delete();
-
             // Luego insertamos las nuevas especificaciones
             $product->specifications()->createMany($validSpecifications);
+
+
+            $formattedColors = array_map(fn($color) => ['codigo' => $color], $request->colors);
+            $product->attributes()->delete();
+            $product->attributes()->createMany($formattedColors);
 
             DB::commit();
 

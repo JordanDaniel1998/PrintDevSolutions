@@ -27,4 +27,10 @@ class Product extends Model
         return $this->hasMany(Specification::class);
     }
 
+    // Un producto puede tene muchos atributos (colores)
+
+    public function attributes(){
+        return $this->hasMany(Attribute::class);
+    }
+
 }
