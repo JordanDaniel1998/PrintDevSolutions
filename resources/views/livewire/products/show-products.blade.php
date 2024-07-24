@@ -6,6 +6,7 @@
                 <img src="{{ asset('storage/uploads/' . $product->imagen) }}" class="w-12 md:w-36"
                     alt="{{ $product->imagen }}">
             </td>
+            <td class="text-center align-middle">{{ $product->sku }}</td>
             <td class="text-center align-middle">{{ $product->price }}</td>
             <td class="text-center align-middle">{{ $product->stock }}</td>
             <td class="text-center align-middle">

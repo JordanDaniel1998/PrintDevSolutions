@@ -44,7 +44,8 @@
                     <tr>
                         <th class="text-center align-middle">Título</th>
                         <th class="text-center align-middle">Imagen</th>
-                        <th class="text-center align-middle">Precio</th>
+                        <th class="text-center align-middle">SKU</th>
+                        <th class="text-center align-middle">Precio (S/.)</th>
                         <th class="text-center align-middle">Stock</th>
                         <th class="text-center align-middle">Visible</th>
                         <th class="text-center align-middle">Destacado</th>
@@ -59,7 +60,8 @@
                     <tr>
                         <th class="text-center align-middle">Título</th>
                         <th class="text-center align-middle">Imagen</th>
-                        <th class="text-center align-middle">Precio</th>
+                        <th class="text-center align-middle">SKU</th>
+                        <th class="text-center align-middle">Precio (S/.)</th>
                         <th class="text-center align-middle">Stock</th>
                         <th class="text-center align-middle">Visible</th>
                         <th class="text-center align-middle">Destacado</th>
