@@ -90,7 +90,9 @@
 
 
         // Actualiza el estado del campo visible
-        $('.toggle-checkbox-visible').change(function() {
+
+
+        $('#products').on('change', '.toggle-checkbox-visible', function() {
             var visible = $(this).prop('checked') ? 1 : 0;
             var id = $(this).data('id');
             $.ajax({
@@ -119,7 +121,8 @@
         });
 
         // Actualiza el estado del campo destacado
-        $('.toggle-checkbox-highlighted').change(function() {
+
+        $('#products').on('change', '.toggle-checkbox-highlighted',function() {
             var highlighted = $(this).prop('checked') ? 1 : 0;
             var id = $(this).data('id');
             $.ajax({
