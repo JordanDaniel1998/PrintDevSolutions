@@ -27,37 +27,19 @@
     <section class="flex flex-col gap-10 lg:pt-10">
         <div class="flex flex-col lg:flex-row justify-start items-start lg:items-center gap-3">
             <a href="{{ route('productsOfCategories.index') }}"
-                class="bg-indigo-500 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                </div>
-                <span>Categorías</span>
+                class="bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
+                Categorías
             </a>
 
             <a href="{{ route('productsOfSubCategories.index') }}"
-                class="bg-indigo-500 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                </div>
-                <span>Subcategorías</span>
+                class="bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
+                Subcategorías
             </a>
 
 
             <a href="{{ route('productsBrand.index') }}"
-                class="bg-indigo-500 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                </div>
-                <span>Marcas</span>
+                class="bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white font-outfit px-5 py-2.5  justify-center items-center gap-2 rounded-lg inline-flex no-underline">
+                Marcas
             </a>
         </div>
 

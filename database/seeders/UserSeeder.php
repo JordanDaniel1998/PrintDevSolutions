@@ -14,6 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::insert([['role_id' => 1, 'name' => 'admin', 'email' => 'admin@admin.com', 'password' =>  Hash::make('123456789'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]]);
+        User::insert([['role_id' => 1, 'name' => 'admin', 'username' => 'admin', 'email' => 'admin@admin.com', 'password' =>  Hash::make('123456789'), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')]]);
     }
 }

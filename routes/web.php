@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\Auth\LoginController;
 use App\Http\Controllers\Frontend\Auth\LogoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
+use App\Http\Controllers\Frontend\Post\PostController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\DirectionController;
 use App\Http\Controllers\Frontend\User\OrderController;
@@ -23,6 +24,11 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/my-account/{user}/edit', [AccountController::class, 'index'])->name('myAccount')->middleware(['auth', 'auth.checkUserOwner']);
 Route::get('/my-account/{user}/direction', [DirectionController::class, 'index'])->name('myAccount.direction')->middleware(['auth', 'auth.checkUserOwner']);
 Route::get('/my-account/{user}/orders', [OrderController::class, 'index'])->name('myAccount.orders')->middleware(['auth', 'auth.checkUserOwner']);
+
+Route::get('/posts/{user:username}', [PostController::class, 'index'])->name('posts.index')->middleware(['auth', 'auth.checkUserOwner']);;
+
+
+
 
 
 // ------------------------------------------- Admin --------------------------------------------------

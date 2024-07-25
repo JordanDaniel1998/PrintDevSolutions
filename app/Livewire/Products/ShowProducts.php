@@ -29,7 +29,6 @@ class ShowProducts extends Component
 
         $product->delete();
 
-
     }
 
 

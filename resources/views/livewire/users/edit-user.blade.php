@@ -29,6 +29,13 @@
             </div>
 
             <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+                <x-input-label for="username" :value="__('Username')" />
+                <x-text-input id="username" type="text" required autocomplete="Username"
+                    placeholder="Username" name="username" :value="old('username')" wire:model="username"/>
+                <x-input-error :messages="$errors->get('username')" class="mt-2" />
+            </div>
+
+            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
                 <x-input-label for="email_login" :value="__('Email')" />
                 <x-text-input id="email_login" type="email" required autocomplete="Correo Electrónico"
                     placeholder="Correo electrónico" name="email" :value="old('emal')" wire:model="email" />

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CategoriesProducts\SubCategories\SubcategoriesCon
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Highlighted\HighlightedController;
 use App\Http\Controllers\Admin\ImagenesController;
+use App\Http\Controllers\Admin\Partner\PartnersController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,8 +71,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::get('/highlighteds/data', [HighlightedController::class, 'getData'])->name('highlighted.getData');
     Route::delete('/highlighteds/{highlighted}', [HighlightedController::class, 'destroy'])->name('highlighted.destroy');
 
+    // Partners
+    Route::get('/partners', [PartnersController::class, 'index'])->name('partners.index');
+    Route::get('/partners/create', [PartnersController::class, 'create'])->name('partners.create');
+    Route::post('/partners', [PartnersController::class, 'store'])->name('partners.store');
+    Route::get('/partners/{partner}/edit', [PartnersController::class, 'edit'])->name('partners.edit');
+    Route::post('/partners/{partner}/update', [PartnersController::class, 'update'])->name('partners.update');
+    Route::get('/partners/visible', [PartnersController::class, 'visible'])->name('partners.visible');
 
-
+    // dropzone
     Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');
     Route::post('/imagenes/delete', [ImagenesController::class, 'destroy'])->name('imagenes.destroy');
 });

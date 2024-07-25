@@ -7,6 +7,16 @@ export default {
     ],
     theme: {
         extend: {
+            keyframes: {
+                balance: {
+                    "0%": { transform: "rotate(-3deg)" },
+                    "50%": { transform: "rotate(3deg)" },
+                    "100%": { transform: "rotate(-3deg)" },
+                },
+            },
+            animation: {
+                balance: "balance 1s infinite",
+            },
             fontFamily: {
                 inter: ["Inter", "sans-serif"],
                 outfit: ["Outfit", "sans-serif"],

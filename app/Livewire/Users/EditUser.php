@@ -15,6 +15,7 @@ class EditUser extends Component
     // Creación de variables
     public $user_id;
     public $name;
+    public $username;
     public $last;
     public $email;
     public $password;
@@ -30,6 +31,7 @@ class EditUser extends Component
         // Inicializar las variables
         $this->user_id = $user->id;
         $this->name = $user->name;
+        $this->username = $user->username;
         $this->last = $user->last;
         $this->email = $user->email;
         $this->imagen_perfil = $user->imagen_perfil;
@@ -38,6 +40,7 @@ class EditUser extends Component
         $this->rules = [
             'name' => 'required|max:30',
             'last' => 'required|max:30',
+            'username' => 'required|unique:users,username,' . $this->user_id.'|min:3|max:30',
             'email' => 'required|email|unique:users,email,' . $this->user_id . '|max:60',
             'password' => 'required|min:6',
             'password_nuevo' => 'required|confirmed|min:6',
@@ -84,6 +87,7 @@ class EditUser extends Component
         // Reescribimos al usuario
         $user->name = $data['name'];
         $user->last = $data['last'];
+        $user->username = $data['username'];
         $user->email = $data['email'];
         $user->imagen_perfil = $nombreImagen;
         $user->password = $data['password_nuevo'];

@@ -41,6 +41,13 @@
                     <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Nuestro Alcance</span>
                 </a>
             </li>
+
+            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="{{ route('partners.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Nuestros Aliados</span>
+                </a>
+            </li>
         </ul>
     </nav>
 

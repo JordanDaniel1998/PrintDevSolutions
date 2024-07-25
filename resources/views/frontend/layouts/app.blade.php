@@ -14,6 +14,16 @@
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/carrito.js'])
 
+    <!-- Animación ASOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css">
+
+    <!-- Swiper js -->
+    <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilo-swipper-modified.css') }}">
+
     <!-- Al instalar livewire, por defecto viene Alpine.js -->
     @livewireStyles
     @stack('styles')
@@ -31,6 +41,21 @@
 
 
     @livewireScripts
+
+    <!-- Swiper js -->
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+    <!-- carrito -->
+    @vite(['resources/js/carrito.js'])
+    <!-- AOS  -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
+
+
     @stack('scripts')
 
 

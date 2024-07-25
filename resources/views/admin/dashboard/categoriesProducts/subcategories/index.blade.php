@@ -15,7 +15,7 @@
             <!-- crear subcategoria -->
             <div x-data="{ open: false }" id="modalRegisterSubCategory" x-cloak>
                 <!-- Open modal button -->
-                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 text-white rounded-md"> Agregar SubCategoría
+                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white rounded-md"> Agregar SubCategoría
                 </button>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">

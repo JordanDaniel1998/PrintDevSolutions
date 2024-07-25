@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
     <!-- fin Datatable css-->
 
+    <!-- SweetAlert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css">
 
     <!-- Styles -->
@@ -79,7 +80,6 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 
     <script src="https://cdn.datatables.net/buttons/3.1.0/js/dataTables.buttons.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.1.0/js/buttons.dataTables.js"></script>
@@ -88,6 +88,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.1.0/js/buttons.html5.min.js"></script>
     <!-- fin Dtatable Js -->
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 
     <!-- color-picker -->
     <link href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker@1.8.1/spectrum.min.css" rel="stylesheet">
