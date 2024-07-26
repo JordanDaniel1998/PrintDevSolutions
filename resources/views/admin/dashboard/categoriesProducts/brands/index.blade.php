@@ -15,7 +15,8 @@
             <!-- crear subcategoria -->
             <div x-data="{ open: false }" id="modalRegisterSubCategory" x-cloak>
                 <!-- Open modal button -->
-                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white rounded-md"> Agregar Marca
+                <button x-on:click="open = true"
+                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white rounded-md"> Agregar Marca
                 </button>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
@@ -41,7 +42,7 @@
                             <div
                                 class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
 
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                <div class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="category" :value="__('SubCategoría')" />
 
                                     <select name="category" id="category"
@@ -55,12 +56,12 @@
                                     {{-- <div class="selectCategoryMessage"></div> --}}
                                 </div>
 
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                <div class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="subcategory" :value="__('Marca')" />
                                     <x-input-text-dashboard id="subcategory" type="text" required
                                         autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"
                                         name="subcategory" />
-                                   {{--  <div class="subcategoryMessage"></div> --}}
+                                    {{--  <div class="subcategoryMessage"></div> --}}
                                 </div>
                             </div>
                             <!-- Modal Footer -->
@@ -105,7 +106,7 @@
                             <div
                                 class="p-4 h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100 flex flex-col gap-3">
 
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                <div class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="category1" :value="__('SubCategoría')" />
 
                                     <select name="category1" id="category1"
@@ -116,10 +117,10 @@
                                             <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                         @endforeach
                                     </select>
-                                   {{--  <div class="selectCategory1Message"></div> --}}
+                                    {{--  <div class="selectCategory1Message"></div> --}}
                                 </div>
 
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                <div class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="subcategory1" :value="__('Marca')" />
                                     <x-input-text-dashboard id="subcategory1" type="text" required
                                         autocomplete="Nombre de la SubCategoría" placeholder="Nombre de la SubCategoría"

@@ -14,28 +14,28 @@
 
     <div class="flex flex-col gap-5">
         <div class="flex flex-col gap-5">
-            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+            <div class="flex flex-col gap-2 w-full">
                 <x-input-label for="name" :value="__('Nombres')" />
                 <x-text-input id="name" type="text" required autocomplete="Nombres" placeholder="Nombres"
                     name="name" :value="old('name')" wire:model="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 
-            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+            <div class="flex flex-col gap-2 w-full">
                 <x-input-label for="last" :value="__('Apellidos')" />
                 <x-text-input id="last" type="text" required autocomplete="Apellidos" placeholder="Apellidos"
                     name="last" :value="old('last')" wire:model="last" />
                 <x-input-error :messages="$errors->get('last')" class="mt-2" />
             </div>
 
-            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2">
                 <x-input-label for="username" :value="__('Username')" />
-                <x-text-input id="username" type="text" required autocomplete="Username"
-                    placeholder="Username" name="username" :value="old('username')" wire:model="username"/>
+                <x-text-input id="username" type="text" required autocomplete="Username" placeholder="Username"
+                    name="username" :value="old('username')" wire:model="username" />
                 <x-input-error :messages="$errors->get('username')" class="mt-2" />
             </div>
 
-            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2">
                 <x-input-label for="email_login" :value="__('Email')" />
                 <x-text-input id="email_login" type="email" required autocomplete="Correo Electrónico"
                     placeholder="Correo electrónico" name="email" :value="old('emal')" wire:model="email" />
@@ -43,14 +43,14 @@
             </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2">
             <x-input-label for="imagen_nueva" :value="__('Foto de perfil nueva')" />
             <x-text-input id="imagen_nueva" type="file" name="imagen_nueva" accept="image/*" required
                 wire:model="imagen_nueva" />
         </div>
 
         @if ($imagen_nueva)
-            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2">
                 <x-input-label :value="__('Foto de perfil nueva')" />
                 <div class="flex justify-start items-center">
                     <img src="{{ $imagen_nueva->temporaryUrl() }}" alt="{{ $name }}" class="w-40 h-40">
@@ -69,31 +69,31 @@
         Contraseña
     </h2>
 
-    <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
         <x-input-label for="password" :value="__('Contraseña')" />
         <x-text-input id="password" type="password" required autocomplete="Contraseña" placeholder="*******"
             name="password" wire:model="password" />
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
 
-    <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
         <x-input-label for="password_nuevo" :value="__('Nueva Contraseña')" />
         <x-text-input id="password_nuevo" type="password" required autocomplete="Contraseña" placeholder="*******"
             name="password_nuevo" wire:model="password_nuevo" />
         <x-input-error :messages="$errors->get('password_nuevo')" class="mt-2" />
     </div>
 
-    <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
         <x-input-label for="password_nuevo_confirmation" :value="__('Repetir nueva contraseña')" />
         <x-text-input id="password_nuevo_confirmation" type="password" required autocomplete="Contraseña"
             placeholder="*******" name="password_nuevo_confirmation" wire:model="password_nuevo_confirmation" />
     </div>
 
     <div class="flex gap-5 flex-col md:flex-row pt-10">
-        <input data-aos="fade-up" data-aos-offset="150" type="submit" value="Guardar cambios"
+        <input type="submit" value="Guardar cambios"
             class="text-white bg-[#0051FF] py-3 px-5  cursor-pointer border-2 font-bold font-inter text-text18 text-center border-none inline-block" />
 
-        <input data-aos="fade-up" data-aos-offset="150" type="submit" value="Cancelar"
+        <input type="submit" value="Cancelar"
             class="text-[#FFFFFF] py-3 px-5 cursor-pointer font-bold font-inter text-text18 text-center inline-block border-[1px] border-[#151515] bg-[#001232]" />
     </div>
 </form>

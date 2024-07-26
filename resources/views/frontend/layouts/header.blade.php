@@ -37,9 +37,15 @@
 
             <div
                 class="flex justify-between md:justify-center md:gap-10 items-center row-span-1 col-span-2 md:row-span-1 md:col-span-9 order-3 md:order-2 text-text16 md:text-text20 font-medium">
-                <a href="" class="">Inicio</a>
+                <a href="{{ route('home') }}"
+                    class="relative {{ request()->routeIs('home') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
+                    Inicio
+                </a>
                 <a href="" class="">Productos</a>
-                <a href="" class="">Blog</a>
+                <a href="{{ route('blogs.index') }}"
+                    class="relative {{ request()->routeIs('blogs.index') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
+                    Blog
+                </a>
                 <a href="" class="">Contáctanos</a>
             </div>
 
@@ -48,8 +54,8 @@
 
                 @auth
                     <a href="{{ route('myAccount', auth()->user()->id) }}">
-                        <img src="{{ auth()->user()->imagen_perfil ? asset('storage/users/' . auth()->user()->imagen_perfil) : asset('images/img/avatar.png') }}" alt="login"
-                            class="cursor-pointer w-8 h-8 rounded-full">
+                        <img src="{{ auth()->user()->imagen_perfil ? asset('storage/users/' . auth()->user()->imagen_perfil) : asset('images/img/avatar.png') }}"
+                            alt="login" class="cursor-pointer w-8 h-8 rounded-full">
                     </a>
                 @else
                     <a href="{{ route('login') }}">

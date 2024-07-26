@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminLogoutController;
+use App\Http\Controllers\Admin\Blog\BlogsController;
+use App\Http\Controllers\Admin\CategoriesBlogs\CategoriesBlogsController;
 use App\Http\Controllers\Admin\CategoriesProducts\Brands\BrandsController;
 use App\Http\Controllers\Admin\CategoriesProducts\Categories\CategoriesController;
 use App\Http\Controllers\Admin\CategoriesProducts\CategoriesProductsController;
@@ -78,6 +80,49 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::get('/partners/{partner}/edit', [PartnersController::class, 'edit'])->name('partners.edit');
     Route::post('/partners/{partner}/update', [PartnersController::class, 'update'])->name('partners.update');
     Route::get('/partners/visible', [PartnersController::class, 'visible'])->name('partners.visible');
+
+    // Blogers
+    Route::get('/articles', [BlogsController::class, 'index'])->name('articles.index');
+    Route::get('/articles/create', [BlogsController::class, 'create'])->name('articles.create');
+    Route::post('/articles', [BlogsController::class, 'store'])->name('articles.store');
+    Route::get('/articles/edit/{blog}', [BlogsController::class, 'edit'])->name('articles.edit');
+    Route::post('/articles/{blog}/update', [BlogsController::class, 'update'])->name('articles.update');
+    Route::get('/articles/visible', [BlogsController::class, 'visible'])->name('articles.visible');
+    Route::delete('/articles/{blog}', [BlogsController::class, 'destroy'])->name('articles.destroy');
+    Route::get('/articles/data', [BlogsController::class, 'getData'])->name('articles.getData');
+
+
+    // CategoriesOfBlogs
+    Route::get('/articles/categories', [CategoriesBlogsController::class, 'index'])->name('categoriesOfArticles.index');
+
+    Route::post('/articles/categories', [CategoriesBlogsController::class, 'store'])->name('categoriesOfArticles.store');
+
+    Route::post('/articles/categories/updates', [CategoriesBlogsController::class, 'update'])->name('categoriesOfArticles.update');
+
+    // Cuando usas Route model binding, el parametro debe coincidir con su modelo
+    Route::get('/articles/categories/{categoryBlog}/edit', [CategoriesBlogsController::class, 'edit'])->name('categoriesOfArticles.edit');
+
+    Route::delete('/articles/categories/{categoryBlog}', [CategoriesBlogsController::class, 'destroy'])->name('categoriesOfArticles.destroy');
+
+    Route::get('/articles/categories/data', [CategoriesBlogsController::class, 'getData'])->name('categoriesOfArticles.getData');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // dropzone
     Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');

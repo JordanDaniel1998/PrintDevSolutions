@@ -11,14 +11,14 @@
 @endpush
 
 @section('contenido')
-    <section class="flex flex-col gap-10">
+    <section class="flex flex-col gap-10 shadow-md border-2 px-3 md:!px-10 py-10">
         <form action="{{ route('products.store') }}" method="POST" class="flex flex-col w-full gap-10"
             enctype="multipart/form-data" novalidate>
             @csrf
             <div class="flex flex-col lg:flex-row lg:divide-x-8 w-full">
                 <div class="lg:pr-5 flex-1 flex flex-col gap-2">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="title" :value="__('Título')" />
                             <x-input-text-dashboard id="title" type="text" required
                                 autocomplete="Nombre del producto" placeholder="Nombre del producto" name="title"
@@ -30,7 +30,7 @@
                             @enderror
                         </div>
 
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="subTitle" :value="__('SubTítulo')" />
                             <x-input-text-dashboard id="subTitle" type="text" required
                                 autocomplete="Subtítulo del producto" placeholder="Subtítulo del producto" name="subTitle"
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="description" :value="__('Descripción Principal')" />
                             <x-text-area-dashboard id="description" type="text" required
                                 autocomplete="Descripción del producto" placeholder="Descripción del producto"
@@ -57,9 +57,10 @@
                         </div>
 
                         <div class="flex flex-col justify-start items-center">
-                            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
                                 <x-input-label-dashboard for="imagen" :value="__('Imagen principal (Primera imagen)')" />
-                                <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*" class="w-full image-preview" />
+                                <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
+                                    class="w-full image-preview" />
                                 @error('imagen')
                                     <span class="text-red-500 font-medium">
                                         {{ str_replace('imagen', 'imagen', $message) }}
@@ -68,13 +69,11 @@
                             </div>
 
                             <div class="w-full">
-                                <img id="imagePreview" src="#" alt="producto" class="hidden w-full pt-3" />
+                                <img id="imagePreview" src="#" alt="producto" class="hidden w-96 pt-3" />
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-2">
-
-
 
                             <div class="flex flex-col gap-2">
                                 <x-input-label-dashboard for="dropzone" :value="__('Galería de imagenes ( máximo 6 imagenes)')" />
@@ -84,7 +83,7 @@
                                 <div x-data="{ open: false }" id="modalColors" x-cloak>
                                     <!-- Open modal button -->
                                     <button type="button" x-on:click="open = true"
-                                        class="px-4 py-2 bg-indigo-500 text-white rounded-md">
+                                        class="px-4 py-2 bg-slate-700 text-white rounded-md">
                                         Agregar Colores
                                     </button>
                                     <!-- Modal Overlay -->
@@ -168,7 +167,7 @@
                                 @enderror
                             </div>
 
-                            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
                                 <x-input-label-dashboard for="description_short" :value="__('Descripción Secundaria')" />
                                 <x-text-area-dashboard id="description_short" type="text" required
                                     autocomplete="Descripción secundaria del producto"
@@ -188,7 +187,7 @@
 
                 <div class="lg:pl-5 flex-1 flex flex-col gap-2">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="price" :value="__('Precio')" />
                             <x-input-text-dashboard id="price" type="number" required
                                 autocomplete="Precio del producto" placeholder="Precio del producto" name="price"
@@ -200,7 +199,7 @@
                             @enderror
                         </div>
 
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="stock" :value="__('Cantidad')" />
                             <x-input-text-dashboard id="stock" type="number" required
                                 autocomplete="Stock del producto" placeholder="Stock del producto" name="stock"
@@ -227,7 +226,7 @@
 
             <div class="flex justify-between items-center">
                 <a href="{{ route('products.index') }}"
-                    class="bg-black text-white font-outfit px-4 py-2.5 justify-center items-center gap-3 rounded-lg  no-underline hidden md:inline-flex">
+                    class="bg-indigo-500 hover:bg-indigo-600 md:duration-300 text-white font-outfit px-4 py-2.5 justify-center items-center gap-3 rounded-lg  no-underline hidden md:inline-flex">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -239,7 +238,7 @@
                 </a>
 
                 <button type="submit"
-                    class="w-full md:w-auto bg-black text-white font-outfit px-4 py-2.5 justify-center items-center gap-2 rounded-lg inline-flex no-underline">
+                    class="w-full md:w-auto bg-indigo-500 hover:bg-indigo-600 md:duration-300 text-white font-outfit px-4 py-2.5 justify-center items-center gap-2 rounded-lg inline-flex no-underline">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -257,61 +256,6 @@
 
 @push('scripts')
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-
-    <script>
-        document.getElementById('category').addEventListener('change', async function() {
-            const categoryId = this.value;
-            const subcategorySelect = document.getElementById('subcategory');
-            const brandSelect = document.getElementById('brand');
-
-            subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
-            brandSelect.innerHTML = '<option value="">Selecciona una marca</option>';
-            brandSelect.disabled = true;
-
-            if (categoryId) {
-                const response = axios.get(`categories/subcategories/${categoryId}`)
-                    .then(response => {
-                        const data = response.data.subcategories;
-
-                        subcategorySelect.disabled = false;
-                        data.forEach(subcategory => {
-                            subcategorySelect.innerHTML +=
-                                `<option value="${subcategory.id}">${subcategory.name}</option>`;
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching subcategories:', error);
-                    });
-            } else {
-                subcategorySelect.disabled = true;
-            }
-        });
-
-
-        document.getElementById('subcategory').addEventListener('change', async function() {
-            const subcategoryId = this.value;
-            const brandSelect = document.getElementById('brand');
-
-            brandSelect.innerHTML = '<option value="">Selecciona una marca</option>';
-            if (subcategoryId) {
-                const response = axios.get(`subcategories/brands/${subcategoryId}`)
-                    .then(response => {
-                        const data = response.data.brands;
-
-                        brandSelect.disabled = false;
-                        data.forEach(brand => {
-                            brandSelect.innerHTML +=
-                                `<option value="${brand.id}">${brand.name}</option>`;
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching brands:', error);
-                    });
-            } else {
-                brandSelect.disabled = true;
-            }
-        });
-    </script>
 
     <script>
         Dropzone.autoDiscover = false;

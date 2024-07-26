@@ -48,6 +48,20 @@
                     <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Nuestros Aliados</span>
                 </a>
             </li>
+
+            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="{{ route('articles.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Blogs</span>
+                </a>
+            </li>
+
+            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="{{ route('categoriesOfArticles.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Categorías de blog</span>
+                </a>
+            </li>
         </ul>
     </nav>
 

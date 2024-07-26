@@ -7,7 +7,7 @@
             @csrf
             <div class="flex flex-col gap-3">
 
-                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                <div class="flex flex-col gap-2 w-full">
                     <x-input-label-dashboard for="title" :value="__('Nombre')" />
                     <x-input-text-dashboard id="title" type="text" required autocomplete="Nombre de la compañia"
                         placeholder="Nombre de la compañia" name="title" :value="old('title')" />
@@ -18,7 +18,7 @@
                     @enderror
                 </div>
 
-                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                <div class="flex flex-col gap-2 w-full">
                     <x-input-label-dashboard for="description" :value="__('Descripción breve (máximo 255 caracteres)')" />
                     <x-text-area-dashboard id="description" type="text" required
                         autocomplete="Descripción de la compañia" placeholder="Descripción de la compañia"
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="flex flex-col justify-start items-center">
-                    <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                    <div class="flex flex-col gap-2 w-full">
                         <x-input-label-dashboard for="imagen" :value="__('Imagen principal')" />
                         <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
                             class="w-full image-preview" />

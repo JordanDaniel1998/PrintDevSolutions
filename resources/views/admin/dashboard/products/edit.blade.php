@@ -5,7 +5,7 @@
 @endpush
 
 @section('contenido')
-    <section class="flex flex-col gap-10">
+    <section class="flex flex-col gap-10 shadow-md border-2 px-3 md:!px-10 py-10">
 
         <form action="{{ route('products.update', $product->id) }}" method="POST" class="flex flex-col w-full gap-10"
             enctype="multipart/form-data" novalidate>
@@ -13,7 +13,7 @@
             <div class="flex flex-col lg:flex-row lg:divide-x-8 w-full">
                 <div class="lg:pr-5 flex-1 flex flex-col gap-2">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="title" :value="__('Título')" />
                             <x-input-text-dashboard id="title" type="text" required
                                 autocomplete="Nombre del producto" placeholder="Nombre del producto" name="title"
@@ -21,7 +21,7 @@
                             <x-input-error-dashboard :messages="$errors->get('title')" class="mt-2" />
                         </div>
 
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="subTitle" :value="__('SubTítulo')" />
                             <x-input-text-dashboard id="subTitle" type="text" required
                                 autocomplete="Subtítulo del producto" placeholder="Subtítulo del producto" name="subTitle"
@@ -32,7 +32,7 @@
 
                     <div class="flex flex-col gap-3">
 
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="description" :value="__('Descripción Principal')" />
                             <x-text-area-dashboard id="description" type="text" required
                                 autocomplete="Descripción del producto" placeholder="Descripción del producto"
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="flex flex-col justify-start items-center">
-                            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
                                 <x-input-label-dashboard for="imagen" :value="__('Imagen principal')" />
                                 <x-input-text-dashboard id="imagen" type="file" name="imagen" accept="image/*"
                                     onchange="imagePrincipal(event)" class="w-full" />
@@ -141,7 +141,7 @@
                                 <x-input-error-dashboard :messages="$errors->get('images')" class="mt-2" />
                             </div>
 
-                            <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
                                 <x-input-label-dashboard for="description_short" :value="__('Descripción Secundaria')" />
                                 <x-text-area-dashboard id="description_short" type="text" required
                                     autocomplete="Descripción secundaria del producto"
@@ -157,7 +157,7 @@
 
                 <div class="lg:pl-5 flex-1 flex flex-col gap-2">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="price" :value="__('Precio')" />
                             <x-input-text-dashboard id="price" type="number" required
                                 autocomplete="Precio del producto" placeholder="Precio del producto" name="price"
@@ -165,7 +165,7 @@
                             <x-input-error-dashboard :messages="$errors->get('price')" class="mt-2" />
                         </div>
 
-                        <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-2 w-full">
                             <x-input-label-dashboard for="stock" :value="__('Cantidad')" />
                             <x-input-text-dashboard id="stock" type="number" required
                                 autocomplete="Stock del producto" placeholder="Stock del producto" name="stock"

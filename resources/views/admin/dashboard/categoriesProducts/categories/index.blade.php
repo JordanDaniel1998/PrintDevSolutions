@@ -15,7 +15,9 @@
             <!-- crear categoria -->
             <div x-data="{ open: false }" id="modalRegisterCategory" x-cloak>
                 <!-- Open modal button -->
-                <button x-on:click="open = true" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white rounded-md"> Agregar Categoría
+                <button x-on:click="open = true"
+                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 md:duration-300 text-white rounded-md"> Agregar
+                    Categoría
                 </button>
                 <!-- Modal Overlay -->
                 <div x-show="open" class="fixed inset-0 px-2 z-[20000] overflow-hidden flex items-center justify-center">
@@ -38,7 +40,7 @@
                         <form action="" id="formCategorieRegister">
                             <div
                                 class="p-4 h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100">
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                <div class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="categorie" :value="__('Categoría')" />
                                     <x-input-text-dashboard id="categorie" type="text" required
                                         autocomplete="Nombre de la categoría" placeholder="Nombre de la categoría"
@@ -86,7 +88,7 @@
                         <form id="formCategorie" method="POST">
                             <div
                                 class="p-4 h-36 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-500 scrollbar-track-gray-100">
-                                <div data-aos="fade-up" data-aos-offset="150" class="flex flex-col gap-2 w-full">
+                                <div class="flex flex-col gap-2 w-full">
                                     <x-input-label-dashboard for="category" :value="__('Categoría')" />
                                     <x-input-text-dashboard id="category" type="text" required
                                         autocomplete="Nombre de la categoría" placeholder="Nombre de la categoría"

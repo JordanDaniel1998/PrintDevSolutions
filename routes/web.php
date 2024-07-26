@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\Auth\LoginController;
 use App\Http\Controllers\Frontend\Auth\LogoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
+use App\Http\Controllers\Frontend\Blog\BlogerController;
 use App\Http\Controllers\Frontend\Post\PostController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\DirectionController;
@@ -28,6 +29,8 @@ Route::get('/my-account/{user}/orders', [OrderController::class, 'index'])->name
 Route::get('/posts/{user:username}', [PostController::class, 'index'])->name('posts.index')->middleware(['auth', 'auth.checkUserOwner']);;
 
 
+Route::get('/blogs', [BlogerController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blog}', [BlogerController::class, 'show'])->name('blogs.show');
 
 
 
