@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\Frontend\AboutUs\AboutUsController;
+use App\Http\Controllers\Frontend\AboutUs\SubscriptionController;
 use App\Http\Controllers\Frontend\Auth\LoginController;
 use App\Http\Controllers\Frontend\Auth\LogoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\Blog\BlogerController;
+use App\Http\Controllers\Frontend\Catalogs\CatalogsController;
 use App\Http\Controllers\Frontend\Post\PostController;
+use App\Http\Controllers\Frontend\Product\ProductToUserController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\DirectionController;
 use App\Http\Controllers\Frontend\User\OrderController;
@@ -32,7 +36,11 @@ Route::get('/posts/{user:username}', [PostController::class, 'index'])->name('po
 Route::get('/blogs', [BlogerController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{blog}', [BlogerController::class, 'show'])->name('blogs.show');
 
+Route::get('/aboutUs', [AboutUsController::class, 'index'])->name('about.index');
 
+Route::get('/catalogs', [CatalogsController::class, 'index'])->name('catalogs.index');
+
+Route::get('/products/{product}', [ProductToUserController::class, 'index'])->name('productstoUser.index');
 
 // ------------------------------------------- Admin --------------------------------------------------
 require __DIR__.'/admin.php';

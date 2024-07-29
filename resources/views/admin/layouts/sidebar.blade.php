@@ -18,9 +18,27 @@
     <nav class="navegacion">
         <ul>
             <li {{-- class="{{ request()->is('admin/dashboard*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
-                <a href="{{ route('admin.dashboard') }}">
+                <a href="">
                     <ion-icon name="star-outline"></ion-icon>
                     <span {{-- class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}" --}}>Dashboard</span>
+                </a>
+            </li>
+            <li {{-- class="{{ request()->is('admin/dashboard*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="{{ route('admin.information') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}" --}}>Información</span>
+                </a>
+            </li>
+            <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products*') ? 'text-black' : '' }}" --}}>Mensajes</span>
+                </a>
+            </li>
+            <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+                <a href="{{ route('products.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span {{-- class="{{ request()->is('admin/products*') ? 'text-black' : '' }}" --}}>Suscripciones</span>
                 </a>
             </li>
             <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>

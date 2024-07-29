@@ -40,6 +40,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|string|max:255',
             'subTitle' => 'required|string|max:255',
@@ -52,6 +53,7 @@ class ProductController extends Controller
             'category' => 'required|integer',
             'subcategory' => 'required|integer',
             'brand' => 'required|integer|integer',
+            'discount' => 'required|numeric|min:0|max:100',
         ]);
 
         try {
@@ -84,6 +86,7 @@ class ProductController extends Controller
                 'categorie_id' => $request->category,
                 'subcategorie_id' => $request->subcategory,
                 'brand_id' => $request->brand,
+                'discount' => $request->discount,
                 'sku' => $this->generateSku($request->title),
             ]);
 
@@ -169,6 +172,7 @@ class ProductController extends Controller
             'category' => 'required|integer',
             'subcategory' => 'required|integer',
             'brand' => 'required|integer',
+            'discount' => 'required|numeric|min:0|max:100',
         ]);
 
         try {
@@ -233,6 +237,7 @@ class ProductController extends Controller
             $product->categorie_id = $request->category;
             $product->subcategorie_id = $request->subcategory;
             $product->brand_id = $request->brand;
+            $product->discount = $request->discount;
             $product->sku = $this->generateSku($request->title);
             $product->save();
 

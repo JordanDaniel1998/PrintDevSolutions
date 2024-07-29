@@ -13,7 +13,13 @@ class Categorie extends Model
 
     protected $fillable = ['name', 'imagen'];
 
+    // Una categoría tiene muchas subcategorías
     public function subcategories(){
         return $this->hasMany(Subcategorie::class);
+    }
+
+    // Una categoría tiene muchos productos
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }

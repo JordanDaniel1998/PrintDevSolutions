@@ -17,7 +17,7 @@
                 @foreach ($partners as $partner)
                     <div class="swiper-slide items-center">
                         <div class="flex justify-center items-center">
-                            <img src="{{ asset('storage/partners/' . $partner->imagen) }}" alt="{{ $partner->title }}">
+                            <img src="{{ asset('storage/partners/' . $partner->imagen) }}" alt="{{ $partner->title }}" loading="lazy">
                         </div>
                     </div>
                 @endforeach

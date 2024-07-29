@@ -1,7 +1,6 @@
-<section class="w-11/12 mx-auto py-5">
-    <div class="grid grid-cols-2 md:grid-cols-4" data-aos="fade-up" data-aos-offset="150">
-
-        @if ($highlighteds->count())
+@if ($highlighteds->count())
+    <section class="w-11/12 mx-auto py-5">
+        <div class="grid grid-cols-2 md:grid-cols-4" data-aos="fade-up" data-aos-offset="150">
             @foreach ($highlighteds as $highlighted)
                 <div class="flex flex-col gap-3 items-center justify-center w-full">
                     <p class="text-[#0711E5] text-text52 font-bold font-inter w-full text-center">
@@ -12,7 +11,6 @@
                     </p>
                 </div>
             @endforeach
-        @endif
-
-    </div>
-</section>
+        </div>
+    </section>
+@endif

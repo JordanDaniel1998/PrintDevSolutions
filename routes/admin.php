@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CategoriesProducts\SubCategories\SubcategoriesCon
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Highlighted\HighlightedController;
 use App\Http\Controllers\Admin\ImagenesController;
+use App\Http\Controllers\Admin\Information\InformationController;
 use App\Http\Controllers\Admin\Partner\PartnersController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -91,19 +92,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::delete('/articles/{blog}', [BlogsController::class, 'destroy'])->name('articles.destroy');
     Route::get('/articles/data', [BlogsController::class, 'getData'])->name('articles.getData');
 
-
     // CategoriesOfBlogs
     Route::get('/articles/categories', [CategoriesBlogsController::class, 'index'])->name('categoriesOfArticles.index');
-
     Route::post('/articles/categories', [CategoriesBlogsController::class, 'store'])->name('categoriesOfArticles.store');
-
     Route::post('/articles/categories/updates', [CategoriesBlogsController::class, 'update'])->name('categoriesOfArticles.update');
-
     // Cuando usas Route model binding, el parametro debe coincidir con su modelo
     Route::get('/articles/categories/{categoryBlog}/edit', [CategoriesBlogsController::class, 'edit'])->name('categoriesOfArticles.edit');
-
     Route::delete('/articles/categories/{categoryBlog}', [CategoriesBlogsController::class, 'destroy'])->name('categoriesOfArticles.destroy');
-
     Route::get('/articles/categories/data', [CategoriesBlogsController::class, 'getData'])->name('categoriesOfArticles.getData');
 
 
@@ -115,13 +110,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
 
 
 
-
-
-
-
-
-
-
+    // Información personal
+    Route::get('/information',[InformationController::class, 'index'])->name('admin.information');
+    Route::post('/information',[InformationController::class, 'store'])->name('admin.store');
 
 
     // dropzone

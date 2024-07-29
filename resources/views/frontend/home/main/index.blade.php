@@ -8,6 +8,7 @@
     @include('frontend.home.main.components.highlighteds')
     @include('frontend.home.main.components.partners')
     @include('frontend.home.main.components.testimonies')
+    @include('frontend.home.main.components.blogs')
 @endsection
 
 

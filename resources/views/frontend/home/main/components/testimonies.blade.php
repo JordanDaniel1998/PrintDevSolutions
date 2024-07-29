@@ -20,7 +20,7 @@
                                     <div class="flex justify-center items-start">
                                         @if ($testimony->user->imagen_perfil)
                                             <img src="{{ asset('storage/users/' . $testimony->user->imagen_perfil) }}"
-                                                alt="usuario" class="rounded-full size-14">
+                                                alt="usuario" class="rounded-full size-14" loading="lazy">
                                         @else
                                             <img src="{{ asset('images/img/avatar.png') }}" alt="usuario"
                                                 class="rounded-full size-14">

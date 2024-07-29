@@ -15,22 +15,44 @@ class Product extends Model
         'destacado' => 'boolean',
     ];
 
-    protected $fillable = ['title', 'subTitle', 'description', 'imagen', 'description_short', 'sku', 'price', 'stock', 'categorie_id', 'subcategorie_id', 'brand_id'];
+    protected $fillable = ['title', 'subTitle', 'description', 'imagen', 'description_short', 'sku', 'price', 'stock', 'categorie_id', 'subcategorie_id', 'brand_id','discount'];
 
     // Un producto puede tener muchas imagenes
-    public function files(){
+    public function files()
+    {
         return $this->hasMany(File::class);
     }
 
     // Un producto puede tener muchas especificaciones
-    public function specifications(){
+    public function specifications()
+    {
         return $this->hasMany(Specification::class);
     }
 
     // Un producto puede tene muchos atributos (colores)
 
-    public function attributes(){
+    public function attributes()
+    {
         return $this->hasMany(Attribute::class);
+    }
+
+    // Un producto solo le pertenece a una categoría
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
+    // Un producto solo le pertenece a una subcategoría
+    public function subcategorie()
+    {
+        return $this->belongsTo(Subcategorie::class);
+    }
+
+    // Un producto solo le pertenece a una marca
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
 }

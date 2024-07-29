@@ -14,4 +14,9 @@ class Subcategorie extends Model
     public function brands(){
         return $this->hasMany(Brand::class);
     }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
 }

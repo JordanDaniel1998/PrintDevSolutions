@@ -8,12 +8,12 @@
             <div class="flex justify-center items-center gap-2">
                 <div class="flex justify-center items-center gap-2">
 
-                    <a target="_blank" href="" alt="facebook" class="cursor-pointer">
+                    <a target="_blank" href="https://{{ $informations->facebook }}" alt="facebook" class="cursor-pointer">
                         <img src="{{ asset('images/svg/svg_2.svg') }}" alt="facebook" class="cursor-pointer w-7 h-7"
                             loading="lazy">
                     </a>
 
-                    <a target="_blank" href="">
+                    <a target="_blank" href="https://{{ $informations->instagram }}">
                         <img src="{{ asset('images/svg/svg_1.svg') }}" alt="instagram" class="cursor-pointer w-7 h-7"
                             loading="lazy">
                     </a>
@@ -41,12 +41,21 @@
                     class="relative {{ request()->routeIs('home') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
                     Inicio
                 </a>
-                <a href="" class="">Productos</a>
-                <a href="{{ route('blogs.index') }}"
-                    class="relative {{ request()->routeIs('blogs.index') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
-                    Blog
+                <a href="{{ route('catalogs.index') }}"
+                    class="relative {{ request()->routeIs('catalogs.index') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
+                    Catálogo
                 </a>
-                <a href="" class="">Contáctanos</a>
+                @if ($isBlog)
+                    <a href="{{ route('blogs.index') }}"
+                        class="relative {{ request()->routeIs('blogs.index') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
+                        Blog
+                    </a>
+                @endif
+
+                <a href="{{ route('about.index') }}"
+                    class="relative {{ request()->routeIs('about.index') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
+                    Contáctanos
+                </a>
             </div>
 
             <div
@@ -76,7 +85,9 @@
     <!-- Whattsapp -->
     <div class="flex justify-end w-11/12 mx-auto z-10">
         <div class="fixed bottom-6 sm:bottom-[2rem] lg:bottom-[4rem] z-20">
-            <a target="_blank" href="&text=" rel="noopener">
+            <a target="_blank"
+                href="https://api.whatsapp.com/send?phone={{ $informations->whatsapp }}&text={{ $informations->message_whatsapp }}"
+                rel="noopener">
                 <img src="{{ asset('images/svg/svg_6.svg') }}" alt="whatsapp" class="w-20 h-20 md:w-full md:h-full"
                     loading="lazy">
             </a>
@@ -87,6 +98,14 @@
     <!-- Side Carrito -->
 
     <div class="modal" id="jsModalCarrito">
+        <div class="modal__container">
+
+            @livewire('shoppingcart.shopping-cart')
+
+        </div>
+    </div>
+
+    {{-- <div class="modal" id="jsModalCarrito">
         <div class="modal__container">
             <div class="modal__info flex flex-col justify-between">
                 <div class="modal__header">
@@ -150,6 +169,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Fin Side Carrito -->
 </header>

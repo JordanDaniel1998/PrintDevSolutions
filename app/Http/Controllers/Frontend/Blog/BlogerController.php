@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class BlogerController extends Controller
@@ -18,7 +19,10 @@ class BlogerController extends Controller
             ->take(6) // Toma los siguientes 6
             ->get();
 
-        return view('frontend.home.blog.index', compact('blogs', 'blogsLatest'));
+        $informations = Information::all()->first();
+        $isBlog = Blog::where('visible', true)->exists();
+
+        return view('frontend.home.blog.index', compact('blogs', 'blogsLatest', 'informations', 'isBlog'));
     }
 
     public function show(Blog $blog)

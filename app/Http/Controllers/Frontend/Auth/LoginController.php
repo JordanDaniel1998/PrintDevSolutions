@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
     public function index()
     {
-        return view('frontend.auth.login');
+        $isBlog = Blog::where('visible', true)->exists();
+        $informations = Information::all()->first();
+        return view('frontend.auth.login', compact('informations', 'isBlog'));
     }
 
     public function store(Request $request)

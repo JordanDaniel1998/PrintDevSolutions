@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('subTitle')->nullable();
             $table->text('description')->nullable();
             $table->string('imagen')->nullable();
-            $table->string('description_short')->nullable();
+            $table->text('description_short')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->integer('stock')->nullable();
             $table->timestamps();

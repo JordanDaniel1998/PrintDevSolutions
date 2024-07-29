@@ -212,6 +212,18 @@
                         </div>
                     </div>
 
+                    <div class="flex flex-col gap-2 w-full">
+                        <x-input-label-dashboard for="discount" :value="__('Descuento (%)')" />
+                        <x-input-text-dashboard id="discount" type="number" required
+                            autocomplete="Descuento del producto" placeholder="Descuento del producto" name="discount"
+                            :value="old('discount')" />
+                        @error('discount')
+                            <span class="text-red-500 font-medium">
+                                {{ str_replace('discount', 'descuento', $message) }}
+                            </span>
+                        @enderror
+                    </div>
+
                     <div>
                         @livewire('products.select-createproducts')
                     </div>

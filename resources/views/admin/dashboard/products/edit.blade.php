@@ -174,6 +174,16 @@
                         </div>
                     </div>
 
+                    <div class="flex flex-col gap-2 w-full">
+                        <x-input-label-dashboard for="discount" :value="__('Descuento (%)')" />
+                        <x-input-text-dashboard id="price" type="number" required
+                            autocomplete="Descuento del producto" placeholder="Descuento del producto" name="discount"
+                            value="{{ $product->discount }}" />
+                        <x-input-error-dashboard :messages="$errors->get('discount')" class="mt-2" />
+                    </div>
+
+
+
                     {{--  --}}
                     @livewire('products.select-editproducts', ['product' => $product])
                     @livewire('products.specification-editproducts', ['product' => $product])

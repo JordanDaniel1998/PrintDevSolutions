@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Information;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     public function index(){
-        return view('frontend.auth.register');
+        $isBlog = Blog::where('visible', true)->exists();
+        $informations = Information::all()->first();
+        return view('frontend.auth.register', compact('informations', 'isBlog'));
     }
 
     public function store(Request $request){
