@@ -94,7 +94,7 @@
                 <div class="flex flex-col gap-2 w-full">
                     <x-input-label-dashboard for="email" :value="__('Correo electrónico')" />
                     <x-input-text-dashboard id="email" type="email" required autocomplete="Correo electrónico"
-                        placeholder="Correo electrónico" name="email" value="{{ $informations->city }}" />
+                        placeholder="Correo electrónico" name="email" value="{{ $informations->email }}" />
                     @error('email')
                         <span class="text-red-500 font-medium">
                             {{ str_replace('email', 'email', $message) }}
