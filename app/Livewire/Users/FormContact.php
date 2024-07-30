@@ -48,7 +48,7 @@ class FormContact extends Component
                 'message' => $data['message'],
             ]);
 
-            Mail::to($data['email'])->cc($informations->email)->queue(new SharedForm($informations, $userForm));
+            Mail::to($data['email'])->cc($informations->email)->send(new SharedForm($informations, $userForm));
             $this->reset();
 
             $this->dispatch('showAlertFormUser', ['type' => 'success', 'message' => 'Su mensaje fue registrado, nos pondremos en contacto con usted.']);
