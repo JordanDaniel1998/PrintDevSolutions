@@ -41,7 +41,9 @@ class CreateSubscriber extends Component
                 'username' => $data['username']
             ]);
 
-            Mail::to($suscriber->email)->cc($informations->email)->send(new SharedRegister($informations, $suscriber));
+
+
+            Mail::to($suscriber->email)->send(new SharedRegister($informations, $suscriber));
 
             $this->reset('email');
             $this->dispatch("showMessageProcessing", ['message' => 'Su mensaje fue registrado, nos pondremos en contacto con usted.']);
