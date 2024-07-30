@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Products;
 
+use App\Models\Information;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -66,15 +67,18 @@ class ProductItem extends Component
             'quantity' => $quantity,
             'image' => $product->imagen,
             'sku' => $product->sku,
+            'discount' => $product->discount,
             'price' => $product->price,
             'color' => $codigo,
         ];
         session(['cart' => $cart]);
         $this->dispatch('refreshCart');
+     /*    $this->dispatch('showAlertToProduct'); */
     }
 
     public function render()
     {
+        $informations = Information::all()->first();
         $this->product = Product::with([
             'files' => function ($query) {
                 $query->latest()->limit(4);
@@ -83,6 +87,7 @@ class ProductItem extends Component
 
         return view('livewire.products.product-item', [
             'product' => $this->product,
+            'informations' => $informations,
         ]);
     }
 }

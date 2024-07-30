@@ -162,7 +162,7 @@
             </div>
 
             <div>
-                <img src="{{ asset('images/img/image_9.png') }}" alt="contacto">
+                <img src="{{ asset('images/img/image_9.png') }}" loading="lazy" alt="contacto">
             </div>
         </div>
 

@@ -4,12 +4,12 @@
 
 /* carrito */
 .modal {
-    @apply fixed top-0 right-0 bg-[#f5f7f9] w-full max-w-[330px] md:max-w-[350px] h-screen invisible opacity-0
+    @apply fixed top-0 right-0 bg-[#f5f7f9] w-full max-w-[330px] md:max-w-[400px] h-screen invisible opacity-0
 translate-x-full transition-all duration-300 ease-in z-[2000];
 }
 
 .modal::after {
-    @apply fixed top-0 right-[330px] md:right-[350px] w-screen h-screen bg-black bg-opacity-40 z-[999] opacity-0
+    @apply fixed top-0 right-[330px] md:right-[400px] w-screen h-screen bg-black bg-opacity-40 z-[999] opacity-0
 pointer-events-none transition-all duration-300 ease-in content-[""];
 }
 

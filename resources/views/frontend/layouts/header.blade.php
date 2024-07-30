@@ -72,7 +72,10 @@
                     </a>
                 @endauth
 
-                <img src="{{ asset('images/svg/svg_4.svg') }}" alt="bag" class="bag__carrito cursor-pointer">
+                @if (!Route::is('carrito.index') && !Route::is('carrito.create'))
+                    <img src="{{ asset('images/svg/svg_4.svg') }}" alt="bag" class="bag__carrito cursor-pointer">
+                @endif
+
 
                 <div class="flex justify-center items-center font-bold bg-[#0051FF] rounded-full w-5 h-5 p-4">
                     <span class="text-white">2</span>

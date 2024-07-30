@@ -12,9 +12,15 @@ class ProductToUserController extends Controller
 {
     public function index(Product $product)
     {
-
         $informations = Information::all()->first();
         $isBlog = Blog::where('visible', true)->exists();
-        return view('frontend.home.product.index', compact('informations', 'isBlog', 'product'));
+        $products = Product::where('categorie_id', $product->categorie_id)
+            ->where('visible', 1)
+            ->where('id', '!=', $product->id)
+            ->latest()
+            ->limit(4)
+            ->get();
+
+        return view('frontend.home.product.index', compact('informations', 'isBlog', 'product', 'products'));
     }
 }

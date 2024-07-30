@@ -15,7 +15,7 @@
                             @endif
                             @if ($product->discount > 0)
                                 <span
-                                    class="font-inter font-m text-text10 md:text-text20 bg-[#0051FF] text-white py-1 px-2">{{ $product->discount }}%</span>
+                                    class="font-inter font-m text-text10 md:text-text20 bg-[#0051FF] text-white py-1 px-2">-{{ $product->discount }}%</span>
                             @endif
                         </div>
 
@@ -23,7 +23,7 @@
 
                             <a href="{{ route('productstoUser.index', $product->id) }}">
                                 <img src="{{ asset('storage/uploads/' . $product->imagen) }}" alt="impresora"
-                                    class="w-[200px] h-[200px]">
+                                    class="size-[100px] md:size-[200px]">
                             </a>
                         </div>
                     </div>
@@ -43,9 +43,11 @@
                             </p>
                             <div class="flex justify-start items-center gap-2 md:gap-4">
                                 @foreach ($product->attributes as $attribute)
-                                    <div class="rounded-full w-4 h-4 md:w-6 md:h-6"
-                                        style="background-color: {{ $attribute->codigo ? $attribute->codigo : '#EC008C' }};">
-                                    </div>
+                                    @if ($attribute->codigo)
+                                        <div class="rounded-full w-4 h-4 md:w-6 md:h-6"
+                                            style="background-color: {{ $attribute->codigo ? $attribute->codigo : '#EC008C' }};">
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -56,7 +58,6 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 

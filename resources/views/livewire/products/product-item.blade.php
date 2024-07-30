@@ -1,17 +1,30 @@
+@push('styles')
+    <style>
+        .active-border {
+            border: 2px solid #0051FF;
+        }
+    </style>
+@endpush
+
 <section class="w-11/12 md:w-10/12 mx-auto pt-5 flex flex-col gap-10 md:gap-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
         <div class="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-0">
             <div
                 class="flex flex-row justify-between md:flex-col md:justify-start md:items-center h-full md:gap-10 md:basis-1/4 order-2 md:order-1 w-full">
-                @foreach ($product->files as $galery)
-                    <img src="{{ asset('storage/uploads/' . $galery->imagen) }}" alt="{{ $product->title }}"
-                        class="w-[70px] h-[90px] object-cover">
+                @foreach ($product->files as $key => $galery)
+                    @if ($key < 1)
+                        <img src="{{ asset('storage/uploads/' . $galery->imagen) }}" alt="{{ $product->title }}"
+                            class="w-[70px] h-[90px] object-cover secundario active-border cursor-pointer">
+                    @else
+                        <img src="{{ asset('storage/uploads/' . $galery->imagen) }}" alt="{{ $product->title }}"
+                            class="w-[70px] h-[90px] object-cover secundario cursor-pointer">
+                    @endif
                 @endforeach
             </div>
 
             <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full h-full">
                 <img src="{{ asset('storage/uploads/' . $product->imagen) }}" alt="computer"
-                    class="w-full h-full object-cover">
+                    class="w-full h-full object-cover principal">
             </div>
         </div>
 
@@ -19,17 +32,22 @@
             <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]">
                 <h2 class="font-inter font-bold text-text40 md:text-text44 text-[#111111]">{{ $product->title }}</h2>
                 <p class="font-inter font-bold text-text24 md:text-text28 text-[#111111]">S/ {{ $product->price }}</p>
-                <div class="flex justify-start items-center gap-5">
-                    <p class="font-inter font-bold text-text16 md:text-text20 text-[#1F1F1F]"> @choice('Color|Colores', $product->attributes->count()):</p>
-                    <div class="flex justify-start items-center gap-4">
-                        @foreach ($product->attributes as $attribute)
-                            <button type="button" wire:click.prevent="handleColor('{{ $attribute->codigo }}')"
-                                class="rounded-full w-4 h-4 md:w-6 md:h-6"
-                                style="background-color: {{ $attribute->codigo ? $attribute->codigo : '#EC008C' }};">
-                            </button>
-                        @endforeach
+                @if ($product->attributes->contains('codigo', '!==', null))
+                    <div class="flex justify-start items-center gap-5">
+                        <p class="font-inter font-bold text-text16 md:text-text20 text-[#1F1F1F]"> @choice('Color|Colores', $product->attributes->count()):
+                        </p>
+                        <div class="flex justify-start items-center gap-4">
+                            @foreach ($product->attributes as $attribute)
+                                @if ($attribute->codigo)
+                                    <button type="button" wire:click.prevent="handleColor('{{ $attribute->codigo }}')"
+                                        class="rounded-full w-4 h-4 md:w-6 md:h-6"
+                                        style="background-color: {{ $attribute->codigo ? $attribute->codigo : '#EC008C' }};">
+                                    </button>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <div>
                     <div
@@ -51,7 +69,9 @@
                         class="bg-[#0051FF] w-full py-3 px-2 md:px-10 text-center">
                         Quiero comprar
                     </button>
-                    <a href="#"
+                    <a target="_blank"
+                        href="https://api.whatsapp.com/send?phone={{ $informations->whatsapp }}&text=Hola quiero información sobre el producto {{ $product->title }}"
+                        rel="noopener"
                         class="bg-[#25D366] flex justify-center items-center w-full py-3 px-2 md:px-10 text-center gap-2">
                         <span>Cotizar aquí</span>
                         <div>
@@ -105,3 +125,34 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const principal = document.querySelector('.principal');
+            const secundarios = document.querySelectorAll('.secundario');
+
+            secundarios.forEach(item => {
+                item.addEventListener('click', function() {
+                    const active = document.querySelector('.active-border');
+                    active.classList.remove('active-border');
+                    this.classList.add('active-border');
+                    principal.src = this.src;
+                })
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('livewire:initialized', function() {
+            Livewire.on('showAlertToProduct', (e) => {
+                Swal.fire(
+                    'Ops!',
+                    'Por favor, asegúrese de seleccionar el color de su producto.',
+                    'warning'
+                );
+            });
+
+        });
+    </script>
+@endpush

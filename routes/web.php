@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\Auth\LogoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\Blog\BlogerController;
+use App\Http\Controllers\Frontend\Cart\CartController;
 use App\Http\Controllers\Frontend\Catalogs\CatalogsController;
 use App\Http\Controllers\Frontend\Post\PostController;
 use App\Http\Controllers\Frontend\Product\ProductToUserController;
@@ -38,9 +39,17 @@ Route::get('/blogs/{blog}', [BlogerController::class, 'show'])->name('blogs.show
 
 Route::get('/aboutUs', [AboutUsController::class, 'index'])->name('about.index');
 
-Route::get('/catalogs', [CatalogsController::class, 'index'])->name('catalogs.index');
+Route::get('/catalogo', [CatalogsController::class, 'index'])->name('catalogs.index');
 
 Route::get('/products/{product}', [ProductToUserController::class, 'index'])->name('productstoUser.index');
+
+Route::get('/carrito', [CartController::class, 'index'])->name('carrito.index');
+Route::get('/carrito/detalles', [CartController::class, 'create'])->name('carrito.create');
+Route::post('/carrito/detalles', [CartController::class, 'store'])->name('carrito.store');
+Route::get('/carrito/productos', [CartController::class, 'show'])->name('carrito.show');
+
+
+
 
 // ------------------------------------------- Admin --------------------------------------------------
 require __DIR__.'/admin.php';

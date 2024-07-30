@@ -5,6 +5,7 @@ namespace App\Livewire\Shoppingcart;
 use App\Models\Blog;
 use App\Models\Information;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ShoppingCart extends Component
@@ -12,7 +13,6 @@ class ShoppingCart extends Component
     protected $listeners = ['addProductToCart', 'quantityUpdatedIncart', 'refreshCart'];
     public $quantity;
     public $cart = [];
-    public $impuesto = 0;
     public $igv;
 
     public function handleIncrement($id)
@@ -64,24 +64,33 @@ class ShoppingCart extends Component
         $this->igv = 0.18;
     }
 
-    public function calculateTotal()
+    public function calculateSubTotal()
     {
         $subTotal = 0;
 
         foreach ($this->cart as $item) {
-            $subTotal += $item['quantity'] * $item['price'];
+            $subTotal = $subTotal + $item['quantity'] * round($item['price'] - ($item['discount'] / 100) * $item['price'], 2);
         }
 
         return $subTotal;
     }
 
+    public function calculateDiscountSubTotal()
+    {
+        $discount = 0;
+
+        foreach ($this->cart as $item) {
+            $discount = $discount + round(($item['discount'] / 100) * $item['price'], 2);
+        }
+
+        return $discount;
+    }
+
     public function render()
     {
-        /* session()->forget('cart'); */
-        $subTotal = $this->calculateTotal();
-        $total = $subTotal + $this->igv*$subTotal;
-        $this->impuesto = $this->igv*$subTotal;
+        /*   session()->forget('cart'); */
+        $subTotal = $this->calculateSubTotal();
 
-        return view('livewire.shoppingcart.shopping-cart', ['carts' => $this->cart, 'subTotal' => $subTotal, 'total' => $total, 'impuesto' => $this->impuesto]);
+        return view('livewire.shoppingcart.shopping-cart', ['carts' => $this->cart, 'subTotal' => $subTotal]);
     }
 }
