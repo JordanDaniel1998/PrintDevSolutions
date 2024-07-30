@@ -38,7 +38,7 @@ class SharedRegister extends Mailable
     {
         return new Envelope(
             subject: 'Confirmación de Registro',
-            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
+            from: new Address('jordan.moreano.v@uni.pe', 'dsadsadsads')
         );
     }
 
