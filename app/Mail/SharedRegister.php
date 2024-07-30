@@ -7,6 +7,7 @@ use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -37,6 +38,7 @@ class SharedRegister extends Mailable
     {
         return new Envelope(
             subject: 'Confirmación de Registro',
+            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
         );
     }
 
