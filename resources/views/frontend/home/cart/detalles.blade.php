@@ -93,9 +93,9 @@
                                             <label for="celular"
                                                 class="font-inter font-medium text-text12 md:text-text14  text-[#565656]">Celular</label>
                                             <input id="celular" type="tel" name="cellphone"
-                                                placeholder="(+51) 000 000 000"
+                                                placeholder="000 000 000"
                                                 class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-inter font-normal text-text16 xl:text-text18 border-[1.5px] border-gray-200 text-[#565656]"
-                                                value="{{ old('cellphone') }}" />
+                                                value="{{ old('cellphone') }}" maxlength="9"/>
                                             @error('cellphone')
                                                 <span class="text-red-500 font-medium">
                                                     {{ $message }}
@@ -177,7 +177,7 @@
                                                 <input id="numero_tarjeta" type="text" name="numero_cuenta"
                                                     placeholder="1234 12345 1234"
                                                     class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-inter font-normal text-text16 md:text-text18 border-[1.5px] border-gray-200"
-                                                    value="{{ old('numero_cuenta') }}" />
+                                                    value="{{ old('numero_cuenta') }}" maxlength="16"/>
                                                 @error('numero_cuenta')
                                                     <span class="text-red-500 font-medium">
                                                         {{ $message }}
@@ -208,7 +208,7 @@
                                                     <input id="CVC" type="text" name="cvc_cuenta"
                                                         placeholder="Código CVC"
                                                         class="w-full py-3 px-4 focus:outline-none placeholder-gray-400 font-inter font-normal text-text16 md:text-text18 border-[1.5px] border-gray-200"
-                                                        value="{{ old('cvc_cuenta') }}" />
+                                                        value="{{ old('cvc_cuenta') }}" maxlength="4"/>
                                                     @error('cvc_cuenta')
                                                         <span class="text-red-500 font-medium">
                                                             {{ $message }}
