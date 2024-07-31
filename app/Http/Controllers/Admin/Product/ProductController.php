@@ -47,7 +47,7 @@ class ProductController extends Controller
             'title' => 'required|string|max:255',
             'subTitle' => 'required|string|max:255',
             'description' => 'required|string',
-            'description_short' => 'required|string|max:255',
+            'description_short' => 'required|string',
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
