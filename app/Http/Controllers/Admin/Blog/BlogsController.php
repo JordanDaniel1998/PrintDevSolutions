@@ -43,8 +43,8 @@ class BlogsController extends Controller
             'title' => 'required|string|max:255',
             'subTitle' => 'required|string|max:255',
             'description' => 'required|string',
-            'keywords' => 'required|string',
-            'description_short' => 'required|string|max:255',
+            'keywords' => 'required|string|max:255',
+            'description_short' => 'required|string',
             'category' => 'required|integer',
         ]);
 
