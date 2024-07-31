@@ -8,7 +8,7 @@
                 <label for="bordered-radio-2"
                     class="w-full py-4 ms-2 text-text16 xl:text-text18 font-inter font-normal text-[#151515] flex justify-between items-center px-4">
                     <span>Envío express</span>
-                    <span>S/ {{ number_format(15.0, 2) }}</span>
+                    <span>% {{ number_format(5.0, 2) }}</span>
                 </label>
             </div>
 
@@ -18,8 +18,8 @@
                     class="w-5 h-5 focus:ring-transparent cursor-pointer" />
                 <label for="bordered-radio-3"
                     class="w-full py-4 ms-2 text-text16 xl:text-text18 font-inter font-normal text-[#151515] flex justify-between items-center px-4">
-                    <span>Recoger</span>
-                    <span>% {{ number_format(10.0, 2) }}</span>
+                    <span>Recoger en tienda</span>
+                    <span>% {{ number_format(0.00, 2) }}</span>
                 </label>
             </div>
         </div>
@@ -30,9 +30,14 @@
         </div>
 
         <div class="text-[#151515] flex justify-between items-center text-text14 xl:text-text18">
+            <p class="font-inter font-normal">Tipo de envío </p>
+            <span class="font-inter font-bold">S/ {{ number_format($option, 2) }}</span>
+        </div>
+
+       {{--  <div class="text-[#151515] flex justify-between items-center text-text14 xl:text-text18">
             <p class="font-inter font-normal">IGV (18%)</p>
             <span class="font-inter font-bold">S/ {{ number_format($impuesto, 2) }}</span>
-        </div>
+        </div> --}}
 
         <div class="text-[#151515] flex justify-between items-center text-text20 xl:text-text22">
             <p class="font-inter font-bold">Total</p>

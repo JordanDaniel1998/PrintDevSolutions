@@ -49,14 +49,14 @@
                 wire:model="imagen_nueva" />
         </div>
 
-        @if ($imagen_nueva)
+        {{-- @if ($imagen_nueva)
             <div class="flex flex-col gap-2">
                 <x-input-label :value="__('Foto de perfil nueva')" />
                 <div class="flex justify-start items-center">
                     <img src="{{ $imagen_nueva->temporaryUrl() }}" alt="{{ $name }}" class="w-40 h-40">
                 </div>
             </div>
-        @endif
+        @endif --}}
 
 
     </div>

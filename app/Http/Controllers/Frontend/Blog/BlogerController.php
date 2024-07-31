@@ -27,6 +27,9 @@ class BlogerController extends Controller
 
     public function show(Blog $blog)
     {
+        $informations = Information::all()->first();
+        $isBlog = Blog::where('visible', true)->exists();
+
         $blogs = Blog::where('category_blog_id', $blog->categoryBlog->id) // Filtra por la categoría específica
             ->where('visible', 1) // Solo blogs visibles
             ->where('id', '!=', $blog->id) // Excluye el blog actual
@@ -34,6 +37,6 @@ class BlogerController extends Controller
             ->limit(4) // Limita a 4 resultados
             ->get();
 
-        return view('frontend.home.blog.post', compact('blog', 'blogs'));
+        return view('frontend.home.blog.post', compact('blog', 'blogs', 'informations', 'isBlog'));
     }
 }

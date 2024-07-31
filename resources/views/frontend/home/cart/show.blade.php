@@ -140,7 +140,7 @@
 
                     <div data-aos="fade-up" data-aos-offset="150">
                       <a
-                        href="{{ route('catalogs.index') }}"
+                        href="{{ route('myAccount.orders', auth()->user()->id) }}"
                         class="text-white bg-[#001232] w-full py-3 cursor-pointer font-moderat_Bold text-text18 md:text-text20 inline-block text-center border-[1.5px] border-[#151515]"
                         >Historial de compras</a
                       >

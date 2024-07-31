@@ -31,7 +31,18 @@
         <div class="flex flex-col gap-5">
             <div class="flex flex-col gap-5 pb-10 border-b-2 border-[#DDDDDD]">
                 <h2 class="font-inter font-bold text-text40 md:text-text44 text-[#111111]">{{ $product->title }}</h2>
-                <p class="font-inter font-bold text-text24 md:text-text28 text-[#111111]">S/ {{ $product->price }}</p>
+                <div>
+                    @if ($product->discount > 0)
+                        <p class="italic font-inter font-normal text-[12px] md:text-sm">
+                            Antes: <span class="line-through">S/ {{ number_format($product->price, 2)}}</span>
+                        </p>
+                    @endif
+                    <p
+                        class="text-[#111111] text-text24 md:text-text28 font-bold md:font-medium">
+                        S/ {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                    </p>
+                </div>
+
                 @if ($product->attributes->contains('codigo', '!==', null))
                     <div class="flex justify-start items-center gap-5">
                         <p class="font-inter font-bold text-text16 md:text-text20 text-[#1F1F1F]"> @choice('Color|Colores', $product->attributes->count()):

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\CategoryBlog;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -17,19 +18,23 @@ class BlogsController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard.blogs.index');
+        $admin = User::findOrFail(auth()->user()->id);
+
+        return view('admin.dashboard.blogs.index', compact('admin'));
     }
 
     public function create()
     {
         $categories = CategoryBlog::all();
-        return view('admin.dashboard.blogs.create', compact('categories'));
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.blogs.create', compact('categories', 'admin'));
     }
 
     public function edit(Blog $blog)
     {
         $categories = CategoryBlog::all();
-        return view('admin.dashboard.blogs.edit', compact('categories', 'blog'));
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.blogs.edit', compact('categories', 'blog', 'admin'));
     }
 
     public function update(Request $request, Blog $blog)

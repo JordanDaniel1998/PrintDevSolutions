@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\CategoriesProducts\Categories;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -11,7 +12,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Categorie::all();
-        return view('admin.dashboard.categoriesProducts.categories.index', compact('categories'));
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.categoriesProducts.categories.index', compact('categories', 'admin'));
     }
 
     public function edit(Request $request)

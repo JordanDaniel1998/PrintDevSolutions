@@ -27,6 +27,7 @@ class AdminLoginController extends Controller
             ], 'Credenciales incorrectas');
         }
 
-        return redirect()->route('admin.dashboard');
+        /* return redirect()->route('admin.dashboard'); */
+        return redirect()->route('admin.information');
     }
 }

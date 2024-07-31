@@ -9,77 +9,78 @@
             <ion-icon id="cloud" name="cloud-outline"></ion-icon>
             <span>Apex</span>
         </div>
-        <button class="boton">
+{{--         <button class="boton">
             <ion-icon name="add-outline"></ion-icon>
             <span>Create new</span>
-        </button>
+        </button> --}}
     </div>
 
     <nav class="navegacion">
         <ul>
-            <li {{-- class="{{ request()->is('admin/dashboard*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
-                <a href="">
-                    <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}" --}}>Dashboard</span>
-                </a>
-            </li>
             <li {{-- class="{{ request()->is('admin/dashboard*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
                 <a href="{{ route('admin.information') }}">
                     <ion-icon name="star-outline"></ion-icon>
                     <span {{-- class="{{ request()->is('admin/dashboard*') ? 'text-black' : '' }}" --}}>Información</span>
                 </a>
             </li>
-            <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+            {{-- <li>
                 <a href="">
                     <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products*') ? 'text-black' : '' }}" --}}>Mensajes</span>
+                    <span>Mensajes</span>
                 </a>
             </li>
-            <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+            <li>
                 <a href="{{ route('products.index') }}">
                     <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products*') ? 'text-black' : '' }}" --}}>Suscripciones</span>
+                    <span>Suscripciones</span>
                 </a>
-            </li>
-            <li {{-- class="{{ request()->is('admin/products*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
-                <a href="{{ route('products.index') }}">
-                    <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products*') ? 'text-black' : '' }}" --}}>Productos</span>
-                </a>
-            </li>
-            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+            </li> --}}
+            <li>
                 <a href="{{ route('categories.index') }}">
                     <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Categorias de productos</span>
+                    <span>Categorias de productos</span>
+                </a>
+                {{-- <a href="{{ route('categories.index') }}" class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" >Categorías de productos</span>
+                </a> --}}
+            </li>
+            <li>
+                <a href="{{ route('products.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>Productos</span>
                 </a>
             </li>
-            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+
+            <li>
                 <a href="{{ route('highlighted.index') }}">
                     <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Nuestro Alcance</span>
+                    <span>Nuestro Alcance</span>
                 </a>
             </li>
 
-            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+            <li>
                 <a href="{{ route('partners.index') }}">
                     <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Nuestros Aliados</span>
+                    <span>Nuestros Aliados</span>
                 </a>
             </li>
 
-            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
-                <a href="{{ route('articles.index') }}">
-                    <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Blogs</span>
-                </a>
-            </li>
-
-            <li {{-- class="{{ request()->is('admin/products/categories*') ? 'bg-[#EEEEEE] rounded-xl' : '' }}" --}}>
+            <li>
                 <a href="{{ route('categoriesOfArticles.index') }}">
                     <ion-icon name="star-outline"></ion-icon>
-                    <span {{-- class="{{ request()->is('admin/products/categories*') ? 'text-black' : '' }}" --}}>Categorías de blog</span>
+                    <span>Categorías de blog</span>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('articles.index') }}">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <span>Blogs</span>
+                </a>
+            </li>
+
+
         </ul>
     </nav>
 
@@ -99,11 +100,14 @@
         </div>
 
         <div class="usuario">
-            <img src="" alt="" />
+
+            <img src="{{ $admin->imagen_perfil ? asset('storage/users/' . $admin->imagen_perfil) : asset('images/img/avatar.png') }}"
+                alt="{{ $admin->name }}" class="!rounded-full size-12">
+
             <div class="info-usuario">
                 <div class="nombre-email">
-                    <span class="nombre">Jhampier</span>
-                    <span class="email">jhampier@gmail.com</span>
+                    <span class="nombre capitalize">{{ $admin->name }}</span>
+                    <span class="email">{{ $admin->email }}</span>
                 </div>
                 <form action="{{ route('admin.logout') }}" method="post">
                     @csrf

@@ -84,6 +84,7 @@ class FilterProducts extends Component
             $query->where('destacado', 1);
         })
         ->where('visible', 1)
+        ->latest()
         ->paginate(3);
 
 

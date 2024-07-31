@@ -73,6 +73,7 @@ class ProductItem extends Component
         ];
         session(['cart' => $cart]);
         $this->dispatch('refreshCart');
+        $this->dispatch('countProducts');
      /*    $this->dispatch('showAlertToProduct'); */
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'name', 'last','email','cellphone','payment_methods','name_cuenta','numero_cuenta','fecha_cuenta','cvc_cuenta','discount', 'total_amount'];
+    protected $fillable = ['user_id', 'name', 'last','email','cellphone','payment_methods','name_cuenta','numero_cuenta','fecha_cuenta','cvc_cuenta','discount', 'total_amount', 'type', 'subTotal'];
 
     // Una orden puede tener muchos items de productos
 

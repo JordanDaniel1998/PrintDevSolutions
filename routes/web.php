@@ -31,7 +31,8 @@ Route::get('/my-account/{user}/edit', [AccountController::class, 'index'])->name
 Route::get('/my-account/{user}/direction', [DirectionController::class, 'index'])->name('myAccount.direction')->middleware(['auth', 'auth.checkUserOwner']);
 Route::get('/my-account/{user}/orders', [OrderController::class, 'index'])->name('myAccount.orders')->middleware(['auth', 'auth.checkUserOwner']);
 
-Route::get('/posts/{user:username}', [PostController::class, 'index'])->name('posts.index')->middleware(['auth', 'auth.checkUserOwner']);;
+/* Route::get('/posts/{user:username}', [PostController::class, 'index'])->name('posts.index')->middleware(['auth', 'auth.checkUserOwner']);; */
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
 
 Route::get('/blogs', [BlogerController::class, 'index'])->name('blogs.index');

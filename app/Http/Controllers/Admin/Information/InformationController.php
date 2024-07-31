@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Information;
 
 use App\Http\Controllers\Controller;
 use App\Models\Information;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -12,8 +13,9 @@ class InformationController extends Controller
     public function index()
     {
         $informations = Information::all()->first();
+        $admin = User::findOrFail(auth()->user()->id);
 
-        return view('admin.information.index', compact('informations'));
+        return view('admin.information.index', compact('informations', 'admin'));
     }
 
     public function store(Request $request)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Partner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File as FileIluminate;
@@ -15,12 +16,14 @@ class PartnersController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard.partners.index');
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.partners.index', compact('admin'));
     }
 
     public function create()
     {
-        return view('admin.dashboard.partners.create');
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.partners.create', compact('admin'));
     }
 
     public function store(Request $request)
@@ -56,7 +59,8 @@ class PartnersController extends Controller
 
     public function edit(Partner $partner)
     {
-        return view('admin.dashboard.partners.edit', compact('partner'));
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.partners.edit', compact('partner', 'admin'));
     }
 
     public function update(Request $request, Partner $partner)

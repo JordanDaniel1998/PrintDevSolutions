@@ -11,6 +11,7 @@ class Resume extends Component
     public $igv;
     public $total;
     public $impuesto;
+    public $option;
 
     public function calculateSubTotal($carts)
     {
@@ -26,19 +27,23 @@ class Resume extends Component
     public function updatedDeliveryMethod($value)
     {
         $carts = session('cart', []);
+        $this->subTotal = $this->calculateSubTotal($carts);
+
         if ($value == 'express') {
-            $this->subTotal = $this->calculateSubTotal($carts) + 15;
+            $this->option = (5/100) * $this->calculateSubTotal($carts);
         }
         if ($value == 'recoger') {
-            $this->subTotal = 1.1 * $this->calculateSubTotal($carts);
+            $this->option = 0;
         }
 
-        $this->impuesto = 0.18 * $this->subTotal;
+       /*  $this->impuesto = 0.18 * ($this->subTotal + $this->option); */
 
-        $this->total = $this->subTotal + $this->impuesto;
+        $this->total = $this->subTotal + $this->option;
 
-        session(['subTotal' => $this->subTotal, 'total' => $this->total, 'type' => $value, 'impuesto' => $this->impuesto]);
+        session(['subTotal' => $this->subTotal, 'total' => $this->total, 'type' => $value, 'impuesto' => $this->impuesto, 'option' => $this->option]);
     }
+
+
 
     public function redirectToNext()
     {
@@ -51,7 +56,9 @@ class Resume extends Component
 
     public function mount()
     {
-        $this->subTotal = 0;
+        $carts = session('cart', []);
+        $this->subTotal = $this->calculateSubTotal($carts);
+       /*  $this->subTotal = 0; */
         $this->igv = 0;
         $this->total = 0;
         $this->impuesto = 0;

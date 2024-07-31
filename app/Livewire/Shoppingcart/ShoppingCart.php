@@ -38,6 +38,7 @@ class ShoppingCart extends Component
         }
         session(['cart' => $this->cart]);
         $this->dispatch('refreshAfterDelete', $id);
+        $this->dispatch('countProducts');
     }
 
     public function handleDecrement($id)

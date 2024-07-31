@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin\Highlighted;
 
 use App\Http\Controllers\Controller;
 use App\Models\Highlighted;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HighlightedController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard.highlighted.index');
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.highlighted.index', compact('admin'));
     }
 
     public function store(Request $request)

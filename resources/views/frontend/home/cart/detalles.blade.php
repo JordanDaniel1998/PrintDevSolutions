@@ -292,15 +292,21 @@
 
                         <div class="text-[#141718] flex justify-between items-center border-b-[1px] border-[#E8ECEF] pb-5 text-text16 md:text-text18"
                             data-aos="fade-up" data-aos-offset="150">
-                            <p class="font-inter font-normal">Subtotal</p>
-                            <p class="font-inter font-bold">S/ {{ number_format($subTotal, 2) }}</p>
+                            <p class="font-inter font-normal">Precio del envío</p>
+                            <p class="font-inter font-bold">S/ {{ number_format($option, 2) }}</p>
                         </div>
 
                         <div class="text-[#141718] flex justify-between items-center border-b-[1px] border-[#E8ECEF] pb-5 text-text16 md:text-text18"
                             data-aos="fade-up" data-aos-offset="150">
+                            <p class="font-inter font-normal">Subtotal</p>
+                            <p class="font-inter font-bold">S/ {{ number_format($subTotal, 2) }}</p>
+                        </div>
+
+                       {{--  <div class="text-[#141718] flex justify-between items-center border-b-[1px] border-[#E8ECEF] pb-5 text-text16 md:text-text18"
+                            data-aos="fade-up" data-aos-offset="150">
                             <p class="font-inter font-normal">IGV (18%)</p>
                             <p class="font-inter font-bold">S/ {{ number_format($impuesto, 2) }}</p>
-                        </div>
+                        </div> --}}
 
                         <div class="text-[#141718] font-inter font-medium text-text20 xl:text-text22 flex justify-between items-center pb-5"
                             data-aos="fade-up" data-aos-offset="150">

@@ -57,13 +57,12 @@
             </div>
         </div>
 
-        @auth
-            <div class="flex justify-center items-center mt-10 w-11/12 mx-auto" data-aos="fade-up" data-aos-offset="150">
-                <a href="{{ route('posts.index', auth()->user()) }}"
-                    class="bg-[#111111] py-3 px-5 text-white rounded-md animate-balance">
-                    ¡Comparte tu opinión con nosotros!
-                </a>
-            </div>
-        @endauth
+
+        <div class="flex justify-center items-center mt-10 w-11/12 mx-auto" data-aos="fade-up" data-aos-offset="150">
+            <a href="{{ route('posts.index') }}" class="bg-[#111111] py-3 px-5 text-white rounded-md animate-balance">
+                ¡Comparte tu opinión con nosotros!
+            </a>
+        </div>
+
     </section>
 @endif

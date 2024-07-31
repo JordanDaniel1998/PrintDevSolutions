@@ -12,20 +12,7 @@
                     <p class="text-white text-text14 md:text-text16 font-inter font-normal w-full lg:w-5/6 hidden lg:block">
                         Productos digitales</p>
 
-                    <div class="flex lg:hidden justify-start items-center">
-                        <a href="#" class="flex justify-center items-center gap-2">
-                            <span class="text-white text-text16 font-inter font-bold">Ver productos</span>
-                            <div>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12H19" stroke="white" stroke-width="1.33333" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M12 5L19 12L12 19" stroke="white" stroke-width="1.33333" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
+
                 </div>
 
                 <div class="flex justify-end md:justify-end  items-center py-10 order-2 lg:order-1 relative lg:z-10 pr-5">

@@ -52,7 +52,7 @@
                                     </svg>
                                 </span>
                             </a>
-
+{{--
                             <a href="{{ route('myAccount.direction', $user->id) }}"
                                 class="{{ request()->routeIs('myAccount.direction', $user->id) ? 'bg-[#0051FF] text-white' : 'text-[#565656]' }} font-bold font-inter text-text16 md:text-text18 flex justify-between items-center w-full md:w-80 transition-all duration-300 py-3 px-5">
                                 Dirección
@@ -64,7 +64,7 @@
                                             fill="#E9EDEF" />
                                     </svg>
                                 </span>
-                            </a>
+                            </a> --}}
 
                             <a href="{{ route('myAccount.orders', $user->id) }}"
                                 class="{{ request()->routeIs('myAccount.orders', $user->id) ? 'bg-[#0051FF] text-white' : 'text-[#565656]' }} font-bold font-inter text-text16 md:text-text18 flex justify-between items-center w-full md:w-80  transition-all duration-300 py-3 px-5">

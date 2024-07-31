@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\CategoriesProducts\SubCategories;
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SubcategoriesController extends Controller
@@ -12,8 +13,8 @@ class SubcategoriesController extends Controller
     public function index()
     {
         $categories = Categorie::all();
-
-        return view('admin.dashboard.categoriesProducts.subcategories.index', compact('categories'));
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.categoriesProducts.subcategories.index', compact('categories', 'admin'));
     }
 
     public function edit(Subcategorie $subcategorie)

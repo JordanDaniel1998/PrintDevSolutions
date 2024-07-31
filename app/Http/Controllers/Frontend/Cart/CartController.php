@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Information;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,11 +30,12 @@ class CartController extends Controller
         $total = session('total');
         $impuesto = session('impuesto');
         $type = session('type');
+        $option = session('option');
 
         $informations = Information::all()->first();
         $isBlog = Blog::where('visible', true)->exists();
 
-        return view('frontend.home.cart.detalles', compact('informations', 'isBlog', 'carts', 'subTotal', 'total', 'type', 'impuesto'));
+        return view('frontend.home.cart.detalles', compact('informations', 'isBlog', 'carts', 'subTotal', 'total', 'type', 'impuesto', 'option'));
     }
 
     public function calculateSubTotal($carts)
@@ -127,6 +129,8 @@ class CartController extends Controller
                 'cvc_cuenta' => $request->cvc_cuenta,
                 'total_amount' => $total,
                 'discount' => $impuesto,
+                'type' => $type,
+                'subTotal' => $subTotal
             ]);
 
             foreach ($carts as $cart) {
@@ -141,6 +145,10 @@ class CartController extends Controller
                     'color' => $cart['color'],
                     'igv' => 0.18, // Valor por defecto
                 ]);
+
+                $product = Product::findOrFail($cart['id']);
+                $product->stock = $product->stock - $cart['quantity'];
+                $product->save();
             }
 
             DB::commit();

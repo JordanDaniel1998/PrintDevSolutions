@@ -52,10 +52,10 @@
                     </a>
                 @endif
 
-                <a href="{{ route('about.index') }}"
+               {{--  <a href="{{ route('about.index') }}"
                     class="relative {{ request()->routeIs('about.index') ? 'text-[#0051FF] after:block after:w-full after:h-[2px] after:bg-[#0051FF] after:absolute after:left-0 after:bottom-0' : '' }}">
                     Contáctanos
-                </a>
+                </a> --}}
             </div>
 
             <div
@@ -78,7 +78,7 @@
 
 
                 <div class="flex justify-center items-center font-bold bg-[#0051FF] rounded-full w-5 h-5 p-4">
-                    <span class="text-white">2</span>
+                    @livewire('shoppingcart.count-product')
                 </div>
             </div>
         </div>
@@ -108,70 +108,5 @@
         </div>
     </div>
 
-    {{-- <div class="modal" id="jsModalCarrito">
-        <div class="modal__container">
-            <div class="modal__info flex flex-col justify-between">
-                <div class="modal__header">
-                    <p class="font-moderat_Medium text-text28">Carrito</p>
-                </div>
-                <div class="modal__body">
-                    <div class="modal__list">
-                        <div class="flex justify-between border-b-[1px] pb-5">
-                            <div class="flex justify-center items-center gap-2">
-                                <div class="rounded-md p-4">
-                                    <img src="" alt="producto" class="w-24" />
-                                </div>
-                                <div class="flex flex-col gap-3 py-2">
-                                    <h3 class="font-moderat_Bold text-text14 md:text-text18 text-[#151515]">
-                                        Producto 1
-                                    </h3>
-                                    <p class="font-moderat_Regular text-[12px] md:text-text16 text-[#6C7275]">
-                                        Color: Black
-                                    </p>
-                                    <div class="flex justify-center text-[#151515]">
-                                        <div>
-                                            <input type="number"
-                                                class="border-2 rounded-lg w-16 h-8 text-text16 font-moderat_Regular"
-                                                value="01" step="1">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col justify-start py-2 gap-5 items-center pr-2">
-                                <p class="font-moderat_Bold text-[14px] md:text-text18 text-[#151515]">
-                                    s/ 19.19
-                                </p>
-                                <div>
-                                    <a href="#">
-                                        <img src="" alt="close" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal__footer">
-                    <div class="flex flex-col gap-2 pt-36">
-                        <div class="text-[#141718] flex justify-between items-center">
-                            <p class="font-moderat_Regular text-[16px]">Subtotal</p>
-                            <p class="font-moderat_Bold text-[16px]">s/ 99.00</p>
-                        </div>
-
-                        <div class="text-[#141718] font-moderat_Medium text-[20px] flex justify-between items-center">
-                            <p>Total</p>
-                            <p>s/ 234.00</p>
-                        </div>
-                        <div>
-                            <a href=""
-                                class="font-moderat_Bold text-base bg-[#0051FF] py-3 px-5 text-white cursor-pointer w-full inline-block text-center">
-                                Checkout
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <!-- Fin Side Carrito -->
 </header>

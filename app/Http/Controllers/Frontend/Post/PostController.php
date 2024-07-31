@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(User $user){
+    public function index(){
         $isBlog = Blog::where('visible', true)->exists();
         $informations = Information::all()->first();
-        return view('frontend.home.post.index', compact('user', 'informations', 'isBlog'));
+        return view('frontend.home.post.index', compact('informations', 'isBlog'));
     }
 }

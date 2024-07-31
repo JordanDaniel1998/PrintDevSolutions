@@ -4,7 +4,7 @@
     <div>
         <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-10">
             @foreach ($products as $product)
-                <div class="flex flex-col gap-5" {{-- data-aos="fade-up" data-aos-offset="150" --}}>
+                <div class="flex flex-col gap-5 justify-between" {{-- data-aos="fade-up" data-aos-offset="150" --}}>
                     <div class="bg-[#F3F3F3] flex flex-col justify-center pt-5 gap-20 relative">
                         <div class="flex justify-start items-center absolute top-[5%] left-[5%] gap-2">
                             @if ($product->destacado)
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="flex flex-col gap-6">
-                        <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-3 justify-between">
                             <h3 class="font-inter font-medium text-text12 md:text-text20 text-[#1F1F1F]">
                                 {{ $product->categorie->name }}
                             </h3>
@@ -50,11 +50,29 @@
                                     @endif
                                 @endforeach
                             </div>
+                            <div>
+                                @if ($product->discount > 0)
+                                    <p class="italic font-inter font-normal text-[12px] md:text-sm">
+                                        Antes: <span class="line-through">S/ {{ number_format($product->price, 2)}}</span>
+                                    </p>
+                                @endif
+                                <p
+                                    class="text-[#111111] text-text16 md:text-text28 font-space_grotesk font-bold md:font-medium">
+                                    S/ {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                                </p>
+                            </div>
                         </div>
-                        <p
-                            class="text-[#111111] text-text16 md:text-text28 font-space_grotesk font-bold md:font-medium">
-                            S/ {{ $product->price }}
-                        </p>
+                        {{-- <div>
+                            @if ($product->discount > 0)
+                                <p class="italic">
+                                    Antes: <span class="line-through">S/ {{ number_format($product->price, 2)}}</span>
+                                </p>
+                            @endif
+                            <p
+                                class="text-[#111111] text-text16 md:text-text28 font-space_grotesk font-bold md:font-medium">
+                                S/ {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                            </p>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach

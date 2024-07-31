@@ -6,7 +6,10 @@
 @section('contenido')
     @include('frontend.home.main.components.slider-main')
     @include('frontend.home.main.components.highlighteds')
+    @include('frontend.home.main.components.categories')
+    @include('frontend.home.main.components.featured-products')
     @include('frontend.home.main.components.partners')
+    @include('frontend.home.main.components.discounted-products')
     @include('frontend.home.main.components.testimonies')
     @include('frontend.home.main.components.blogs')
 @endsection

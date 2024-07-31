@@ -9,6 +9,7 @@ use App\Models\File;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Subcategorie;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File as FileIluminate;
@@ -20,16 +21,17 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $admin = User::findOrFail(auth()->user()->id);
         $products = Product::latest()->get();
 
-        return view('admin.dashboard.products.index', compact('products'));
+        return view('admin.dashboard.products.index', compact('products', 'admin'));
     }
 
     public function create()
     {
         $categories = Categorie::all();
-
-        return view('admin.dashboard.products.create', compact('categories'));
+        $admin = User::findOrFail(auth()->user()->id);
+        return view('admin.dashboard.products.create', compact('categories', 'admin'));
     }
 
     private function generateSku($name)
@@ -155,7 +157,9 @@ class ProductController extends Controller
         $subcategories = Subcategorie::all();
         $brands = Brand::all();
 
-        return view('admin.dashboard.products.edit', compact('product', 'files', 'categories', 'subcategories', 'brands'));
+        $admin = User::findOrFail(auth()->user()->id);
+
+        return view('admin.dashboard.products.edit', compact('product', 'files', 'categories', 'subcategories', 'brands', 'admin'));
     }
 
     public function update(Request $request, Product $product)

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\CategoryBlog;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
@@ -14,9 +15,10 @@ class CategoriesBlogsController extends Controller
 {
     public function index()
     {
+        $admin = User::findOrFail(auth()->user()->id);
         $categorys = CategoryBlog::all();
 
-        return view('admin.dashboard.categoriesBlogs.index', compact('categorys'));
+        return view('admin.dashboard.categoriesBlogs.index', compact('categorys', 'admin'));
     }
 
     // Cuando usas Route model binding, el parametro debe coincidir con su modelo
