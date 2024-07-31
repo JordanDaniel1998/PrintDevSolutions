@@ -38,16 +38,18 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/blogs', [BlogerController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{blog}', [BlogerController::class, 'show'])->name('blogs.show');
 
-Route::get('/aboutUs', [AboutUsController::class, 'index'])->name('about.index');
+Route::get('/aboutUs', [AboutUsController::class, 'index'])->name('about.index'); // Formulario
 
 Route::get('/catalogo', [CatalogsController::class, 'index'])->name('catalogs.index');
 
 Route::get('/products/{product}', [ProductToUserController::class, 'index'])->name('productstoUser.index');
 
 Route::get('/carrito', [CartController::class, 'index'])->name('carrito.index');
-Route::get('/carrito/detalles', [CartController::class, 'create'])->name('carrito.create');
+
+Route::get('/carrito/detalles', [CartController::class, 'create'])->name('carrito.create')->middleware(['auth']);
+
 Route::post('/carrito/detalles', [CartController::class, 'store'])->name('carrito.store');
-Route::get('/carrito/productos', [CartController::class, 'show'])->name('carrito.show');
+Route::get('/carrito/productos', [CartController::class, 'show'])->name('carrito.show')->middleware(['auth']);;
 
 
 
