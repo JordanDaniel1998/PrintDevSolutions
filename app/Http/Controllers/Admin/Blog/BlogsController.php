@@ -96,8 +96,8 @@ class BlogsController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'subTitle' => 'required|string|max:255',
-            'keywords' => 'required|string',
-            'description_short' => 'required|string|max:255',
+            'keywords' => 'required|string|max:255',
+            'description_short' => 'required|string',
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'category' => 'required|integer',
         ]);
