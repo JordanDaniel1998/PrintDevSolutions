@@ -11,7 +11,7 @@ class CountProduct extends Component
     protected $listeners = ['countProducts'];
 
     public function mount(){
-        $this->count = 0;
+        $this->count = count(session('cart', []));
     }
 
     public function countProducts(){
@@ -20,8 +20,7 @@ class CountProduct extends Component
 
     public function render()
     {
-        return view('livewire.shoppingcart.count-product', [
-            'count' => $this->count
-        ]);
+        /* $this->count = count(session('cart', [])); */
+        return view('livewire.shoppingcart.count-product');
     }
 }

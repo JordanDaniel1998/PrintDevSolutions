@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex flex-col gap-5 pb-10" data-aos="fade-up" data-aos-offset="150">
+                                <div class="flex flex-col gap-5 py-10" data-aos="fade-up" data-aos-offset="150">
                                     <h2 class="font-inter font-bold text-text20 xl:text-text22 text-[#151515]">
                                         Método de pago
                                     </h2>
