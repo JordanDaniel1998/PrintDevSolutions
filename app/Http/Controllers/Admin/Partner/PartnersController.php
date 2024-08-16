@@ -125,9 +125,9 @@ class PartnersController extends Controller
         }
     }
 
-    public function destroy(Partner $partner){
+    public function destroy(Partner $partner)
+    {
         try {
-
             // Eliminar la foto principal
             $partnerImagen = 'public/partners/' . $partner->imagen;
             if (Storage::exists($partnerImagen)) {

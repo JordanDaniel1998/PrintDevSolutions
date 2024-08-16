@@ -1,5 +1,5 @@
 <footer class="bg-[#0051FF] py-20">
-    <div class="flex justify-between items-center text-white w-11/12 mx-auto gap-12" data-aos="fade-up"
+    <div class="flex justify-between items-start text-white w-11/12 mx-auto gap-12" data-aos="fade-up"
         data-aos-offset="150">
 
         <div class="flex flex-col gap-5">
@@ -40,11 +40,13 @@
 
         <div class="flex flex-col gap-5">
             <p class="underline font-medium font-inter text-text14 md:text-text16">Menú</p>
-            <a href="" class="font-normal font-inter text-text12 md:text-text14">Inicio</a>
-            <a href="" class="font-normal font-inter text-text12 md:text-text14">Nosotros</a>
-            <a href="" class="font-normal font-inter text-text12 md:text-text14">Productos</a>
-            <a href="" class="font-normal font-inter text-text12 md:text-text14">Blog</a>
-            <a href="" class="font-normal font-inter text-text12 md:text-text14">Contáctanos</a>
+            <a href="{{ route('home') }}" class="font-normal font-inter text-text12 md:text-text14">Inicio</a>
+            {{--  <a href="" class="font-normal font-inter text-text12 md:text-text14">Nosotros</a> --}}
+            <a href="{{ route('catalogs.index') }}" class="font-normal font-inter text-text12 md:text-text14">Catálogo</a>
+            @if ($isBlog)
+                <a href="{{ route('blogs.index') }}" class="font-normal font-inter text-text12 md:text-text14">Blog</a>
+            @endif
+            {{-- <a href="" class="font-normal font-inter text-text12 md:text-text14">Contáctanos</a> --}}
         </div>
 
         <div class="flex flex-col gap-5">

@@ -44,12 +44,12 @@
                                     class="font-medium font-inter text-text14 md:text-text16 text-[#565656]">Crear Cuenta</a>
                             </div>
 
-                            <div class="flex justify-start items-center gap-2">
+                           {{--  <div class="flex justify-start items-center gap-2">
                                 <img src="{{ asset('images/svg/svg_10.svg') }}" alt="password" loading="lazy">
                                 <a href=""
                                     class="text-[#0051FF] font-medium font-inter text-text14 md:text-text16">Olvide mi
                                     contraseña</a>
-                            </div>
+                            </div> --}}
                         </div>
 
 

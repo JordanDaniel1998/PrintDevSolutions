@@ -3,7 +3,7 @@
 @section('contenido')
     <section class="flex flex-col gap-16">
         <div>
-            <img src="{{ asset('images/img/image_5.png') }}" alt="comentarios" class="w-full h-[530px]">
+            <img src="{{ asset('images/img/comments.jpg') }}" alt="comentarios" class="w-full h-[530px] object-cover">
         </div>
 
         <livewire:posts.view-posts />
