@@ -22,7 +22,7 @@
                 @endforeach
             </div>
 
-            <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full h-full">
+            <div class="md:basis-3/4 flex justify-center items-start order-1 md:order-2 w-full h-full">
                 <img src="{{ asset('storage/uploads/' . $product->imagen) }}" alt="computer"
                     class="w-full object-cover principal">
             </div>
