@@ -47,7 +47,7 @@
 
                     <div class="flex justify-end items-end md:items-center">
                         <img src="{{ asset('storage/uploads/' . $totalSoldPerProduct->imagen) }}" alt="impresora"
-                            class="w-full h-96 object-cover">
+                            class="w-full h-auto object-cover">
                     </div>
 
                     <div class="flex justify-start items-center">
@@ -107,7 +107,7 @@
 
                     <div class="flex justify-end items-end md:items-center basis-3/6 md:basis-4/6">
                         <img src="{{ asset('storage/uploads/' . $totalSoldPerProduct->imagen) }}" alt="impresora"
-                            class="w-full h-60 object-cover">
+                            class="w-full h-auto object-cover">
                     </div>
 
                 </div>
