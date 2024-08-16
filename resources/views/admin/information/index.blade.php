@@ -219,7 +219,7 @@
                 <div class="flex flex-col gap-2 w-full">
                     <x-input-label-dashboard for="aboutUs" :value="__('Sobre nosotros')" />
                     <x-input-text-dashboard id="aboutUs" type="text" required autocomplete="Sobre nosotros"
-                        placeholder="Sobre nosotros" name="message_whatsapp"
+                        placeholder="Sobre nosotros" name="aboutUs"
                         value="{{ $informations->aboutUs }}" />
                     @error('aboutUs')
                         <span class="text-red-500 font-medium">
