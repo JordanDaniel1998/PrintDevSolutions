@@ -39,9 +39,9 @@ class HomeController extends Controller
         $isBlog = Blog::where('visible', true)->exists();
 
         // Feature products
-        $features = Product::where('visible', 1)->where('destacado', 1)->where('discount', 0.0)->latest()->get();
+        $features = Product::where('visible', 1)->where('destacado', 1)->where('discount', 0.0)->latest()->limit(4)->get();
         // Discount products
-        $discounted = Product::where('visible', 1)->where('discount', '>', 0.0)->where('destacado', 0)->latest()->get();
+        $discounted = Product::where('visible', 1)->where('discount', '>', 0.0)->where('destacado', 0)->latest()->limit(4)->get();
 
         // Solo los 3 productos mas vendidos con su categoría
         $totalSoldPerProducts = OrderItem::select('order_items.product_id', 'products.imagen', DB::raw('SUM(order_items.quantity) as total_quantity'))->join('products', 'order_items.product_id', '=', 'products.id')->join('categories', 'products.categorie_id', '=', 'categories.id')->groupBy('order_items.product_id', 'products.categorie_id', 'products.imagen')->orderBy('total_quantity', 'desc')->limit(3)->get();
