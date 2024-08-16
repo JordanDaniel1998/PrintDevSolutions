@@ -45,7 +45,7 @@ class PartnersController extends Controller
         $imagen = $request->file('imagen');
         $nombreImagen = Str::uuid() . '.' . $imagen->extension();
         $imagenServidor = $manager->read($imagen);
-        $imagenServidor->coverDown(160, 80, 'center');
+        $imagenServidor->coverDown(160, 120, 'center');
         $imagenServidor->save(storage_path('app/public/partners/' . $nombreImagen));
 
         $partner = Partner::create([
