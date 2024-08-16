@@ -93,7 +93,7 @@
         <input type="submit" value="Guardar cambios"
             class="text-white bg-[#0051FF] py-3 px-5  cursor-pointer border-2 font-bold font-inter text-text18 text-center border-none inline-block" />
 
-        <input type="submit" value="Cancelar"
-            class="text-[#FFFFFF] py-3 px-5 cursor-pointer font-bold font-inter text-text18 text-center inline-block border-[1px] border-[#151515] bg-[#001232]" />
+        {{-- <input type="submit" value="Cancelar"
+            class="text-[#FFFFFF] py-3 px-5 cursor-pointer font-bold font-inter text-text18 text-center inline-block border-[1px] border-[#151515] bg-[#001232]" /> --}}
     </div>
 </form>
