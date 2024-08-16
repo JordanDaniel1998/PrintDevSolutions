@@ -8,7 +8,7 @@
 
 <section class="w-11/12 md:w-10/12 mx-auto pt-5 flex flex-col gap-10 md:gap-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
-        <div class="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-0">
+        <div class="flex flex-col md:flex-row justify-center items-start gap-5 md:gap-0">
             <div
                 class="flex flex-row justify-between md:flex-col md:justify-start md:items-center h-full md:gap-10 md:basis-1/4 order-2 md:order-1 w-full">
                 @foreach ($product->files as $key => $galery)
@@ -24,7 +24,7 @@
 
             <div class="md:basis-3/4 flex justify-center items-center order-1 md:order-2 w-full h-full">
                 <img src="{{ asset('storage/uploads/' . $product->imagen) }}" alt="computer"
-                    class="w-full h-full object-cover principal">
+                    class="w-full object-cover principal">
             </div>
         </div>
 
