@@ -19,8 +19,15 @@
 
 <body class="font-inter flex justify-center items-center h-screen">
 
-    <main class="bg-slate-100 w-full h-full flex justify-center items-center">
-        <section class="w-full flex justify-center items-center">
+    <main class="bg-slate-100 w-full h-full flex flex-col justify-center items-center">
+        <section class="w-full flex flex-col justify-center items-center">
+            <div class="w-11/12 mx-auto lg:max-w-[600px] my-auto flex flex-col pb-5">
+                <h2 class="text-center font-bold bg-amber-300 py-2">Credenciales para poder ingresar al panel administrativo</h2>
+                <div class="mt-2">
+                    <p class="text-red-600 font-bold">Email: <span class="font-normal text-black">admin@admin.com</span> </p>
+                    <p class="text-red-600 font-bold">Contraseña: <span class="font-normal text-black">123456789</span> </p>
+                </div>
+            </div>
             <div class="w-11/12 mx-auto lg:max-w-[600px] my-auto flex flex-col gap-10 shadow-md border p-10 bg-white">
                 <div>
                     @if (session()->has('message'))
@@ -51,10 +58,13 @@
                                 value="Ingresar">
                         </div>
                     </form>
+
+
                 </div>
             </div>
 
         </section>
+
     </main>
 
 
