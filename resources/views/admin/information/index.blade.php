@@ -220,7 +220,7 @@
                     <x-input-label-dashboard for="aboutUs" :value="__('Sobre nosotros')" />
                     <x-input-text-dashboard id="aboutUs" type="text" required autocomplete="Sobre nosotros"
                         placeholder="Sobre nosotros" name="message_whatsapp"
-                        value="{{ $informations->message_whatsapp }}" />
+                        value="{{ $informations->aboutUs }}" />
                     @error('aboutUs')
                         <span class="text-red-500 font-medium">
                             {{ str_replace('aboutUs', 'sobre nosotros', $message) }}
