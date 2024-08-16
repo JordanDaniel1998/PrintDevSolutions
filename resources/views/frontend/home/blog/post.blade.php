@@ -44,9 +44,7 @@
                     <h2
                         class="font-inter font-bold text-text44 md:text-text52 text-[#111111] leading-none md:leading-tight">
                         Últimas publicaciones</h2>
-                    <p class="text-[#565656] text-text18 md:text-text22 font-inter font-normal">Nam tempor diam quis urna
-                        maximus,
-                        ac laoreet arcu convallis. Aenean dignissim nec sem quis consequat.</p>
+                    <p class="text-[#565656] text-text18 md:text-text22 font-inter font-normal"> Descubre las novedades más recientes en nuestro blog. Aquí encontrarás artículos que exploran una variedad de temas, escritos por expertos en el campo para mantenerte informado y entretenido.</p>
                 </div>
 
                 <div class="flex justify-end items-center basis-4/12">
