@@ -14,9 +14,7 @@
                             Publicaciones sobre el mundo Digital
                         </span>
                     </h2>
-                    <p class="text-[#565656] font-inter font-normal text-text18 md:text-text22">Nunc porta feugiat magna non
-                        hendrerit. Nam tempor diam quis urna maximus, ac laoreet arcu convallis. Aenean dignissim nec sem
-                        quis consequat.</p>
+                    <p class="text-[#565656] font-inter font-normal text-text18 md:text-text22">Descubre las novedades más recientes en nuestro blog. Aquí encontrarás artículos que exploran una variedad de temas, escritos por expertos en el campo para mantenerte informado y entretenido</p>
                 </div>
 
                 <div class="grid grid-cols-1 grid-rows-1 lg:grid-cols-2 lg:grid-rows-2 gap-10">
