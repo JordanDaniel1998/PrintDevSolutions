@@ -85,7 +85,7 @@ class FilterProducts extends Component
         })
         ->where('visible', 1)
         ->latest()
-        ->paginate(3);
+        ->paginate(8);
 
 
         return view('livewire.catalogs.filter-products', compact('products'));
