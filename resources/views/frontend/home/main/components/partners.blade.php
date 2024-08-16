@@ -4,12 +4,7 @@
             <h2 class="text-white font-inter font-bold text-text32 md:text-text44 text-center">Nuestras marcas
                 asociadas
             </h2>
-            <p class="font-inter font-normal text-text16 md:text-text20 text-center w-full md:w-2/3">Lorem ipsum
-                dolor
-                sit
-                amet, consectetur adipiscing elit. Vivamus eu fermentum justo, ac fermentum nulla. Sed sed
-                scelerisque
-                urna, vitae ultrices libero. Pellentesque vehicula et urna in venenatis.</p>
+            <p class="font-inter font-normal text-text16 md:text-text20 text-center w-full md:w-2/3">Descubre una selección de logotipos de nuestros clientes, representando empresas innovadoras y líderes en sus respectivas industrias. Cada logo refleja la confianza y colaboración que hemos construido con ellos a lo largo del tiempo.</p>
         </div>
 
         <div class="swiper swiper_slider_partners w-full md:w-10/12 mx-auto" data-aos="fade-up" data-aos-offset="150">

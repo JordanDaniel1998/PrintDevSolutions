@@ -2,11 +2,7 @@
     <section class="bg-[#FBFBFB] py-20">
         <div class="w-11/12 mx-auto flex flex-col gap-3 items-center" data-aos="fade-up" data-aos-offset="150">
             <h2 class="font-inter font-bold text-text32 md:text-text44 text-center">Clientes satisfechos</h2>
-            <p class="font-inter font-normal text-text14 text-[#565656] text-center w-full md:w-2/3">Lorem ipsum
-                dolor sit
-                amet, consectetur adipiscing elit. Vivamus eu fermentum justo, ac fermentum nulla. Sed sed
-                scelerisque
-                urna, vitae ultrices libero. Pellentesque vehicula et urna in venenatis.
+            <p class="font-inter font-normal text-text14 text-[#565656] text-center w-full md:w-2/3">Descubre las experiencias de nuestros clientes satisfechos a través de sus comentarios. Sus palabras reflejan la calidad de nuestro servicio y el impacto positivo que hemos tenido en sus proyectos. Nos enorgullece ser parte de su éxito.
             </p>
         </div>
 
