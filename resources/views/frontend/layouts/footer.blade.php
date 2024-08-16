@@ -1,6 +1,5 @@
 <footer class="bg-[#0051FF] py-20">
-    <div class="flex flex-col md:flex-row justify-between items-start text-white w-11/12 mx-auto gap-12" data-aos="fade-up"
-        data-aos-offset="150">
+    <div class="flex flex-col md:flex-row justify-between items-start text-white w-11/12 mx-auto gap-12">
 
         <div class="flex flex-col gap-5">
             <div class="flex items-center justify-start font-inter font-bold italic">
